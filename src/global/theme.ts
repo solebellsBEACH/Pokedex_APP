@@ -14,5 +14,14 @@ export default {
     },
 
     fonts: {
+        Regular: 'Spartan-Regular',
+        Bold: 'Spartan-Bold',
+        SemiBold: 'Spartan-SemiBold',
+        ExtraBold: 'Spartan-ExtraBold',
+        ExtraLight: 'Spartan-ExtraLight',
+        Light: 'Spartan-Light',
+        Medium: 'Spartan-Medium',
+        Black: 'Spartan-Black',
+        Thin: 'Spartan-Thin'
     },
 };
