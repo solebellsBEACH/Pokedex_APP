@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import theme from './src/global/theme';
 import Routes from './src/routes';
 import { useFonts } from 'expo-font';
+import { RequestContextProvider } from './src/context/RequestContext';
 
 export default function App() {
 
@@ -19,16 +20,19 @@ export default function App() {
     'Spartan-Thin': require('./assets/fonts/Spartan-Thin.ttf')
   });
 
-
   if (!fontsLoaded) {
     return <AppLoading />;
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      {/* <RequestContextProvider> */}
-      <Routes />
-      {/* </RequestContextProvider> */}
-    </ThemeProvider>
+    <>
+      <ThemeProvider theme={theme}>
+        {/* 
+       <RequestContextProvider> */}
+        <Routes />
+        {/* </RequestContextProvider>
+     </ThemeProvider> */}
+      </ThemeProvider>
+    </>
   );
 }

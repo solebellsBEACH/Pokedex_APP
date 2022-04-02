@@ -1,10 +1,18 @@
 import React from 'react'
+import { BackgroundLogIn } from '../../assets'
 
-import { Container } from './styles'
+import { Container, LogoPokemon, BackgroundImage } from './styles'
 
 export const LogIn = () => {
     return (
-        <Container>
-        </Container>
+        <BackgroundImage
+            resizeMode="cover"
+            source={BackgroundLogIn}
+        >
+            <LogoPokemon />
+            <Container>
+
+            </Container>
+        </BackgroundImage>
     )
 }
