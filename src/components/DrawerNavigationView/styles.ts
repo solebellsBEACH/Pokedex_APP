@@ -5,7 +5,7 @@ import { ExitIcon as ExitIconSVG } from '../../assets'
 
 export const Container = styled.View`
 flex:1;
-padding: 20% ${RFValue(20)}px 0  ${RFValue(20)}px;
+padding: 15% ${RFValue(20)}px 0  ${RFValue(20)}px;
 `
 export const ContentTop = styled.View`
 width:100% ;

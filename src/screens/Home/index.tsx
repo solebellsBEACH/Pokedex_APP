@@ -15,7 +15,7 @@ export const Home = () => {
                 ref={drawer}
                 drawerWidth={RFValue(340)}
                 drawerPosition='right'
-                renderNavigationView={DrawerNavigationView}
+                renderNavigationView={() => { return <DrawerNavigationView onCloseDrawer={() => { drawer.current.closeDrawer() }} /> }}
 
             >
                 <Container>
