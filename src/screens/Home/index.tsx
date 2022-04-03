@@ -1,25 +1,34 @@
-import React from 'react'
+import React, { useRef } from 'react'
+import { DrawerLayoutAndroid } from 'react-native'
 
-import { TouchableOpacity } from 'react-native'
-import { Drawer } from 'react-native-paper'
 import { RFValue } from 'react-native-responsive-fontsize'
+import { DrawerNavigationView } from '../../components'
 import { Container, LogoPokemon, ContentTop, LogoConfig, LogoConfigContainer } from './styles'
 
 export const Home = () => {
 
-
+    const drawer = useRef(null)
     return (
         <>
-            <Container>
-                <LogoPokemon height={RFValue(40)} />
-                <ContentTop>
-                    <LogoConfigContainer
-                        onPress={() => { console.log('PRESSED') }}
-                    >
-                        <LogoConfig height={RFValue(40)} />
-                    </LogoConfigContainer>
-                </ContentTop>
-            </Container>
+            <DrawerLayoutAndroid
+
+                ref={drawer}
+                drawerWidth={RFValue(340)}
+                drawerPosition='right'
+                renderNavigationView={DrawerNavigationView}
+
+            >
+                <Container>
+                    <LogoPokemon height={RFValue(40)} />
+                    <ContentTop>
+                        <LogoConfigContainer
+                            onPress={() => { drawer.current.openDrawer() }}
+                        >
+                            <LogoConfig height={RFValue(40)} />
+                        </LogoConfigContainer>
+                    </ContentTop>
+                </Container>
+            </DrawerLayoutAndroid>
         </>
     )
 }
