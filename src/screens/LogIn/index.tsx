@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
 import { Text } from 'react-native'
 
@@ -6,16 +7,20 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import { BackgroundLogIn } from '../../assets'
 import { StyledButton, StyledTextInput, TextButton } from '../../global/styles'
 import theme from '../../global/theme'
+import { INavigationProps } from '../../utils/interfaces'
 
 import { Container, LogoPokemon, BackgroundImage, Title, Description } from './styles'
 
 export const LogIn = () => {
+
+    const navigation = useNavigation<INavigationProps>();
 
     const renderForm = () => {
         const [isVisible, setIsVisible] = useState(true)
 
         return <>
             <StyledTextInput
+                autoComplete={false}
                 underlineColor={theme.colors.gray6}
                 selectionColor={theme.colors.blue2}
                 activeUnderlineColor={theme.colors.blue2}
@@ -24,6 +29,7 @@ export const LogIn = () => {
                 label="Email"
             />
             <StyledTextInput
+                autoComplete={false}
                 underlineColor={theme.colors.gray6}
                 selectionColor={theme.colors.blue2}
                 activeUnderlineColor={theme.colors.blue2}
@@ -55,7 +61,7 @@ export const LogIn = () => {
                 {renderForm()}
                 <StyledButton
                     style={{ marginTop: RFValue(30) }}
-                    mode="contained" onPress={() => console.log('Pressed')}>
+                    mode="contained" onPress={() => navigation.navigate('Home')}>
                     <TextButton>Login</TextButton>
                 </StyledButton>
             </Container>
