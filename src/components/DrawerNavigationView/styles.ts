@@ -37,6 +37,7 @@ export const Content = styled.View`
 margin-top:${RFValue(50)}px;
 width:100% ;
 min-height:${RFValue(200)}px;
+
 `
 export const ContentTitle = styled.Text`
 font-family: ${({ theme }) => theme.fonts.SemiBold};
@@ -46,6 +47,6 @@ color: ${({ theme }) => theme.colors.gray6};
 export const ContentTypes = styled.View`
 margin-top:${RFValue(20)}px;
 width:100% ;
-background:blue ;
+
 min-height:${RFValue(100)}px;
 `

@@ -1,5 +1,6 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
+import { TypePokemonButton } from '../TypePokemonButton'
 import { ContentTypes, ClearFilterText, Container, ContentTop, Title, ExitIcon, ExitIconContainer, Content, ContentTitle } from './styles'
 
 export const DrawerNavigationView = () => {
@@ -12,7 +13,9 @@ export const DrawerNavigationView = () => {
             </ContentTop>
             <Content>
                 <ContentTitle>Tipo</ContentTitle>
-                <ContentTypes></ContentTypes>
+                <ContentTypes>
+                    <TypePokemonButton />
+                </ContentTypes>
             </Content>
         </Container>
     )
