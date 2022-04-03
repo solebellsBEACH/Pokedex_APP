@@ -1,13 +1,25 @@
-
 import React from 'react'
-import { Text } from 'react-native'
 
-import { Container } from './styles'
+import { TouchableOpacity } from 'react-native'
+import { Drawer } from 'react-native-paper'
+import { RFValue } from 'react-native-responsive-fontsize'
+import { Container, LogoPokemon, ContentTop, LogoConfig, LogoConfigContainer } from './styles'
 
 export const Home = () => {
+
+
     return (
-        <Container>
-            <Text>Pagina Home</Text>
-        </Container>
+        <>
+            <Container>
+                <LogoPokemon height={RFValue(40)} />
+                <ContentTop>
+                    <LogoConfigContainer
+                        onPress={() => { console.log('PRESSED') }}
+                    >
+                        <LogoConfig height={RFValue(40)} />
+                    </LogoConfigContainer>
+                </ContentTop>
+            </Container>
+        </>
     )
 }
