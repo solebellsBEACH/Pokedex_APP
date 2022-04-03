@@ -44,9 +44,9 @@ font-family: ${({ theme }) => theme.fonts.SemiBold};
 font-size: ${RFValue(20)}px;
 color: ${({ theme }) => theme.colors.gray6};
 `
-export const ContentTypes = styled.View`
+export const ContentTypes = styled.FlatList`
 margin-top:${RFValue(20)}px;
 width:100% ;
-
 min-height:${RFValue(100)}px;
+background:red ;
 `

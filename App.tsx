@@ -4,7 +4,8 @@ import { ThemeProvider } from 'styled-components';
 import theme from './src/global/theme';
 import Routes from './src/routes';
 import { useFonts } from 'expo-font';
-import { RequestContextProvider } from './src/context/RequestContext';
+import { Provider as ReduxProvider } from 'react-redux'
+import store from './src/context/store';
 
 export default function App() {
 
@@ -26,13 +27,11 @@ export default function App() {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-        {/* 
-       <RequestContextProvider> */}
-        <Routes />
-        {/* </RequestContextProvider>
-     </ThemeProvider> */}
-      </ThemeProvider>
+      <ReduxProvider store={store}>
+        <ThemeProvider theme={theme}>
+          <Routes />
+        </ThemeProvider>
+      </ReduxProvider>
     </>
   );
 }

@@ -8,7 +8,7 @@ interface IRadioButton {
 export const Container = styled.TouchableOpacity<IRadioButton>`
 width:45% ;
 height:${RFValue(42)}px;
-
+margin:${RFValue(6)}px;
 border-radius:${RFValue(4)}px;
 align-items:center;
 justify-content:center;

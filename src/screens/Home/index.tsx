@@ -1,11 +1,14 @@
 import React, { useRef } from 'react'
 import { DrawerLayoutAndroid } from 'react-native'
+import { useSelector } from 'react-redux';
 
 import { RFValue } from 'react-native-responsive-fontsize'
 import { DrawerNavigationView } from '../../components'
 import { Container, LogoPokemon, ContentTop, LogoConfig, LogoConfigContainer } from './styles'
+import { RootState } from '../../context/store';
 
 export const Home = () => {
+    const homeScreenState = useSelector((state: RootState) => state.homeScreen);
 
     const drawer = useRef(null)
     return (
