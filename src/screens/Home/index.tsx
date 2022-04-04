@@ -32,6 +32,7 @@ export const Home = () => {
                     </ContentTop>
                     <ContentBottom>
                         <PokemonItensContent
+                            keyExtractor={(item, index) => `key-${index}`}
                             data={['', '', '', '', '', '', '', '', '', '', '', '', '']}
                             renderItem={({ item, index }) => <PokemonItem key={index} />
                             }

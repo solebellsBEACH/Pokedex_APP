@@ -30,6 +30,7 @@ export const PokemonScreen = () => {
             <ContentLeft>
                 <PokemonName>Charizard</PokemonName>
                 <CategoriesFlatList
+                    keyExtractor={(item, index) => `key-${index}`}
                     data={[{ name: 'Fogo' }, { name: 'Água' }, { name: 'Pedra' }, { name: 'Vento' }]}
                     renderItem={({ item, index }) => {
                         return renderCategoryItem({ label: item.name, index });

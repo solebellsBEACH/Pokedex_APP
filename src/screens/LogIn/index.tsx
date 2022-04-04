@@ -14,10 +14,11 @@ import { INavigationProps } from '../../utils/interfaces'
 import { Container, LogoPokemon, BackgroundImage, Title, Description } from './styles'
 
 export const LogIn = () => {
+
     const homeScreenState = useSelector((state: RootState) => state.homeScreen);
     const dispatch = useDispatch();
     const navigation = useNavigation<INavigationProps>();
-
+    dispatch(asyncGetTypes())
     const renderForm = () => {
         const [isVisible, setIsVisible] = useState(true)
 
@@ -53,8 +54,6 @@ export const LogIn = () => {
     }
 
     const handleLogin = async () => {
-        dispatch(asyncGetTypes())
-        console.log(homeScreenState.typesRequestLoaded)
         if (homeScreenState.typesRequestLoaded) {
             navigation.navigate('Home')
         }

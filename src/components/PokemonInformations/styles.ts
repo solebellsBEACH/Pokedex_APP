@@ -33,6 +33,29 @@ export const TabSelectorText = styled.Text<ITabSelectorProps>`
 font-family: ${(props) => props.isActive ? props.theme.fonts.Bold : props.theme.fonts.Medium};
 font-size:${RFValue(14)}px;
 color:${(props) => props.isActive ? props.theme.colors.gray6 : props.theme.colors.gray4};
+`
 
+export const ContentBottom = styled.View`
+width:100% ;
+height: ${RFValue(200)}px;
+padding:${RFValue(25)}px ${RFValue(15)}px ;
+`
 
+export const InformationItemContainer = styled.View`
+height:${RFValue(25)}px;
+width:100%;
+margin-bottom:${RFValue(10)}px;
+flex-direction:row;
+`
+export const Label = styled.Text`
+width:${RFValue(120)}px ;
+margin-right: ${RFValue(25)}px;
+font-size: ${RFValue(14)}px;
+font-family: ${({ theme }) => theme.fonts.Bold};
+color: ${({ theme }) => theme.colors.gray3};
+`
+export const Value = styled.Text`
+font-size: ${RFValue(13)}px;
+font-family: ${({ theme }) => theme.fonts.SemiBold};
+color: ${({ theme }) => theme.colors.gray6};
 `

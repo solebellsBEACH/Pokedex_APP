@@ -25,6 +25,7 @@ export const DrawerNavigationView = ({ onCloseDrawer }: IDrawerNavigationViewPro
                     <ContentTitle>Tipo</ContentTitle>
                     <ContentTypes
                         data={homeScreenState.typesRequest.results}
+                        keyExtractor={(item, index) => `key-${index}`}
                         renderItem={({ item, index }) => {
                             return <TypePokemonButton index={index} key={index} label={item.name} />
                         }}
