@@ -1,25 +1,24 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { DrawerLayoutAndroid } from 'react-native'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { RFValue } from 'react-native-responsive-fontsize'
 import { DrawerNavigationView } from '../../components'
 import { Container, LogoPokemon, ContentTop, LogoConfig, LogoConfigContainer } from './styles'
-import { RootState } from '../../context/store';
+import { asyncGetTypes } from '../../store/HomeScreen/HomeScreen.store'
+import { RootState } from '../../store';
 
 export const Home = () => {
-    const homeScreenState = useSelector((state: RootState) => state.homeScreen);
-
+    // const homeScreenState = useSelector((state: RootState) => state.homeScreen);
+    const dispatch = useDispatch()
     const drawer = useRef(null)
     return (
         <>
             <DrawerLayoutAndroid
-
                 ref={drawer}
                 drawerWidth={RFValue(340)}
                 drawerPosition='right'
                 renderNavigationView={() => { return <DrawerNavigationView onCloseDrawer={() => { drawer.current.closeDrawer() }} /> }}
-
             >
                 <Container>
                     <LogoPokemon height={RFValue(40)} />

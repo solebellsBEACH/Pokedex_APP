@@ -16,7 +16,7 @@ export interface IPokemonType {
 }
 export interface IPokemonTypeRequest {
     count: number,
-    result: IPokemonType[];
+    results: IPokemonType[];
 }
 
 //  - - - - - - -  - - - - - - -  - - - - - - -  - - - - - - -  - - - - - - - //

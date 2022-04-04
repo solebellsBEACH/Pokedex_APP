@@ -5,7 +5,7 @@ import theme from './src/global/theme';
 import Routes from './src/routes';
 import { useFonts } from 'expo-font';
 import { Provider as ReduxProvider } from 'react-redux'
-import store from './src/context/store';
+import store from './src/store';
 
 export default function App() {
 

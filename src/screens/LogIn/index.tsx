@@ -1,18 +1,21 @@
 import { useNavigation } from '@react-navigation/native'
-import React, { useState } from 'react'
-import { Text } from 'react-native'
+import React, { useEffect, useState } from 'react'
 
 import { TextInput } from 'react-native-paper'
 import { RFValue } from 'react-native-responsive-fontsize'
+import { useDispatch, useSelector } from 'react-redux'
 import { BackgroundLogIn } from '../../assets'
 import { StyledButton, StyledTextInput, TextButton } from '../../global/styles'
 import theme from '../../global/theme'
+import { RootState } from '../../store'
+import { asyncGetTypes } from '../../store/HomeScreen/HomeScreen.store'
 import { INavigationProps } from '../../utils/interfaces'
 
 import { Container, LogoPokemon, BackgroundImage, Title, Description } from './styles'
 
 export const LogIn = () => {
-
+    const homeScreenState = useSelector((state: RootState) => state.homeScreen);
+    const dispatch = useDispatch();
     const navigation = useNavigation<INavigationProps>();
 
     const renderForm = () => {
@@ -49,6 +52,15 @@ export const LogIn = () => {
         </>
     }
 
+    const handleLogin = async () => {
+        dispatch(asyncGetTypes())
+        console.log(homeScreenState.typesRequestLoaded)
+        if (homeScreenState.typesRequestLoaded) {
+            navigation.navigate('Home')
+        }
+    }
+
+
     return (
         <BackgroundImage
             resizeMode="cover"
@@ -61,7 +73,7 @@ export const LogIn = () => {
                 {renderForm()}
                 <StyledButton
                     style={{ marginTop: RFValue(30) }}
-                    mode="contained" onPress={() => navigation.navigate('Home')}>
+                    mode="contained" onPress={handleLogin}>
                     <TextButton>Login</TextButton>
                 </StyledButton>
             </Container>

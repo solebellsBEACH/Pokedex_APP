@@ -48,5 +48,4 @@ export const ContentTypes = styled.FlatList`
 margin-top:${RFValue(20)}px;
 width:100% ;
 min-height:${RFValue(100)}px;
-background:red ;
 `
