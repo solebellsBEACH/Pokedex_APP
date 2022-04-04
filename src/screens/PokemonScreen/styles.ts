@@ -2,6 +2,7 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import styled from 'styled-components/native'
 import { ArrowLeftIcon as ArrowLeftIconSVG } from '../../assets/index'
 import { BigPokemon as PokemonImageSVG } from '../../assets'
+import { LinearGradient } from 'expo-linear-gradient';
 
 export const Container = styled.View`
 flex: 1;
@@ -63,7 +64,7 @@ align-items:center;
 width: 100%;
 height: ${RFValue(250)}px;
 `
-export const PokemonItemContent = styled.View`
+export const PokemonItemContent = styled(LinearGradient)`
 bottom:0;
 position:absolute;
 width:100%;

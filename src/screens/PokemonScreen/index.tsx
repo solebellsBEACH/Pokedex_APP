@@ -44,8 +44,12 @@ export const PokemonScreen = () => {
     }
 
     const renderPokemonItem = () => {
-        return <PokemonItemContainer>
-            <PokemonItemContent>
+        return <PokemonItemContainer
+
+        >
+            <PokemonItemContent
+                colors={['#FF6969', '#FD9E5A']}
+            >
                 <PokemonImage />
             </PokemonItemContent>
         </PokemonItemContainer>
