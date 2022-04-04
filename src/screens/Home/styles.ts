@@ -12,6 +12,7 @@ export const LogoConfig = styled(LogoConfigSVG)`
 `
 export const LogoConfigContainer = styled.TouchableOpacity`
 position: absolute;
+margin-top: ${RFValue(5)}px;
 right:0;
 `
 export const LogoPokemon = styled(LogoPokemonSVG)`

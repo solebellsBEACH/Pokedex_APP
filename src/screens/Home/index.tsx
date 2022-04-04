@@ -3,7 +3,7 @@ import { DrawerLayoutAndroid } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RFValue } from 'react-native-responsive-fontsize'
-import { DrawerNavigationView } from '../../components'
+import { DrawerNavigationView, PokemonInput } from '../../components'
 import { Container, LogoPokemon, ContentTop, LogoConfig, LogoConfigContainer } from './styles'
 import { asyncGetTypes } from '../../store/HomeScreen/HomeScreen.store'
 import { RootState } from '../../store';
@@ -23,6 +23,7 @@ export const Home = () => {
                 <Container>
                     <LogoPokemon height={RFValue(40)} />
                     <ContentTop>
+                        <PokemonInput />
                         <LogoConfigContainer
                             onPress={() => { drawer.current.openDrawer() }}
                         >
