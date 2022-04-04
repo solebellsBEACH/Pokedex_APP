@@ -6,7 +6,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 export const Container = styled.View`
 flex: 1;
-padding:${RFValue(60)}px ${RFValue(25)}px ${RFValue(30)}px ${RFValue(25)}px;;
+
+padding:${RFValue(60)}px ${RFValue(25)}px ${RFValue(0)}px ${RFValue(25)}px;
 `
 export const ArrowLeftIcon = styled(ArrowLeftIconSVG)`
 `
@@ -57,11 +58,14 @@ color: ${({ theme }) => theme.colors.white};
 export const ContentBottom = styled.View`
 margin-top:${RFValue(10)}px;
 width:100%;
-min-height:${RFValue(400)}px;
+min-height:${RFValue(10)}px;
+margin-bottom:${RFValue(0)}px;
+
 `
 export const PokemonItemContainer = styled.View`
 align-items:center;
 width: 100%;
+
 height: ${RFValue(250)}px;
 `
 export const PokemonItemContent = styled(LinearGradient)`

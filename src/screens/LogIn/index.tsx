@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { TextInput } from 'react-native-paper'
 import { RFValue } from 'react-native-responsive-fontsize'
