@@ -17,7 +17,9 @@ export const DrawerNavigationView = ({ onCloseDrawer, filtersActiveds, setFilter
             <Container>
                 <ContentTop>
                     <Title>Filtro</Title>
-                    <TouchableOpacity><ClearFilterText>Limpar filtros</ClearFilterText></TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => { setFiltersActiveds([]) }}
+                    ><ClearFilterText>Limpar filtros</ClearFilterText></TouchableOpacity>
                     <ExitIconContainer
                         onPress={onCloseDrawer}
                     ><ExitIcon /></ExitIconContainer>
