@@ -1,6 +1,7 @@
 import { RFValue } from 'react-native-responsive-fontsize'
 import styled from 'styled-components/native'
 import { ArrowLeftIcon as ArrowLeftIconSVG } from '../../assets/index'
+import { BigPokemon as PokemonImageSVG } from '../../assets'
 
 export const Container = styled.View`
 flex: 1;
@@ -41,13 +42,37 @@ margin-left:${RFValue(-5)}px;
 export const CategoryItem = styled.View`
 
 background-color: ${({ theme }) => theme.colors.blue3};
-padding:${RFValue(2)}px ${RFValue(15)}px;
+padding:${RFValue(1)}px ${RFValue(15)}px;
 border-radius:${RFValue(15)}px;
 justify-content:center;
 height:${RFValue(30)}px;
 `
 export const CategoryText = styled.Text`
 font-family: ${({ theme }) => theme.fonts.Regular};
-font-size: ${RFValue(14)}px;
+font-size: ${RFValue(13)}px;
 color: ${({ theme }) => theme.colors.white};
+`
+
+export const ContentBottom = styled.View`
+margin-top:${RFValue(10)}px;
+width:100%;
+min-height:${RFValue(400)}px;
+`
+export const PokemonItemContainer = styled.View`
+align-items:center;
+width: 100%;
+height: ${RFValue(250)}px;
+`
+export const PokemonItemContent = styled.View`
+bottom:0;
+position:absolute;
+width:100%;
+height: ${RFValue(195)}px;
+border-radius:${RFValue(20)}px;
+background-color:${({ theme }) => theme.colors.blue3};
+align-items:center;
+`
+export const PokemonImage = styled(PokemonImageSVG)`
+top:${RFValue(-45)}px;
+position: absolute;
 `

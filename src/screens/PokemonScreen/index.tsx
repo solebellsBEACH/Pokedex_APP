@@ -1,8 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react'
-import { TouchableOpacity, View } from 'react-native'
+import { TouchableOpacity } from 'react-native'
+import { RFValue } from 'react-native-responsive-fontsize';
 import { INavigationProps } from '../../utils/interfaces';
-import { Container, ArrowLeftIcon, ContentTop, ContentLeft, PokemonName, ContentRight, CategoryText, PokemonNumber, CategoriesContainer, CategoryItem, CategoriesFlatList } from './styles'
+import { Container, ArrowLeftIcon, ContentTop, ContentLeft, PokemonName, ContentRight, CategoryText, PokemonNumber, CategoriesContainer, CategoryItem, CategoriesFlatList, ContentBottom, PokemonItemContent, PokemonItemContainer, PokemonImage } from './styles'
 
 export const PokemonScreen = () => {
     const navigation = useNavigation<INavigationProps>();
@@ -23,29 +24,42 @@ export const PokemonScreen = () => {
             </CategoriesContainer>
         </>
     }
+
+    const renderContentTop = () => {
+        return <ContentTop>
+            <ContentLeft>
+                <PokemonName>Charizard</PokemonName>
+                <CategoriesFlatList
+                    data={[{ name: 'Fogo' }, { name: 'Água' }, { name: 'Pedra' }, { name: 'Vento' }]}
+                    renderItem={({ item, index }) => {
+                        return renderCategoryItem({ label: item.name, index });
+                    }}
+                    numColumns={3}
+                />
+            </ContentLeft>
+            <ContentRight>
+                <PokemonNumber>#004</PokemonNumber>
+            </ContentRight>
+        </ContentTop>
+    }
+
+    const renderPokemonItem = () => {
+        return <PokemonItemContainer>
+            <PokemonItemContent>
+                <PokemonImage />
+            </PokemonItemContent>
+        </PokemonItemContainer>
+    }
     return (
         <>
             <Container>
                 <TouchableOpacity
                     onPress={() => navigation.goBack()}
                 ><ArrowLeftIcon width={18} height={18} /></TouchableOpacity>
-                <ContentTop>
-                    <ContentLeft>
-                        <PokemonName>Charizard</PokemonName>
-                        <CategoriesFlatList
-                            data={[{ name: 'Fogo' }, { name: 'Fogo' }, { name: 'Fogo' }, { name: 'Fogo' }]}
-                            renderItem={({ item, index }) => {
-                                console.log(item)
-                                return renderCategoryItem({ label: item.name, index })
-                                // renderCategoryItem({ label: item.name, index })
-                            }}
-                            numColumns={3}
-                        />
-                    </ContentLeft>
-                    <ContentRight>
-                        <PokemonNumber>#004</PokemonNumber>
-                    </ContentRight>
-                </ContentTop>
+                {renderContentTop()}
+                <ContentBottom>
+                    {renderPokemonItem()}
+                </ContentBottom>
             </Container>
         </>
     )
