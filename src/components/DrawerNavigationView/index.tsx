@@ -5,10 +5,11 @@ import { RootState } from '../../store'
 import { TypePokemonButton } from '../TypePokemonButton'
 import { ContentTypes, ClearFilterText, Container, ContentTop, Title, ExitIcon, ExitIconContainer, Content, ContentTitle } from './styles'
 interface IDrawerNavigationViewProps {
-    onCloseDrawer: () => void
+    onCloseDrawer: () => void;
+    filtersActiveds: string[]; setFiltersActiveds: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-export const DrawerNavigationView = ({ onCloseDrawer }: IDrawerNavigationViewProps) => {
+export const DrawerNavigationView = ({ onCloseDrawer, filtersActiveds, setFiltersActiveds }: IDrawerNavigationViewProps) => {
     const homeScreenState = useSelector((state: RootState) => state.homeScreen);
 
     return (
@@ -27,7 +28,9 @@ export const DrawerNavigationView = ({ onCloseDrawer }: IDrawerNavigationViewPro
                         data={homeScreenState.typesRequest.results}
                         keyExtractor={(item, index) => `key-${index}`}
                         renderItem={({ item, index }) => {
-                            return <TypePokemonButton index={index} key={index} label={item.name} />
+                            return <TypePokemonButton
+                                filtersActiveds={filtersActiveds} setFiltersActiveds={setFiltersActiveds}
+                                index={index} key={index} label={item.name} />
                         }}
                         numColumns={2}
                     />

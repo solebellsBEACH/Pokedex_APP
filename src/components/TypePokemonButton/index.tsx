@@ -2,17 +2,41 @@ import React, { useState } from 'react'
 import { Container, TextButton } from './styles'
 
 interface ITypePokemonButton {
-    label: string, index: number
+    label: string, index: number;
+    filtersActiveds: string[]; setFiltersActiveds: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-export const TypePokemonButton = ({ index, label }: ITypePokemonButton) => {
-    const [isActive, setIsActive] = useState(false)
+export const TypePokemonButton = ({ index, label, filtersActiveds, setFiltersActiveds }: ITypePokemonButton) => {
+
+
+    const isActive = () => {
+        if (filtersActiveds.find(e => e == label) == undefined) {
+            return false
+        }
+        else {
+            return true;
+        }
+
+    }
+
+    const handlePress = () => {
+        const array = filtersActiveds;
+        if (!isActive()) {
+            array.push(label)
+        }
+        else {
+            array.splice(array.indexOf(label))
+        }
+        setFiltersActiveds(array)
+    }
+
+
     return (
         <Container
             key={index}
-            onPress={() => setIsActive(!isActive)}
-            isActive={isActive} >
-            <TextButton isActive={isActive} >{label.charAt(0).toUpperCase() + label.slice(1)}</TextButton>
+            onPress={handlePress}
+            isActive={isActive()} >
+            <TextButton isActive={isActive()} >{label.charAt(0).toUpperCase() + label.slice(1)}</TextButton>
         </Container>
     )
 }

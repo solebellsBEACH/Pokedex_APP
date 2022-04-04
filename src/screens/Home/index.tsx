@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { DrawerLayoutAndroid } from 'react-native'
 import { useDispatch } from 'react-redux';
 
@@ -11,6 +11,7 @@ export const Home = () => {
     // const homeScreenState = useSelector((state: RootState) => state.homeScreen);
     const dispatch = useDispatch()
     const drawer = useRef(null)
+    const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
 
     return (
         <>
@@ -18,7 +19,11 @@ export const Home = () => {
                 ref={drawer}
                 drawerWidth={RFValue(340)}
                 drawerPosition='right'
-                renderNavigationView={() => { return <DrawerNavigationView onCloseDrawer={() => { drawer.current.closeDrawer() }} /> }}
+                renderNavigationView={() => {
+                    return <DrawerNavigationView
+                        filtersActiveds={filtersActiveds} setFiltersActiveds={setFiltersActiveds}
+                        onCloseDrawer={() => { drawer.current.closeDrawer() }} />
+                }}
             >
                 <Container>
                     <LogoPokemon height={RFValue(40)} />
@@ -33,7 +38,7 @@ export const Home = () => {
                     <ContentBottom>
                         <PokemonItensContent
                             keyExtractor={(item, index) => `key-${index}`}
-                            data={['', '', '', '', '', '', '', '', '', '', '', '', '']}
+                            data={['', '', '', '', '', '', '', '', '', '', '', '']}
                             renderItem={({ item, index }) => <PokemonItem key={index} />
                             }
                             numColumns={2}
