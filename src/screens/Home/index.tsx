@@ -11,6 +11,7 @@ export const Home = () => {
     // const homeScreenState = useSelector((state: RootState) => state.homeScreen);
     const dispatch = useDispatch()
     const drawer = useRef(null)
+
     return (
         <>
             <DrawerLayoutAndroid
