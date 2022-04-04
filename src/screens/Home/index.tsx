@@ -1,12 +1,11 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import { DrawerLayoutAndroid } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { RFValue } from 'react-native-responsive-fontsize'
-import { DrawerNavigationView, PokemonInput } from '../../components'
-import { Container, LogoPokemon, ContentTop, LogoConfig, LogoConfigContainer } from './styles'
-import { asyncGetTypes } from '../../store/HomeScreen/HomeScreen.store'
-import { RootState } from '../../store';
+import { DrawerNavigationView, PokemonInput, PokemonItem } from '../../components'
+import { Container, LogoPokemon, ContentTop, LogoConfig, LogoConfigContainer, ContentBottom, PokemonItensContent } from './styles'
+
 
 export const Home = () => {
     // const homeScreenState = useSelector((state: RootState) => state.homeScreen);
@@ -30,6 +29,14 @@ export const Home = () => {
                             <LogoConfig height={RFValue(40)} />
                         </LogoConfigContainer>
                     </ContentTop>
+                    <ContentBottom>
+                        <PokemonItensContent
+                            data={['', '', '', '', '', '', '', '', '', '', '', '', '']}
+                            renderItem={({ item, index }) => <PokemonItem key={index} />
+                            }
+                            numColumns={2}
+                        />
+                    </ContentBottom>
                 </Container>
             </DrawerLayoutAndroid>
         </>

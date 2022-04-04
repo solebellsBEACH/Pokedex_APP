@@ -23,3 +23,12 @@ margin:${RFValue(20)}px 0 0 0;
 width:100%;
 height: ${RFValue(50)}px;
 `
+export const ContentBottom = styled.ScrollView`
+margin:${RFValue(20)}px 0 0 0;
+width:100%;
+height: ${RFValue(50)}px;
+
+`
+
+export const PokemonItensContent = styled.FlatList`
+`
