@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { DrawerLayoutAndroid } from 'react-native'
 import { useDispatch } from 'react-redux';
 
 import { RFValue } from 'react-native-responsive-fontsize'
-import { DrawerNavigationView, PokemonInput, PokemonItem } from '../../components'
+import { DrawerNavigationView, FiltersContent, PokemonInput, PokemonItem } from '../../components'
 import { Container, LogoPokemon, ContentTop, LogoConfig, LogoConfigContainer, ContentBottom, PokemonItensContent } from './styles'
 
 
@@ -11,8 +11,9 @@ export const Home = () => {
     // const homeScreenState = useSelector((state: RootState) => state.homeScreen);
     const dispatch = useDispatch()
     const drawer = useRef(null)
+    const [first, setfirst] = useState(1)
     const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
-
+    useEffect(() => { console.log(filtersActiveds) }, [filtersActiveds])
     return (
         <>
             <DrawerLayoutAndroid
@@ -22,7 +23,9 @@ export const Home = () => {
                 renderNavigationView={() => {
                     return <DrawerNavigationView
                         filtersActiveds={filtersActiveds} setFiltersActiveds={setFiltersActiveds}
-                        onCloseDrawer={() => { drawer.current.closeDrawer() }} />
+                        onCloseDrawer={() => {
+                            drawer.current.closeDrawer()
+                        }} />
                 }}
             >
                 <Container>
@@ -36,6 +39,8 @@ export const Home = () => {
                         </LogoConfigContainer>
                     </ContentTop>
                     <ContentBottom>
+                        {/* <Text></Text> */}
+                        <FiltersContent filters={filtersActiveds} />
                         <PokemonItensContent
                             keyExtractor={(item, index) => `key-${index}`}
                             data={['', '', '', '', '', '', '', '', '', '', '', '']}

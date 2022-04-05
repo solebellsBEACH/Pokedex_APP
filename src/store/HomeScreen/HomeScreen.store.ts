@@ -10,7 +10,6 @@ export type IHomeScreen = {
     typesRequestLoaded: boolean,
     loading: boolean,
     error: boolean,
-
 }
 
 const initialState: IHomeScreen = {
@@ -27,7 +26,8 @@ const HomeScreenSlice = createSlice({
         actionSetTypes(state, payload) {
             state.typesRequest = payload.payload;
             state.typesRequestLoaded = true;
-        }
+        },
+
     }
 })
 export const { actionSetTypes } = HomeScreenSlice.actions;
