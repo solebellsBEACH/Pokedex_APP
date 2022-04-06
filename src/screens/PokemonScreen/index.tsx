@@ -2,6 +2,8 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import { PokemonInformations } from '../../components';
+import theme from '../../global/theme';
+import { usePokemonColors } from '../../utils/hooks';
 import { INavigationProps } from '../../utils/interfaces';
 import { Container, ArrowLeftIcon, ContentTop, ContentLeft, PokemonName, ContentRight, CategoryText, PokemonNumber, CategoriesContainer, CategoryItem, CategoriesFlatList, ContentBottom, PokemonItemContent, PokemonItemContainer, PokemonImage } from './styles'
 
@@ -18,7 +20,8 @@ export const PokemonScreen = () => {
             <CategoriesContainer
                 key={index}
             >
-                <CategoryItem>
+                <CategoryItem
+                    color={usePokemonColors({ pokemonType: 'water' }).primary}>
                     <CategoryText>{label}</CategoryText>
                 </CategoryItem>
             </CategoriesContainer>
@@ -42,13 +45,18 @@ export const PokemonScreen = () => {
                 <PokemonNumber>#004</PokemonNumber>
             </ContentRight>
         </ContentTop>
+
+
+
     }
+
+
 
     const renderPokemonItem = () => {
         return <PokemonItemContainer
         >
             <PokemonItemContent
-                colors={['#FF6969', '#FD9E5A']}
+                colors={[usePokemonColors({ pokemonType: 'water' }).primary, usePokemonColors({ pokemonType: 'water' }).secondary]}
             >
                 <PokemonImage />
             </PokemonItemContent>

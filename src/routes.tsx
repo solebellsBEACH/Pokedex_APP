@@ -12,7 +12,7 @@ export default function Routes() {
         <NavigationContainer>
             <Stack.Navigator
                 screenOptions={{ headerShown: false }}
-                initialRouteName='LogIn'
+                initialRouteName='PokemonScreen'
             >
                 <Stack.Screen name="LogIn" component={LogIn} />
                 <Stack.Screen name="Home" component={Home} />

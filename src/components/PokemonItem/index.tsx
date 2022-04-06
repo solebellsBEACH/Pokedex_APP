@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react'
 import { api } from '../../utils/api';
-import { capitalizeFirstLetter } from '../../utils/hooks';
+import { useCapitalizeFirstLetter } from '../../utils/hooks';
 import { INavigationProps, IPokemon } from '../../utils/interfaces';
 import { Container, PokemonName, PokemonImage, Content } from './styles'
 
@@ -38,7 +38,7 @@ export const PokemonItem = ({ index, label }: IPokemonItem) => {
         >
             <Content
             >
-                <PokemonName>{capitalizeFirstLetter(label)}</PokemonName>
+                <PokemonName>{useCapitalizeFirstLetter(label)}</PokemonName>
             </Content>
             <PokemonImage width={80} height={80} />
         </Container>

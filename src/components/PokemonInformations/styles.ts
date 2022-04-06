@@ -2,8 +2,9 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import styled from 'styled-components/native'
 
 export const Container = styled.View`
+
 width:100% ;
-height: ${RFValue(280)}px;
+height: auto;
 padding:0 ${RFValue(12)}px;
 `
 export const ContentTop = styled.View`

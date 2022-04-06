@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { TouchableOpacity } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { ExitCircleIcon } from '../../assets';
-import { capitalizeFirstLetter } from '../../utils/hooks';
+import { useCapitalizeFirstLetter } from '../../utils/hooks';
 import { Container, ItemContainer, ItemContent, ItemText } from './styles'
 
 interface IFiltersContent {
@@ -20,7 +20,7 @@ export const FiltersContent = ({ filters }: IFiltersContent) => {
             <ItemContainer>
                 <ItemContent>
                     <ItemText>
-                        {capitalizeFirstLetter(label)}
+                        {useCapitalizeFirstLetter(label)}
                     </ItemText>
                     <TouchableOpacity>
                         <ExitCircleIcon style={{ marginTop: RFValue(2), }} />
