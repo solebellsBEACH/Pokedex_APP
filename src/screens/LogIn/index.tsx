@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { TextInput } from 'react-native-paper'
 import { RFValue } from 'react-native-responsive-fontsize'
@@ -8,7 +8,7 @@ import { BackgroundLogIn } from '../../assets'
 import { StyledButton, StyledTextInput, TextButton } from '../../global/styles'
 import theme from '../../global/theme'
 import { RootState } from '../../store'
-import { asyncGetTypes } from '../../store/HomeScreen/HomeScreen.store'
+import { asyncGetPokemons, asyncGetTypes } from '../../store/HomeScreen/HomeScreen.store'
 import { INavigationProps } from '../../utils/interfaces'
 
 import { Container, LogoPokemon, BackgroundImage, Title, Description } from './styles'
@@ -19,6 +19,10 @@ export const LogIn = () => {
     const dispatch = useDispatch();
     const navigation = useNavigation<INavigationProps>();
     dispatch(asyncGetTypes())
+    useEffect(() => {
+        dispatch(asyncGetPokemons())
+    }, [])
+
     const renderForm = () => {
         const [isVisible, setIsVisible] = useState(true)
 

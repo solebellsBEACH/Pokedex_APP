@@ -30,5 +30,5 @@ width:100%;
 `
 
 export const PokemonItensContent = styled.FlatList`
-height: ${RFValue(600)}px;
+height: ${RFValue(570)}px;
 `

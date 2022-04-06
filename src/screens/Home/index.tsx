@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { DrawerLayoutAndroid } from 'react-native'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { RFValue } from 'react-native-responsive-fontsize'
 import { DrawerNavigationView, FiltersContent, PokemonInput, PokemonItem } from '../../components'
 import { Container, LogoPokemon, ContentTop, LogoConfig, LogoConfigContainer, ContentBottom, PokemonItensContent } from './styles'
+import { RootState } from '../../store';
 
 
 export const Home = () => {
-    // const homeScreenState = useSelector((state: RootState) => state.homeScreen);
+    const homeScreenState = useSelector((state: RootState) => state.homeScreen);
     const dispatch = useDispatch()
     const drawer = useRef(null)
     const [first, setfirst] = useState(1)
@@ -43,8 +44,8 @@ export const Home = () => {
                         <FiltersContent filters={filtersActiveds} />
                         <PokemonItensContent
                             keyExtractor={(item, index) => `key-${index}`}
-                            data={['', '', '', '', '', '', '', '', '', '', '', '']}
-                            renderItem={({ item, index }) => <PokemonItem key={index} />
+                            data={homeScreenState.pokemonsRequest.results}
+                            renderItem={({ item, index }) => <PokemonItem index={index} label={item.name} />
                             }
                             numColumns={2}
                         />
