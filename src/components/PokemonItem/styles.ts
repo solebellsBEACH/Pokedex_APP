@@ -7,7 +7,7 @@ align-items:center;
 width: ${RFValue(145)}px;
 height: ${RFValue(120)}px;
 
-margin:0 5%;
+margin:0 0%;
 `
 
 export const Content = styled.View`
@@ -37,6 +37,6 @@ text-align:center;
 border-radius:${RFValue(10)}px;
 `
 export const PokemonImage = styled(PokemonImageSVG)`
-top:0;
+top:${RFValue(5)}px;
 position: absolute;
 `

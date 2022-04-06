@@ -20,6 +20,15 @@ export interface IPokemonTypeRequest {
 }
 
 export interface IPokemon {
+    sprites: {
+        other: {
+            dream_world: {
+                front_default: string
+            }
+        }
+    }
+}
+export interface IPokemonPreRequest {
     name: string;
     url: string;
 }
@@ -27,7 +36,7 @@ export interface IPokemonRequest {
     count: number,
     next: string | null,
     previous: string | null,
-    results: IPokemon[];
+    results: IPokemonPreRequest[];
 }
 
 //  - - - - - - -  - - - - - - -  - - - - - - -  - - - - - - -  - - - - - - - //

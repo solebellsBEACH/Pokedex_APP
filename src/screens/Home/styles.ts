@@ -24,11 +24,14 @@ width:100%;
 height: ${RFValue(50)}px;
 `
 export const ContentBottom = styled.View`
-margin:${RFValue(20)}px 0 0 ${RFValue(-20)}px;
+margin:${RFValue(20)}px 0 0 ${RFValue(0)}px;
 width:100%;
-
 `
 
 export const PokemonItensContent = styled.FlatList`
-height: ${RFValue(570)}px;
+height: 75%;
+width:100%;
+
+/* align-items:center;
+justify-content: center; */
 `
