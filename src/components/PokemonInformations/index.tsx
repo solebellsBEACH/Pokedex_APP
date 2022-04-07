@@ -19,7 +19,7 @@ export const PokemonInformations = () => {
             setPokemon(data)
 
         } catch (error) {
-            console.log('getPokemon')
+
         }
     }
     const getPokemonGender = async () => {
@@ -28,7 +28,7 @@ export const PokemonInformations = () => {
             setGender(data.name)
 
         } catch (error) {
-            console.log('getPokemonGender')
+
 
         }
     }

@@ -22,7 +22,7 @@ export const PokemonScreen = () => {
             const { data } = await api.get(`pokemon/${id}`)
             setPokemon(data)
         } catch (error) {
-            console.log('getPokemon - Screen')
+
         }
     }
 

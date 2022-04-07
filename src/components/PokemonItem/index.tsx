@@ -32,14 +32,12 @@ export const PokemonItem = ({ index, label, url }: IPokemonItem) => {
         try {
             const req = await api.get(`pokemon/${label}`)
             setPokemon({ isLoaded: true, pokemonData: req.data })
-            console.log('getPokemon - ITEM - success')
+
         } catch (error) {
             setPokemon({ isLoaded: false, pokemonData: null })
-            console.log('getPokemon - ITEM')
         }
     }
     useEffect(() => {
-        console.log(id, label)
         getPokemon()
     }, [label])
     return (

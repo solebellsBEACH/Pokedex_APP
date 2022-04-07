@@ -42,7 +42,7 @@ const ScreensSlice = createSlice({
             state.pokemonsRequestLoaded = true;
         },
         actionSetActivePokemonId(state, payload) {
-            console.log(payload)
+
             state.pokemonActiveId = payload.payload.id;
         },
 
@@ -57,7 +57,7 @@ export function asyncGetTypes(): AppThunk {
             const { data } = await api.get('type');
             dispatch(actionSetTypes({ count: data.count, results: data.results }));
         } catch (error) {
-            console.log('asyncGetTypes - Screen')
+
         }
     }
 }
@@ -73,7 +73,6 @@ export function asyncGetPokemons(): AppThunk {
                 previous: data.previous
             }));
         } catch (error) {
-            console.log('asyncGetPokemons - Screen')
         }
     }
 }

@@ -46,7 +46,6 @@ export const Home = () => {
                             keyExtractor={(item, index) => `key-${index}`}
                             data={screensStoreState.pokemonsRequest.results}
                             renderItem={({ item, index }) => {
-                                console.log()
                                 return <PokemonItem index={index} label={item.name} url={item.url} />
                             }
                             }
