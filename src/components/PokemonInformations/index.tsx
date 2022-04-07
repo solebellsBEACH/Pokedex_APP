@@ -36,7 +36,7 @@ export const PokemonInformations = () => {
 
 
 
-    const [activeTab, setActiveTab] = useState<'About' | 'Status' | 'Evolution'>('About')
+    const [activeTab, setActiveTab] = useState<'About' | 'Status' | 'Evolution'>('Status')
     interface ITabSelectorProps {
         label: 'About' | 'Status' | 'Evolution';
     }
@@ -66,11 +66,32 @@ export const PokemonInformations = () => {
         return <InformationItemContainer><Label>{label}</Label><Value>{value}</Value></InformationItemContainer>
     }
     const listAbilities = (abilities: { ability: { name: string } }[]): string => {
-
         let array: string[] = []
         abilities.map(e => { array.push(" " + useCapitalizeFirstLetter(e.ability.name)) })
         return array.toString()
     }
+
+    const renderContentBottomAboutTab = () => {
+        return (
+            <>
+                <InformationItem label='Species' value={pokemon != undefined ? useCapitalizeFirstLetter(pokemon.species.name) : ''} />
+                <InformationItem label='Height' value={pokemon != undefined ? pokemon.height + ' cm' : '0cm'} />
+                <InformationItem label='Abilities' value={pokemon != undefined ? listAbilities(pokemon.abilities) : '0cm'} />
+                <InformationItem label='Gender' value={gender != undefined ? useCapitalizeFirstLetter(gender) : 'genderless'} />
+            </>
+        )
+    }
+
+    const renderContentBottom = () => {
+        switch (activeTab) {
+            case 'About':
+                return renderContentBottomAboutTab()
+
+            default:
+                break;
+        }
+    }
+
     return (
         <Container>
             <ContentTop>
@@ -79,10 +100,7 @@ export const PokemonInformations = () => {
                 <TabSelector label='Evolution' />
             </ContentTop>
             <ContentBottom>
-                <InformationItem label='Species' value={pokemon != undefined ? useCapitalizeFirstLetter(pokemon.species.name) : ''} />
-                <InformationItem label='Height' value={pokemon != undefined ? pokemon.height + ' cm' : '0cm'} />
-                <InformationItem label='Abilities' value={pokemon != undefined ? listAbilities(pokemon.abilities) : '0cm'} />
-                <InformationItem label='Gender' value={gender != undefined ? useCapitalizeFirstLetter(gender) : 'genderless'} />
+                {renderContentBottom()}
             </ContentBottom>
         </Container>
     )
