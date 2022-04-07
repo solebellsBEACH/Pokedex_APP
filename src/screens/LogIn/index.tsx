@@ -8,14 +8,14 @@ import { BackgroundLogIn } from '../../assets'
 import { StyledButton, StyledTextInput, TextButton } from '../../global/styles'
 import theme from '../../global/theme'
 import { RootState } from '../../store'
-import { asyncGetPokemons, asyncGetTypes } from '../../store/HomeScreen/HomeScreen.store'
+import { asyncGetPokemons, asyncGetTypes } from '../../store/ScreensStore/ScreensStore.store'
 import { INavigationProps } from '../../utils/interfaces'
 
 import { Container, LogoPokemon, BackgroundImage, Title, Description } from './styles'
 
 export const LogIn = () => {
 
-    const homeScreenState = useSelector((state: RootState) => state.homeScreen);
+    const screensStoreState = useSelector((state: RootState) => state.screensStore);
     const dispatch = useDispatch();
     const navigation = useNavigation<INavigationProps>();
     dispatch(asyncGetTypes())
@@ -58,7 +58,7 @@ export const LogIn = () => {
     }
 
     const handleLogin = async () => {
-        if (homeScreenState.typesRequestLoaded) {
+        if (screensStoreState.typesRequestLoaded) {
             navigation.navigate('Home')
         }
     }

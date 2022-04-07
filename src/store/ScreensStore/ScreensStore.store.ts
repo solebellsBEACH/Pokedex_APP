@@ -4,16 +4,17 @@ import { api } from "../../utils/api"
 import { IPokemonRequest, IPokemonTypeRequest } from "../../utils/interfaces"
 
 
-export type IHomeScreen = {
+export type IScreenStore = {
     typesRequest: IPokemonTypeRequest,
     typesRequestLoaded: boolean,
     pokemonsRequest: IPokemonRequest,
     pokemonsRequestLoaded: boolean,
     loading: boolean,
     error: boolean,
+    pokemonActiveId: number | null
 }
 
-const initialState: IHomeScreen = {
+const initialState: IScreenStore = {
     typesRequest: { count: 0, results: [] },
     loading: true,
     error: false,
@@ -25,10 +26,11 @@ const initialState: IHomeScreen = {
         previous: null,
     },
     pokemonsRequestLoaded: false,
+    pokemonActiveId: null
 }
 
-const HomeScreenSlice = createSlice({
-    name: "homeScreenSlice",
+const ScreensSlice = createSlice({
+    name: "ScreensSlice",
     initialState: initialState,
     reducers: {
         actionSetTypes(state, payload) {
@@ -39,11 +41,15 @@ const HomeScreenSlice = createSlice({
             state.pokemonsRequest = payload.payload;
             state.pokemonsRequestLoaded = true;
         },
+        actionSetActivePokemonId(state, payload) {
+            console.log(payload)
+            state.pokemonActiveId = payload.payload.id;
+        },
 
     }
 })
-export const { actionSetTypes, actionSetPokemons } = HomeScreenSlice.actions;
-export default HomeScreenSlice.reducer;
+export const { actionSetTypes, actionSetPokemons, actionSetActivePokemonId } = ScreensSlice.actions;
+export default ScreensSlice.reducer;
 
 export function asyncGetTypes(): AppThunk {
     return async function (dispatch: AppDispatch) {

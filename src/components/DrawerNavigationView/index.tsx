@@ -10,7 +10,7 @@ interface IDrawerNavigationViewProps {
 }
 
 export const DrawerNavigationView = ({ onCloseDrawer, filtersActiveds, setFiltersActiveds }: IDrawerNavigationViewProps) => {
-    const homeScreenState = useSelector((state: RootState) => state.homeScreen);
+    const screensStoreState = useSelector((state: RootState) => state.screensStore);
 
     return (
         <>
@@ -27,7 +27,7 @@ export const DrawerNavigationView = ({ onCloseDrawer, filtersActiveds, setFilter
                 <Content>
                     <ContentTitle>Tipo</ContentTitle>
                     <ContentTypes
-                        data={homeScreenState.typesRequest.results}
+                        data={screensStoreState.typesRequest.results}
                         keyExtractor={(item, index) => `key-${index}`}
                         renderItem={({ item, index }) => {
                             return <TypePokemonButton

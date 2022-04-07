@@ -1,10 +1,10 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import homeReducer from './HomeScreen/HomeScreen.store'
+import screenStoreReducer from './ScreensStore/ScreensStore.store'
 
 const store = configureStore({
     reducer: {
-        homeScreen: homeReducer,
+        screensStore: screenStoreReducer,
     }
 });
 

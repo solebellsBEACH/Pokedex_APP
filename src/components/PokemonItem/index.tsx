@@ -1,5 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { actionSetActivePokemonId } from '../../store/ScreensStore/ScreensStore.store';
 import { api } from '../../utils/api';
 import { useCapitalizeFirstLetter } from '../../utils/hooks';
 import { INavigationProps, IPokemon } from '../../utils/interfaces';
@@ -18,9 +20,11 @@ export const PokemonItem = ({ index, label, url }: IPokemonItem) => {
 
     const [pokemon, setPokemon] = useState<IPokemonData | null>(null)
 
+    const dispatch = useDispatch()
+
     const returnId = () => {
-        url.slice(34)
-        url.replace('/', '')
+        url = url.slice(34)
+        url = url.replace('/', '')
         return parseInt(url)
     }
     const id = returnId()
@@ -38,12 +42,15 @@ export const PokemonItem = ({ index, label, url }: IPokemonItem) => {
         console.log(id, label)
         getPokemon()
     }, [label])
-
-
     return (
         <Container
             key={index}
-            onPress={() => { navigation.navigate('PokemonScreen'), { id } }}
+            onPress={() => {
+                dispatch(actionSetActivePokemonId({
+                    id
+                }))
+                navigation.navigate('PokemonScreen')
+            }}
         >
             <Content
             >

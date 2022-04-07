@@ -9,7 +9,7 @@ import { RootState } from '../../store';
 
 
 export const Home = () => {
-    const homeScreenState = useSelector((state: RootState) => state.homeScreen);
+    const screensStoreState = useSelector((state: RootState) => state.screensStore);
     const drawer = useRef(null)
     const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
     useEffect(() => { console.log(filtersActiveds) }, [filtersActiveds])
@@ -44,7 +44,7 @@ export const Home = () => {
                             columnWrapperStyle={{ justifyContent: 'space-between' }}
                             showsVerticalScrollIndicator={false}
                             keyExtractor={(item, index) => `key-${index}`}
-                            data={homeScreenState.pokemonsRequest.results}
+                            data={screensStoreState.pokemonsRequest.results}
                             renderItem={({ item, index }) => {
                                 console.log()
                                 return <PokemonItem index={index} label={item.name} url={item.url} />

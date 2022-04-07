@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, TouchableOpacity, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize';
 import { SvgUri } from 'react-native-svg';
+import { useSelector } from 'react-redux';
 import { PokemonInformations } from '../../components';
+import { RootState } from '../../store';
 import { api } from '../../utils/api';
 import { useAddZeroInNumber, useCapitalizeFirstLetter, usePokemonColors } from '../../utils/hooks';
 import { INavigationProps, IPokemon } from '../../utils/interfaces';
@@ -11,14 +13,14 @@ import { Container, ArrowLeftIcon, ContentTop, ContentLeft, PokemonName, Content
 
 export const PokemonScreen = () => {
     const navigation = useNavigation<INavigationProps>();
-    const id = 1;
+    const screensStoreState = useSelector((state: RootState) => state.screensStore);
+    const id = screensStoreState.pokemonActiveId
     const [pokemon, setPokemon] = useState<IPokemon | null>(null)
 
     const getPokemon = async () => {
         try {
             const { data } = await api.get(`pokemon/${id}`)
             setPokemon(data)
-
         } catch (error) {
             console.log('getPokemon - Screen')
         }
