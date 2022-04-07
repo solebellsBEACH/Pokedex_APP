@@ -1,8 +1,5 @@
 import { ReactNode } from "react";
 
-
-
-
 export interface INavigationProps<T = never> {
     navigate: (screen: string, data?: T) => void;
     goBack: () => void;
@@ -27,6 +24,16 @@ export interface IPokemon {
             }
         }
     }
+    types: [
+        {
+            type: {
+                name: string
+            }
+        }
+    ],
+    species: { name: string },
+    height: number,
+    abilities: { ability: { name: string } }[],
 }
 export interface IPokemonPreRequest {
     name: string;
