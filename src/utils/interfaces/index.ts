@@ -6,6 +6,14 @@ export interface INavigationProps<T = never> {
     screen: string;
 }
 
+export interface IPokemonScreenNavigationProps<T = never> {
+    navigate: (screen: string, data?: T) => void;
+    goBack: () => void;
+    screen: string;
+    id: number;
+}
+
+
 
 export interface IPokemonType {
     name: string;

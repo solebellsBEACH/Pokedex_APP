@@ -36,7 +36,7 @@ color:${(props) => props.isActive ? props.theme.colors.gray6 : props.theme.color
 
 export const ContentBottom = styled.View`
 width:100% ;
-height:55%;
+height:60%;
 padding:${RFValue(25)}px ${RFValue(15)}px ;
 `
 

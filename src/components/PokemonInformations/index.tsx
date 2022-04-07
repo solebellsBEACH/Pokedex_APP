@@ -16,16 +16,18 @@ export const PokemonInformations = () => {
         try {
             const { data } = await api.get(`pokemon/${id}`)
             setPokemon(data)
+
         } catch (error) {
-            console.log(error)
+            console.log('getPokemon')
         }
     }
     const getPokemonGender = async () => {
         try {
             const { data } = await api.get(`gender/${id}`)
             setGender(data.name)
+
         } catch (error) {
-            console.log(error)
+            console.log('getPokemonGender')
 
         }
     }

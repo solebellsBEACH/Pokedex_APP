@@ -47,7 +47,7 @@ export const Home = () => {
                             data={homeScreenState.pokemonsRequest.results}
                             renderItem={({ item, index }) => {
                                 console.log()
-                                return <PokemonItem index={index} label={item.name} />
+                                return <PokemonItem index={index} label={item.name} url={item.url} />
                             }
                             }
                             numColumns={2}
