@@ -5,6 +5,7 @@ import { IPokemon } from '../../utils/interfaces'
 import { api } from '../../utils/api'
 import { useCapitalizeFirstLetter } from '../../utils/hooks'
 import { StatusItem } from './StatusItem'
+import { ActivityIndicator } from 'react-native'
 
 export const PokemonInformations = () => {
 
@@ -31,13 +32,10 @@ export const PokemonInformations = () => {
 
         }
     }
-
     useEffect(() => {
         getPokemonGender()
         getPokemon()
     }, [id])
-
-
 
     const [activeTab, setActiveTab] = useState<'About' | 'Status' | 'Evolution'>('Status')
     interface ITabSelectorProps {
@@ -114,7 +112,7 @@ export const PokemonInformations = () => {
                 <TabSelector label='Evolution' />
             </ContentTop>
             <ContentBottom>
-                {renderContentBottom()}
+                {pokemon != undefined ? renderContentBottom() : <ActivityIndicator size={100} color='black' />}
             </ContentBottom>
         </Container>
     )
