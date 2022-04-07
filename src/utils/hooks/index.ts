@@ -1,23 +1,9 @@
+import { IPossiblePokemonKeys } from "../interfaces";
+
 export function useCapitalizeFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-interface IPossiblePokemonKeys {
-    pokemonType: 'fire' |
-    'grass' |
-    'electric' |
-    'water' |
-    'ground' |
-    'rock' |
-    'fairy' |
-    'poison' |
-    'bug' |
-    'dragon' |
-    'psychic' |
-    'flying' |
-    'fighting' |
-    'normal'
-}
 
 export function usePokemonColors({ pokemonType }: IPossiblePokemonKeys) {
     const data = {

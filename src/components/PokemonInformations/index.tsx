@@ -88,8 +88,12 @@ export const PokemonInformations = () => {
         return <StatusTabFlatList
             columnWrapperStyle={{ justifyContent: 'space-between' }}
             numColumns={2}
-            data={['', '', '', '']}
-            renderItem={({ item, index }) => <StatusItem key={index} />}
+            data={[{ name: 'Status1', score: 35, type: 'water' }, { name: 'Status2', score: 78, type: 'water' }, { name: 'Status3', score: 90, type: 'water' }]}
+            renderItem={({ item, index }) => <StatusItem
+                name={item.name}
+                score={item.score}
+                type={{ pokemonType: item?.type }}
+                key={index} />}
         />
     }
 
