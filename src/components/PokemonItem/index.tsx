@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react'
 import { api } from '../../utils/api';
 import { useCapitalizeFirstLetter } from '../../utils/hooks';
-import { IPokemonScreenNavigationProps, IPokemon } from '../../utils/interfaces';
+import { INavigationProps, IPokemon } from '../../utils/interfaces';
 import { Container, PokemonName, PokemonImage, Content } from './styles'
 
 interface IPokemonItem {
@@ -14,7 +14,7 @@ interface IPokemonData {
 }
 
 export const PokemonItem = ({ index, label, url }: IPokemonItem) => {
-    const navigation = useNavigation<IPokemonScreenNavigationProps>();
+    const navigation = useNavigation<INavigationProps>();
 
     const [pokemon, setPokemon] = useState<IPokemonData | null>(null)
 

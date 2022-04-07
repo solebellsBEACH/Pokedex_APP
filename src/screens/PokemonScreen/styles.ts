@@ -80,6 +80,7 @@ height: ${RFValue(195)}px;
 border-radius:${RFValue(20)}px;
 background-color:${({ theme }) => theme.colors.blue3};
 align-items:center;
+justify-content:center;
 `
 export const PokemonImage = styled.Image`
 background:red;

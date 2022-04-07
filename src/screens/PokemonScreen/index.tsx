@@ -1,17 +1,16 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react'
-import { TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, TouchableOpacity, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize';
 import { SvgUri } from 'react-native-svg';
 import { PokemonInformations } from '../../components';
 import { api } from '../../utils/api';
 import { useAddZeroInNumber, useCapitalizeFirstLetter, usePokemonColors } from '../../utils/hooks';
-import { IPokemonScreenNavigationProps, IPokemon } from '../../utils/interfaces';
+import { INavigationProps, IPokemon } from '../../utils/interfaces';
 import { Container, ArrowLeftIcon, ContentTop, ContentLeft, PokemonName, ContentRight, CategoryText, PokemonNumber, CategoriesContainer, CategoryItem, CategoriesFlatList, ContentBottom, PokemonItemContent, PokemonItemContainer, PokemonImage } from './styles'
-import * as Progress from 'react-native-progress';
 
 export const PokemonScreen = () => {
-    const navigation = useNavigation<IPokemonScreenNavigationProps>();
+    const navigation = useNavigation<INavigationProps>();
     const id = 1;
     const [pokemon, setPokemon] = useState<IPokemon | null>(null)
 
@@ -50,7 +49,7 @@ export const PokemonScreen = () => {
     const renderContentTop = () => {
         return <ContentTop>
             <ContentLeft>
-                <PokemonName>{pokemon != null ? useCapitalizeFirstLetter(pokemon.forms[0].name) : ''}</PokemonName>
+                {pokemon != null ? <PokemonName>{useCapitalizeFirstLetter(pokemon.forms[0].name)}</PokemonName> : <PokemonName><ActivityIndicator size={40} color='black' /></PokemonName>}
                 <CategoriesFlatList
                     keyExtractor={(item, index) => `key-${index}`}
                     data={pokemon != null ? pokemon.types : []}
@@ -73,14 +72,12 @@ export const PokemonScreen = () => {
         return <PokemonItemContainer
         >
             <PokemonItemContent
-                colors={pokemon != null ? [usePokemonColors({ pokemonType: pokemon.types[0].type.name }).primary, usePokemonColors({ pokemonType: pokemon.types[0].type.name }).secondary] : ['blue', 'white']}
+                colors={pokemon != null ? [usePokemonColors({ pokemonType: pokemon.types[0].type.name }).primary, usePokemonColors({ pokemonType: pokemon.types[0].type.name }).secondary] : ['gray', 'white']}
             >
-                {/* {pokemon != null ? <SvgUri
-                height={RFValue(170) + ''}
-                uri={pokemon.sprites.other.dream_world.front_default}
-            /> : <Progress.Circle size={30} indeterminate={true} />} */}
-                <View><Progress.Circle size={50} indeterminate={true} /></View>
-
+                {pokemon != null ? <SvgUri
+                    height={RFValue(170) + ''}
+                    uri={pokemon.sprites.other.dream_world.front_default}
+                /> : <ActivityIndicator size={80} color='black' />}
             </PokemonItemContent>
         </PokemonItemContainer>
     }
