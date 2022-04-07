@@ -41,20 +41,21 @@ padding:${RFValue(25)}px ${RFValue(15)}px ;
 `
 
 export const InformationItemContainer = styled.View`
-height:${RFValue(25)}px;
+height:${RFValue(35)}px;
 width:100%;
 margin-bottom:${RFValue(10)}px;
 flex-direction:row;
 `
 export const Label = styled.Text`
 width:${RFValue(120)}px ;
-margin-right: ${RFValue(25)}px;
-font-size: ${RFValue(14)}px;
+margin-right: ${RFValue(10)}px;
+font-size: ${RFValue(16)}px;
 font-family: ${({ theme }) => theme.fonts.Bold};
 color: ${({ theme }) => theme.colors.gray3};
 `
 export const Value = styled.Text`
-font-size: ${RFValue(13)}px;
+font-size: ${RFValue(15)}px;
+width:60% ;
 font-family: ${({ theme }) => theme.fonts.SemiBold};
 color: ${({ theme }) => theme.colors.gray6};
 `

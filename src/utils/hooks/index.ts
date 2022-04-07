@@ -4,6 +4,19 @@ export function useCapitalizeFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+export function useAddZeroInNumber(number: number): string {
+    if (number < 0) {
+        return number + ''
+    }
+    if (number < 10) {
+        return "00" + number
+    }
+    if (number < 100) {
+        return "0" + number
+    }
+    return number + ''
+}
+
 
 export function usePokemonColors({ pokemonType }: IPossiblePokemonKeys) {
     const data = {

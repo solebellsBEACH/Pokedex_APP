@@ -55,9 +55,9 @@ justify-content:center;
 height:${RFValue(30)}px;
 `
 export const CategoryText = styled.Text`
-font-family: ${({ theme }) => theme.fonts.Regular};
+font-family: ${({ theme }) => theme.fonts.SemiBold};
 font-size: ${RFValue(13)}px;
-color: ${({ theme }) => theme.colors.white};
+color: ${({ theme }) => theme.colors.black};
 `
 
 export const ContentBottom = styled.View`

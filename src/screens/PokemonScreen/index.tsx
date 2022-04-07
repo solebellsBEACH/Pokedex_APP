@@ -1,16 +1,31 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize';
 import { SvgUri } from 'react-native-svg';
 import { PokemonInformations } from '../../components';
-import theme from '../../global/theme';
-import { usePokemonColors } from '../../utils/hooks';
-import { INavigationProps } from '../../utils/interfaces';
+import { api } from '../../utils/api';
+import { useAddZeroInNumber, useCapitalizeFirstLetter, usePokemonColors } from '../../utils/hooks';
+import { INavigationProps, IPokemon } from '../../utils/interfaces';
 import { Container, ArrowLeftIcon, ContentTop, ContentLeft, PokemonName, ContentRight, CategoryText, PokemonNumber, CategoriesContainer, CategoryItem, CategoriesFlatList, ContentBottom, PokemonItemContent, PokemonItemContainer, PokemonImage } from './styles'
 
 export const PokemonScreen = () => {
     const navigation = useNavigation<INavigationProps>();
+    const id = 1;
+    const [pokemon, setPokemon] = useState<IPokemon | null>(null)
+
+    const getPokemon = async () => {
+        try {
+            const { data } = await api.get(`pokemon/${id}`)
+            setPokemon(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        getPokemon()
+    }, [id])
 
     interface ICategoryItem {
         label: string;
@@ -23,7 +38,7 @@ export const PokemonScreen = () => {
                 key={index}
             >
                 <CategoryItem
-                    color={usePokemonColors({ pokemonType: 'water' }).primary}>
+                    color={pokemon != null ? usePokemonColors({ pokemonType: pokemon.types[0].type.name }).primary : 'blue'}>
                     <CategoryText>{label}</CategoryText>
                 </CategoryItem>
             </CategoriesContainer>
@@ -33,18 +48,18 @@ export const PokemonScreen = () => {
     const renderContentTop = () => {
         return <ContentTop>
             <ContentLeft>
-                <PokemonName>Charizard</PokemonName>
+                <PokemonName>{pokemon != null ? useCapitalizeFirstLetter(pokemon.forms[0].name) : ''}</PokemonName>
                 <CategoriesFlatList
                     keyExtractor={(item, index) => `key-${index}`}
-                    data={[{ name: 'Fogo' }, { name: 'Água' }, { name: 'Pedra' }, { name: 'Vento' }]}
+                    data={pokemon != null ? pokemon.types : []}
                     renderItem={({ item, index }) => {
-                        return renderCategoryItem({ label: item.name, index });
+                        return renderCategoryItem({ label: useCapitalizeFirstLetter(item.type.name), index });
                     }}
                     numColumns={3}
                 />
             </ContentLeft>
             <ContentRight>
-                <PokemonNumber>#004</PokemonNumber>
+                <PokemonNumber>#{useAddZeroInNumber(id)}</PokemonNumber>
             </ContentRight>
         </ContentTop>
 
@@ -58,12 +73,12 @@ export const PokemonScreen = () => {
         return <PokemonItemContainer
         >
             <PokemonItemContent
-                colors={[usePokemonColors({ pokemonType: 'water' }).primary, usePokemonColors({ pokemonType: 'water' }).secondary]}
-            >
-                <SvgUri
-                    height={RFValue(170) + ''}
-                    uri={'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/5.svg'}
-                />
+                colors={pokemon != null ? [usePokemonColors({ pokemonType: pokemon.types[0].type.name }).primary, usePokemonColors({ pokemonType: pokemon.types[0].type.name }).secondary] : ['blue', 'white']}
+            >{pokemon != null ? <SvgUri
+                height={RFValue(170) + ''}
+                uri={pokemon.sprites.other.dream_world.front_default}
+            /> : <></>}
+
             </PokemonItemContent>
         </PokemonItemContainer>
     }

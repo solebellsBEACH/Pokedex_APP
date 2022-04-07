@@ -50,14 +50,6 @@ export const PokemonInformations = () => {
             <TabSelectorText isActive={activeTab == label}>{label}</TabSelectorText>
         </TabSelectorContainer>
     }
-
-    const data = {
-        especie: 'Dragão',
-        tamanho: '1m',
-        habilidades: 'Hab1, Hab2, Hab3',
-        genero: 'Fem'
-    }
-
     interface IInformationItem {
         label: string;
         value: string;
@@ -86,13 +78,15 @@ export const PokemonInformations = () => {
 
     const renderContentBottomStatusTab = () => {
         return <StatusTabFlatList
+            showsVerticalScrollIndicator={false}
             columnWrapperStyle={{ justifyContent: 'space-between' }}
             numColumns={2}
-            data={[{ name: 'Status1', score: 35, type: 'water' }, { name: 'Status2', score: 78, type: 'water' }, { name: 'Status3', score: 90, type: 'water' }]}
+            keyExtractor={(item, index) => `key-${index}`}
+            data={pokemon != undefined ? pokemon.stats : []}
             renderItem={({ item, index }) => <StatusItem
-                name={item.name}
-                score={item.score}
-                type={{ pokemonType: item?.type }}
+                name={item.stat.name}
+                score={item.base_stat}
+                type={{ pokemonType: pokemon?.types[0].type.name }}
                 key={index} />}
         />
     }

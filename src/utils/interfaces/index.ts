@@ -17,6 +17,18 @@ export interface IPokemonTypeRequest {
 }
 
 export interface IPokemon {
+    stats: {
+        base_stat: number,
+        stat: {
+            name: string,
+        }
+    }[],
+    forms: [
+        {
+            name: string,
+
+        }
+    ],
     sprites: {
         other: {
             dream_world: {
