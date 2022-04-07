@@ -70,7 +70,7 @@ margin-bottom:${RFValue(0)}px;
 export const PokemonItemContainer = styled.View`
 align-items:center;
 width: 100%;
-height: ${RFValue(250)}px;
+height: ${RFValue(200)}px;
 `
 export const PokemonItemContent = styled(LinearGradient)`
 bottom:0;

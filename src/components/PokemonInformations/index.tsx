@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
-import { Label, Value, Container, ContentTop, TabSelectorContainer, TabSelectorText, ContentBottom, InformationItemContainer } from './styles'
+import { Label, Value, Container, ContentTop, TabSelectorContainer, TabSelectorText, ContentBottom, InformationItemContainer, StatusTabFlatList } from './styles'
 import { IPokemon } from '../../utils/interfaces'
 import { api } from '../../utils/api'
 import { useCapitalizeFirstLetter } from '../../utils/hooks'
+import { StatusItem } from './StatusItem'
 
 export const PokemonInformations = () => {
 
@@ -82,10 +83,23 @@ export const PokemonInformations = () => {
         )
     }
 
+
+    const renderContentBottomStatusTab = () => {
+        return <StatusTabFlatList
+            columnWrapperStyle={{ justifyContent: 'space-between' }}
+            numColumns={2}
+            data={['', '', '', '']}
+            renderItem={({ item, index }) => <StatusItem key={index} />}
+        />
+    }
+
+
     const renderContentBottom = () => {
         switch (activeTab) {
             case 'About':
                 return renderContentBottomAboutTab()
+            case 'Status':
+                return renderContentBottomStatusTab()
 
             default:
                 break;
