@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
+import SvgUri from 'react-native-svg-uri';
 import { PokemonInformations } from '../../components';
 import theme from '../../global/theme';
 import { usePokemonColors } from '../../utils/hooks';
@@ -58,7 +59,10 @@ export const PokemonScreen = () => {
             <PokemonItemContent
                 colors={[usePokemonColors({ pokemonType: 'water' }).primary, usePokemonColors({ pokemonType: 'water' }).secondary]}
             >
-                <PokemonImage />
+                <SvgUri
+                    height="170"
+                    source={{ uri: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/5.svg' }}
+                />
             </PokemonItemContent>
         </PokemonItemContainer>
     }

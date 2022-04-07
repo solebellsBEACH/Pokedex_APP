@@ -81,7 +81,10 @@ border-radius:${RFValue(20)}px;
 background-color:${({ theme }) => theme.colors.blue3};
 align-items:center;
 `
-export const PokemonImage = styled(PokemonImageSVG)`
-top:${RFValue(-45)}px;
-position: absolute;
+export const PokemonImage = styled.Image`
+background:red;
+width:100px ;
+height:100px ;
+/* top:${RFValue(-45)}px;
+position: absolute; */
 `
