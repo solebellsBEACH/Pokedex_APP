@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, TouchableOpacity, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize';
@@ -13,8 +13,8 @@ import { Container, ArrowLeftIcon, ContentTop, ContentLeft, PokemonName, Content
 
 export const PokemonScreen = () => {
     const navigation = useNavigation<INavigationProps>();
-    const screensStoreState = useSelector((state: RootState) => state.screensStore);
-    const id = screensStoreState.pokemonActiveId
+    const { params } = useRoute();
+    const id = params.id;
     const [pokemon, setPokemon] = useState<IPokemon | null>(null)
 
     const getPokemon = async () => {
@@ -94,7 +94,7 @@ export const PokemonScreen = () => {
                     {renderPokemonItem()}
                 </ContentBottom>
             </Container>
-            <PokemonInformations />
+            <PokemonInformations id={id} />
         </>
     )
 }

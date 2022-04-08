@@ -16,7 +16,7 @@ interface IPokemonData {
 }
 
 export const PokemonItem = ({ index, label, url }: IPokemonItem) => {
-    const navigation = useNavigation<INavigationProps>();
+    const navigation = useNavigation<INavigationProps<{ id: number }>>();
 
     const [pokemon, setPokemon] = useState<IPokemonData | null>(null)
 
@@ -44,10 +44,7 @@ export const PokemonItem = ({ index, label, url }: IPokemonItem) => {
         <Container
             key={index}
             onPress={() => {
-                dispatch(actionSetActivePokemonId({
-                    id
-                }))
-                navigation.navigate('PokemonScreen')
+                navigation.navigate('PokemonScreen', { id })
             }}
         >
             <Content

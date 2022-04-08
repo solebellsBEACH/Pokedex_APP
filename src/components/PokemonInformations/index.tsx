@@ -6,14 +6,14 @@ import { api } from '../../utils/api'
 import { useCapitalizeFirstLetter } from '../../utils/hooks'
 import { StatusItem } from './StatusItem'
 import { ActivityIndicator } from 'react-native'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../store'
 
-export const PokemonInformations = () => {
-    const screensStoreState = useSelector((state: RootState) => state.screensStore);
+interface IPokemonInformationsProps {
+    id: number
+}
+
+export const PokemonInformations = ({ id }: IPokemonInformationsProps) => {
     const [pokemon, setPokemon] = useState<IPokemon>()
     const [gender, setGender] = useState<'female' | 'male' | 'genderless'>()
-    const id = screensStoreState.pokemonActiveId;
 
     const getPokemon = async () => {
         try {

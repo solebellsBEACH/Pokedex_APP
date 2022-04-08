@@ -11,7 +11,6 @@ export type IScreenStore = {
     pokemonsRequestLoaded: boolean,
     loading: boolean,
     error: boolean,
-    pokemonActiveId: number | null
 }
 
 const initialState: IScreenStore = {
@@ -26,7 +25,6 @@ const initialState: IScreenStore = {
         previous: null,
     },
     pokemonsRequestLoaded: false,
-    pokemonActiveId: null
 }
 
 const ScreensSlice = createSlice({
@@ -41,14 +39,9 @@ const ScreensSlice = createSlice({
             state.pokemonsRequest = payload.payload;
             state.pokemonsRequestLoaded = true;
         },
-        actionSetActivePokemonId(state, payload) {
-
-            state.pokemonActiveId = payload.payload.id;
-        },
-
     }
 })
-export const { actionSetTypes, actionSetPokemons, actionSetActivePokemonId } = ScreensSlice.actions;
+export const { actionSetTypes, actionSetPokemons } = ScreensSlice.actions;
 export default ScreensSlice.reducer;
 
 export function asyncGetTypes(): AppThunk {
