@@ -6,12 +6,14 @@ import { api } from '../../utils/api'
 import { useCapitalizeFirstLetter } from '../../utils/hooks'
 import { StatusItem } from './StatusItem'
 import { ActivityIndicator } from 'react-native'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../store'
 
 export const PokemonInformations = () => {
-
+    const screensStoreState = useSelector((state: RootState) => state.screensStore);
     const [pokemon, setPokemon] = useState<IPokemon>()
     const [gender, setGender] = useState<'female' | 'male' | 'genderless'>()
-    const id = 1;
+    const id = screensStoreState.pokemonActiveId;
 
     const getPokemon = async () => {
         try {
@@ -37,7 +39,7 @@ export const PokemonInformations = () => {
         getPokemon()
     }, [id])
 
-    const [activeTab, setActiveTab] = useState<'About' | 'Status' | 'Evolution'>('Status')
+    const [activeTab, setActiveTab] = useState<'About' | 'Status' | 'Evolution'>('About')
     interface ITabSelectorProps {
         label: 'About' | 'Status' | 'Evolution';
     }
@@ -45,7 +47,10 @@ export const PokemonInformations = () => {
 
     const TabSelector = ({ label }: ITabSelectorProps) => {
         return <TabSelectorContainer
-            onPress={() => { setActiveTab(label) }}
+            onPress={() => {
+                console.log('Clickou no ' + label)
+                setActiveTab(label)
+            }}
             isActive={activeTab == label}>
             <TabSelectorText isActive={activeTab == label}>{label}</TabSelectorText>
         </TabSelectorContainer>
