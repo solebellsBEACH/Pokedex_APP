@@ -1,18 +1,24 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { DrawerLayoutAndroid } from 'react-native'
+import { DrawerLayoutAndroid, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RFValue } from 'react-native-responsive-fontsize'
 import { DrawerNavigationView, FiltersContent, PokemonInput, PokemonItem } from '../../components'
 import { Container, LogoPokemon, ContentTop, LogoConfig, LogoConfigContainer, ContentBottom, PokemonItensContent } from './styles'
 import { RootState } from '../../store';
+import { actionSetOffsetCres, asyncGetPokemons } from '../../store/ScreensStore/ScreensStore.store';
 
 
 export const Home = () => {
     const screensStoreState = useSelector((state: RootState) => state.screensStore);
     const drawer = useRef(null)
+    const dispatch = useDispatch();
     const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
-    useEffect(() => { console.log(filtersActiveds) }, [filtersActiveds])
+    useEffect(() => { dispatch(asyncGetPokemons(screensStoreState.offset)) }, [screensStoreState.offset])
+
+    const handleOnEndReached = () => {
+        dispatch(actionSetOffsetCres())
+    }
     return (
         <>
             <DrawerLayoutAndroid
@@ -50,6 +56,8 @@ export const Home = () => {
                             }
                             }
                             numColumns={2}
+                            ListFooterComponent={() => <View></View>}
+                            onEndReached={handleOnEndReached}
                         />
                     </ContentBottom>
                 </Container>

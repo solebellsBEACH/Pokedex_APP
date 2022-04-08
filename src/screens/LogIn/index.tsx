@@ -20,8 +20,8 @@ export const LogIn = () => {
     const navigation = useNavigation<INavigationProps>();
     dispatch(asyncGetTypes())
     useEffect(() => {
-        dispatch(asyncGetPokemons())
-    }, [])
+        dispatch(asyncGetPokemons(screensStoreState.offset))
+    }, [screensStoreState.offset])
 
     const renderForm = () => {
         const [isVisible, setIsVisible] = useState(true)

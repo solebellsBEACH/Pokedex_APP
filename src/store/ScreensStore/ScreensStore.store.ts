@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { AppDispatch, AppThunk } from ".."
+import { useSelector } from "react-redux"
+import { AppDispatch, AppThunk, RootState } from ".."
 import { api } from "../../utils/api"
 import { IPokemonRequest, IPokemonTypeRequest } from "../../utils/interfaces"
 
@@ -11,6 +12,7 @@ export type IScreenStore = {
     pokemonsRequestLoaded: boolean,
     loading: boolean,
     error: boolean,
+    offset: number;
 }
 
 const initialState: IScreenStore = {
@@ -25,6 +27,7 @@ const initialState: IScreenStore = {
         previous: null,
     },
     pokemonsRequestLoaded: false,
+    offset: 0
 }
 
 const ScreensSlice = createSlice({
@@ -39,9 +42,12 @@ const ScreensSlice = createSlice({
             state.pokemonsRequest = payload.payload;
             state.pokemonsRequestLoaded = true;
         },
+        actionSetOffsetCres(state) {
+            state.offset = state.offset + 1;
+        },
     }
 })
-export const { actionSetTypes, actionSetPokemons } = ScreensSlice.actions;
+export const { actionSetTypes, actionSetPokemons, actionSetOffsetCres } = ScreensSlice.actions;
 export default ScreensSlice.reducer;
 
 export function asyncGetTypes(): AppThunk {
@@ -55,10 +61,10 @@ export function asyncGetTypes(): AppThunk {
     }
 }
 
-export function asyncGetPokemons(): AppThunk {
+export function asyncGetPokemons(offset: number): AppThunk {
     return async function (dispatch: AppDispatch) {
         try {
-            const { data } = await api.get('pokemon');
+            const { data } = await api.get(`pokemon/?offset=${offset * 10}&limit=20`);
             dispatch(actionSetPokemons({
                 count: data.count,
                 results: data.results,
