@@ -1,9 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { actionSetActivePokemonId } from '../../store/ScreensStore/ScreensStore.store';
+import { ActivityIndicator } from 'react-native-paper';
+import { RFValue } from 'react-native-responsive-fontsize';
 import { api } from '../../utils/api';
-import { useCapitalizeFirstLetter } from '../../utils/hooks';
+import { useCapitalizeFirstLetter, usePokemonColors } from '../../utils/hooks';
 import { INavigationProps, IPokemon } from '../../utils/interfaces';
 import { Container, PokemonName, PokemonImage, Content } from './styles'
 
@@ -18,9 +18,27 @@ interface IPokemonData {
 export const PokemonItem = ({ index, label, url }: IPokemonItem) => {
     const navigation = useNavigation<INavigationProps<{ id: number }>>();
 
-    const [pokemon, setPokemon] = useState<IPokemonData | null>(null)
+    const [pokemonPreRequest, setPreRequestPokemon] = useState<IPokemonData | null>(null)
 
-    const dispatch = useDispatch()
+    const [pokemon, setPokemon] = useState<IPokemon | null>(null)
+
+    const getPokemon = async () => {
+        try {
+            const { data } = await api.get(`pokemon/${id}`)
+            setPokemon(data)
+        } catch (error) {
+
+        }
+    }
+    const getPreRequestPokemon = async () => {
+        try {
+            const req = await api.get(`pokemon/${label}`)
+            setPreRequestPokemon({ isLoaded: true, pokemonData: req.data })
+
+        } catch (error) {
+            setPreRequestPokemon({ isLoaded: false, pokemonData: null })
+        }
+    }
 
     const returnId = () => {
         url = url.slice(34)
@@ -28,18 +46,15 @@ export const PokemonItem = ({ index, label, url }: IPokemonItem) => {
         return parseInt(url)
     }
     const id = returnId()
-    const getPokemon = async () => {
-        try {
-            const req = await api.get(`pokemon/${label}`)
-            setPokemon({ isLoaded: true, pokemonData: req.data })
 
-        } catch (error) {
-            setPokemon({ isLoaded: false, pokemonData: null })
-        }
-    }
+    useEffect(() => {
+        getPreRequestPokemon()
+    }, [label])
+
     useEffect(() => {
         getPokemon()
-    }, [label])
+    }, [pokemonPreRequest?.isLoaded])
+
     return (
         <Container
             key={index}
@@ -48,10 +63,14 @@ export const PokemonItem = ({ index, label, url }: IPokemonItem) => {
             }}
         >
             <Content
+                color={pokemon != null ? usePokemonColors({ pokemonType: pokemon.types[0].type.name }).primary : 'blue'}
             >
                 <PokemonName>{useCapitalizeFirstLetter(label)}</PokemonName>
             </Content>
-            <PokemonImage width={80} height={80} />
+            {pokemon != null ? <PokemonImage
+                height={RFValue(82) + ''}
+                uri={pokemon.sprites.other.dream_world.front_default}
+            /> : <ActivityIndicator style={{ marginTop: '20%' }} size={40} color='black' />}
         </Container>
     )
 }

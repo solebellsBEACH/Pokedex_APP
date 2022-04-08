@@ -33,7 +33,7 @@ export function usePokemonColors({ pokemonType }: IPossiblePokemonKeys) {
         psychic: { secondary: '#eaeda1', primary: '#8d903c' },
         flying: { secondary: '#f8baba', primary: '#e9c0c0' },
         fighting: { secondary: '#e0d4bc', primary: '#f7a603' },
-        normal: { secondary: '#F5F5F5', primary: '#b1b1b' }
+        normal: { secondary: '#F5F5F5', primary: '#757575' }
     }
 
     return data[pokemonType]

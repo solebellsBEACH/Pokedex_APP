@@ -1,4 +1,5 @@
 import { RFValue } from 'react-native-responsive-fontsize'
+import { SvgUri } from 'react-native-svg'
 import styled from 'styled-components/native'
 import { PokemonImage as PokemonImageSVG } from '../../assets'
 
@@ -9,13 +10,16 @@ height: ${RFValue(120)}px;
 
 margin:0 0%;
 `
+interface IContentProps {
+    readonly color: string;
+}
 
-export const Content = styled.View`
+export const Content = styled.View<IContentProps>`
 bottom:0;position:absolute;
 width: ${RFValue(145)}px;
 height: ${RFValue(100)}px;
 border-radius:${RFValue(20)}px;
-background-color:${({ theme }) => theme.colors.blue3};
+background-color:${(props) => props.color};
 align-items:center;
 `
 export const PokemonName = styled.Text`
@@ -36,7 +40,6 @@ text-align:center;
 
 border-radius:${RFValue(10)}px;
 `
-export const PokemonImage = styled(PokemonImageSVG)`
-top:${RFValue(5)}px;
-position: absolute;
+export const PokemonImage = styled(SvgUri)`
+margin-top:5%;
 `
