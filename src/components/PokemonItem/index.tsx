@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { ActivityIndicator } from 'react-native-paper';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { api } from '../../utils/api';
-import { useCapitalizeFirstLetter, usePokemonColors } from '../../utils/hooks';
+import { returnId, useCapitalizeFirstLetter, usePokemonColors } from '../../utils/hooks';
 import { INavigationProps, IPokemon } from '../../utils/interfaces';
 import { Container, PokemonName, PokemonImage, Content } from './styles'
 
@@ -40,12 +40,8 @@ export const PokemonItem = ({ index, label, url }: IPokemonItem) => {
         }
     }
 
-    const returnId = () => {
-        url = url.slice(34)
-        url = url.replace('/', '')
-        return parseInt(url)
-    }
-    const id = returnId()
+
+    const id = returnId(url)
 
     useEffect(() => {
         getPreRequestPokemon()

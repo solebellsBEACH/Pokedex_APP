@@ -43,6 +43,7 @@ const ScreensSlice = createSlice({
             state.pokemonsRequestLoaded = true;
         },
         actionSetOffsetCres(state) {
+
             state.offset = state.offset + 1;
         },
     }
@@ -64,7 +65,7 @@ export function asyncGetTypes(): AppThunk {
 export function asyncGetPokemons(offset: number): AppThunk {
     return async function (dispatch: AppDispatch) {
         try {
-            const { data } = await api.get(`pokemon/?offset=${offset * 10}&limit=20`);
+            const { data } = await api.get(`pokemon/?offset=0&limit=${(offset * 10) + 10}`);
             dispatch(actionSetPokemons({
                 count: data.count,
                 results: data.results,

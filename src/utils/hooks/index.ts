@@ -39,3 +39,8 @@ export function usePokemonColors({ pokemonType }: IPossiblePokemonKeys) {
     return data[pokemonType]
 
 }
+export const returnId = (url: string) => {
+    url = url.slice(34)
+    url = url.replace('/', '')
+    return parseInt(url)
+}

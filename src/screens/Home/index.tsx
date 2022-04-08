@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { DrawerLayoutAndroid, View } from 'react-native'
+import { ActivityIndicator, DrawerLayoutAndroid, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RFValue } from 'react-native-responsive-fontsize'
@@ -56,7 +56,7 @@ export const Home = () => {
                             }
                             }
                             numColumns={2}
-                            ListFooterComponent={() => <View></View>}
+                            ListFooterComponent={() => <View><ActivityIndicator size={50} color='black' /></View>}
                             onEndReached={handleOnEndReached}
                         />
                     </ContentBottom>
