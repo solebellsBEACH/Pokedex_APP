@@ -28,10 +28,3 @@ margin:${RFValue(20)}px 0 0 ${RFValue(0)}px;
 width:100%;
 `
 
-export const PokemonItensContent = styled.FlatList`
-height: 75%;
-width:100%;
-
-/* align-items:center;
-justify-content: center; */
-`

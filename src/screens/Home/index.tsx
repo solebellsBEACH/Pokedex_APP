@@ -3,8 +3,8 @@ import { ActivityIndicator, DrawerLayoutAndroid, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RFValue } from 'react-native-responsive-fontsize'
-import { DrawerNavigationView, FiltersContent, PokemonInput, PokemonItem } from '../../components'
-import { Container, LogoPokemon, ContentTop, LogoConfig, LogoConfigContainer, ContentBottom, PokemonItensContent } from './styles'
+import { DrawerNavigationView, FiltersContent, PokemonInput, PokemonList } from '../../components'
+import { Container, LogoPokemon, ContentTop, LogoConfig, LogoConfigContainer, ContentBottom, } from './styles'
 import { RootState } from '../../store';
 import { actionSetOffsetCres, asyncGetPokemons } from '../../store/ScreensStore/ScreensStore.store';
 
@@ -46,19 +46,9 @@ export const Home = () => {
                     <ContentBottom>
                         {/* <Text></Text> */}
                         <FiltersContent filters={filtersActiveds} />
-                        <PokemonItensContent
-                            columnWrapperStyle={{ justifyContent: 'space-between' }}
-                            showsVerticalScrollIndicator={false}
-                            keyExtractor={(item, index) => `key-${index}`}
-                            data={screensStoreState.pokemonsRequest.results}
-                            renderItem={({ item, index }) => {
-                                return <PokemonItem index={index} label={item.name} url={item.url} />
-                            }
-                            }
-                            numColumns={2}
-                            ListFooterComponent={() => <View><ActivityIndicator size={50} color='black' /></View>}
-                            onEndReached={handleOnEndReached}
-                        />
+                        <PokemonList
+                            results={screensStoreState.pokemonsRequest.results}
+                            handleOnEndReached={handleOnEndReached} />
                     </ContentBottom>
                 </Container>
             </DrawerLayoutAndroid>
