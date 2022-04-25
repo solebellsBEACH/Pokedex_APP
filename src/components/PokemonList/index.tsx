@@ -16,7 +16,6 @@ export const PokemonList = ({ results, handleOnEndReached }: IPokemonListProps) 
             showsVerticalScrollIndicator={false}
             keyExtractor={(item, index) => `key-${index}`}
             data={results}
-
             renderItem={({ item, index }) => {
                 return <PokemonItem index={index} label={item.name} url={item.url} />
             }

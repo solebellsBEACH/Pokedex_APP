@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, memo } from 'react'
 import { ActivityIndicator } from 'react-native-paper';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { api } from '../../utils/api';
@@ -15,7 +15,7 @@ interface IPokemonData {
     pokemonData: IPokemon | null;
 }
 
-export const PokemonItem = ({ index, label, url }: IPokemonItem) => {
+const PokemonItemComponent = ({ index, label, url }: IPokemonItem) => {
     const navigation = useNavigation<INavigationProps<{ id: number }>>();
 
     const [pokemonPreRequest, setPreRequestPokemon] = useState<IPokemonData | null>(null)
@@ -70,3 +70,7 @@ export const PokemonItem = ({ index, label, url }: IPokemonItem) => {
         </Container>
     )
 }
+
+export const PokemonItem = memo(PokemonItemComponent, (prev, next) => {
+    return Object.is(prev, next)
+})

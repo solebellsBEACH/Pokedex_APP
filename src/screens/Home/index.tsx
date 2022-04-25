@@ -17,6 +17,7 @@ export const Home = () => {
     useEffect(() => { dispatch(asyncGetPokemons(screensStoreState.offset)) }, [screensStoreState.offset])
 
     const handleOnEndReached = () => {
+        console.log('handleOnEndReached')
         dispatch(actionSetOffsetCres())
     }
     return (
