@@ -47,9 +47,9 @@ export const Home = () => {
                     <ContentBottom>
                         {/* <Text></Text> */}
                         <FiltersContent filters={filtersActiveds} />
-                        <PokemonList
+                        {/* <PokemonList
                             results={screensStoreState.pokemonsRequest.results}
-                            handleOnEndReached={handleOnEndReached} />
+                            handleOnEndReached={handleOnEndReached} /> */}
                     </ContentBottom>
                 </Container>
             </DrawerLayoutAndroid>
