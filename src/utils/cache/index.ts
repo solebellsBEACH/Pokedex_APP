@@ -38,29 +38,28 @@ export async function clearDataAsyncStorage(key: string): Promise<void> {
   }
 }
 
-// export const setFilters = (types: IPokemonType[]) => {
-//     console.log(types.toString())
-//     try {
-//         AsyncStorage.setItem('@pokedex-app/type_filters', types.toString())
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
+export const setFilters = (types: IPokemonType[]) => {
 
-// export const getFilters = async () => {
-//     try {
-//         console.log(await AsyncStorage.getItem('@pokedex-app/type_filters')+'kfjajkdfhajkfh')
-//         return ''
-//     } catch (error) {
-//         console.error(error);
-//     }
+    try {
+      setDataAsyncStorage('@pokedex-app/type_filters', types.toString())
+    } catch (error) {
+        console.error(error);
+    }
+}
 
-// }
+export const getFilters = () => {
+    try {
+        return getDataAsyncStorage('@pokedex-app/type_filters')
+    } catch (error) {
+        console.error(error);
+    }
 
-// export const filtersIsFilled = () => {
-//     const data = getFilters();
-//     if (data == null || data == undefined) {
-//         return false;
-//     }
-//     return true;
-// }
+}
+
+export const filtersIsFilled = () => {
+    const data = getFilters();
+    if (data == null || data == undefined) {
+        return false;
+    }
+    return true;
+}
