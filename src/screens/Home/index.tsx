@@ -7,6 +7,7 @@ import { DrawerNavigationView, FiltersContent, PokemonInput, PokemonList } from 
 import { Container, LogoPokemon, ContentTop, LogoConfig, LogoConfigContainer, ContentBottom, } from './styles'
 import { RootState } from '../../store';
 import { actionSetOffsetCres, asyncGetPokemons } from '../../store/ScreensStore/ScreensStore.store';
+import { getDataAsyncStorage, setDataAsyncStorage } from '../../utils/cache';
 
 
 export const Home = () => {
@@ -14,12 +15,23 @@ export const Home = () => {
     const drawer = useRef(null)
     const dispatch = useDispatch();
     const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
-    useEffect(() => { dispatch(asyncGetPokemons(screensStoreState.offset)) }, [screensStoreState.offset])
+    useEffect(() => { 
+         setDataAsyncStorage('lucas', 'data');
+        dispatch(asyncGetPokemons(screensStoreState.offset)) }, [screensStoreState.offset])
 
     const handleOnEndReached = () => {
         console.log('handleOnEndReached')
         dispatch(actionSetOffsetCres())
     }
+
+    useEffect(() => {
+        (async (): Promise<void> => {
+          const res = await getDataAsyncStorage<string>(
+            'lucas'
+          );
+          console.log(res)
+        })();
+      }, []);
     return (
         <>
             <DrawerLayoutAndroid
