@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
-
+import { ActivityIndicator } from 'react-native-paper';
 import { TextInput } from 'react-native-paper'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { useDispatch, useSelector } from 'react-redux'
@@ -74,11 +74,13 @@ export const LogIn = () => {
                 <Title>Bem-vindo</Title>
                 <Description>Insira os seus dados para acessar</Description>
                 {renderForm()}
-                <StyledButton
+                {screensStoreState.typesRequestLoaded ? <StyledButton
                     style={{ marginTop: RFValue(30) }}
                     mode="contained" onPress={handleLogin}>
                     <TextButton>Login</TextButton>
-                </StyledButton>
+                </StyledButton> : <ActivityIndicator
+
+                    style={{ marginTop: '10%' }} size={50} color='black' />}
             </Container>
         </BackgroundImage>
     )
