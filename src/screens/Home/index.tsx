@@ -7,7 +7,6 @@ import { DrawerNavigationView, FiltersContent, PokemonInput, PokemonList } from 
 import { Container, LogoPokemon, ContentTop, LogoConfig, LogoConfigContainer, ContentBottom, } from './styles'
 import { RootState } from '../../store';
 import { actionSetOffsetCres, asyncGetPokemons } from '../../store/ScreensStore/ScreensStore.store';
-import { filtersIsFilled, getDataAsyncStorage, getFilters, setDataAsyncStorage } from '../../utils/cache';
 
 
 export const Home = () => {
@@ -16,7 +15,7 @@ export const Home = () => {
     const dispatch = useDispatch();
     const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
     useEffect(() => { 
-        filtersIsFilled()
+
         dispatch(asyncGetPokemons(screensStoreState.offset)) }, [screensStoreState.offset])
 
     const handleOnEndReached = () => {
@@ -24,12 +23,6 @@ export const Home = () => {
         dispatch(actionSetOffsetCres())
     }
 
-    useEffect(() => {
-        
-        (async (): Promise<void> => {
-          console.log(getDataAsyncStorage('@pokedex-app/type_filters'))
-        })();
-      }, []);
     return (
         <>
             <DrawerLayoutAndroid

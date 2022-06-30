@@ -1,65 +1,20 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useState } from 'react';
-import { IPokemonType } from '../interfaces'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
-export async function getDataAsyncStorage<T>(key: string): Promise<T> {
+const storeData = async (value:string) => {
   try {
-    const jsonValue = await AsyncStorage.getItem(key);
-
-    if (jsonValue === null) {
-      throw new Error();
-    }
-
-    return JSON.parse(jsonValue);
-  } catch (error) {
-    return {} as T;
+    await AsyncStorage.setItem('@storage_Key', value)
+  } catch (e) {
+    // saving error
   }
 }
 
-export async function setDataAsyncStorage(
-  key: string,
-  value: string | object
-): Promise<string | object | void> {
+const getData = async () => {
   try {
-    await AsyncStorage.setItem(key, JSON.stringify(value));
-
-    return value;
-  } catch (error) {
-    return;
+    const value = await AsyncStorage.getItem('@storage_Key')
+    if(value !== null) {
+      // value previously stored
+    }
+  } catch(e) {
+    // error reading value
   }
-}
-
-export async function clearDataAsyncStorage(key: string): Promise<void> {
-  try {
-    await AsyncStorage.removeItem(key);
-  } catch (error) {
-    // remove error
-    return;
-  }
-}
-
-export const setFilters = (types: IPokemonType[]) => {
-
-    try {
-      setDataAsyncStorage('@pokedex-app/type_filters', types.toString())
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-export const getFilters = () => {
-    try {
-        return getDataAsyncStorage('@pokedex-app/type_filters')
-    } catch (error) {
-        console.error(error);
-    }
-
-}
-
-export const filtersIsFilled = () => {
-    const data = getFilters();
-    if (data == null || data == undefined) {
-        return false;
-    }
-    return true;
 }
