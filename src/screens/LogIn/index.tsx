@@ -74,13 +74,17 @@ export const LogIn = () => {
                 <Title>Bem-vindo</Title>
                 <Description>Insira os seus dados para acessar</Description>
                 {renderForm()}
-                {screensStoreState.typesRequestLoaded ? <StyledButton
-                    style={{ marginTop: RFValue(30) }}
-                    mode="contained" onPress={handleLogin}>
-                    <TextButton>Login</TextButton>
-                </StyledButton> : <ActivityIndicator
-
-                    style={{ marginTop: '10%' }} size={50} color='black' />}
+                {
+                    screensStoreState.typesRequestLoaded ?
+                        <StyledButton
+                            style={{ marginTop: RFValue(30) }}
+                            mode="contained" onPress={handleLogin}>
+                            <TextButton>Login</TextButton>
+                        </StyledButton> :
+                        <ActivityIndicator
+                            style={{ marginTop: '10%' }} size={50} color='black'
+                        />
+                }
             </Container>
         </BackgroundImage>
     )
