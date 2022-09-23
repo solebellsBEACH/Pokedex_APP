@@ -5,22 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RFValue } from 'react-native-responsive-fontsize'
 import { DrawerNavigationView, FiltersContent, PokemonInput, PokemonList } from '../../components'
 import { Container, LogoPokemon, ContentTop, LogoConfig, LogoConfigContainer, ContentBottom, } from './styles'
-import { RootState } from '../../store';
-import { actionSetOffsetCres, asyncGetPokemons } from '../../store/ScreensStore/ScreensStore.store';
 
-
-export const Home = () => {
-    const screensStoreState = useSelector((state: RootState) => state.screensStore);
+export const Home = (props:any) => {
     const drawer = useRef(null)
-    const dispatch = useDispatch();
     const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
-    useEffect(() => { 
-
-        dispatch(asyncGetPokemons(screensStoreState.offset)) }, [screensStoreState.offset])
 
     const handleOnEndReached = () => {
         console.log('handleOnEndReached')
-        dispatch(actionSetOffsetCres())
     }
 
     return (
@@ -33,7 +24,7 @@ export const Home = () => {
                     return <DrawerNavigationView
                         filtersActiveds={filtersActiveds} setFiltersActiveds={setFiltersActiveds}
                         onCloseDrawer={() => {
-                            drawer.current.closeDrawer()
+                            // drawer.current.closeDrawer()
                         }} />
                 }}
             >
@@ -42,16 +33,17 @@ export const Home = () => {
                     <ContentTop>
                         <PokemonInput />
                         <LogoConfigContainer
-                            onPress={() => { drawer.current.openDrawer() }}
+                            onPress={() => {
+                                // drawer.current.openDrawer()
+                            }}
                         >
                             <LogoConfig height={RFValue(40)} />
                         </LogoConfigContainer>
                     </ContentTop>
                     <ContentBottom>
-                        {/* <Text></Text> */}
-                        <FiltersContent filters={filtersActiveds} />
+                        {/* <FiltersContent filters={filtersActiveds} /> */}
                         <PokemonList
-                            results={screensStoreState.pokemonsRequest.results}
+                            results={screensStoreState.pokemonsRequest}
                             handleOnEndReached={handleOnEndReached} />
                     </ContentBottom>
                 </Container>
