@@ -5,7 +5,7 @@ import { PokemonItem } from '../PokemonItem';
 import { PokemonItensContent } from './styles'
 
 interface IPokemonListProps {
-    results: IPokemonRequest;
+    results: IPokemonRequest|null;
     handleOnEndReached: () => void
 }
 
@@ -15,9 +15,9 @@ export const PokemonList = ({ results, handleOnEndReached }: IPokemonListProps) 
             columnWrapperStyle={{ justifyContent: 'space-between' }}
             showsVerticalScrollIndicator={false}
             keyExtractor={(item, index) => `key-${index}`}
-            data={results.data}
+            data={results?.data}
             renderItem={({ item, index }) => {
-                // console.log(item)
+                console.log(item)
                 return <></>
                 // return <PokemonItem index={index} label={item.name}  />
             }

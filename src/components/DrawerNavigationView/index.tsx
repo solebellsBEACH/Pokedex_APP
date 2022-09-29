@@ -1,8 +1,5 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../store'
-import { TypePokemonButton } from '../TypePokemonButton'
 import { ContentTypes, ClearFilterText, Container, ContentTop, Title, ExitIcon, ExitIconContainer, Content, ContentTitle } from './styles'
 interface IDrawerNavigationViewProps {
     onCloseDrawer: () => void;
@@ -10,7 +7,6 @@ interface IDrawerNavigationViewProps {
 }
 
 export const DrawerNavigationView = ({ onCloseDrawer, filtersActiveds, setFiltersActiveds }: IDrawerNavigationViewProps) => {
-    const screensStoreState = useSelector((state: RootState) => state.screensStore);
 
     return (
         <>
@@ -26,7 +22,7 @@ export const DrawerNavigationView = ({ onCloseDrawer, filtersActiveds, setFilter
                 </ContentTop>
                 <Content>
                     <ContentTitle>Tipo</ContentTitle>
-                    <ContentTypes
+                    {/* <ContentTypes
                         data={screensStoreState.typesRequest.results}
                         keyExtractor={(item, index) => `key-${index}`}
                         renderItem={({ item, index }) => {
@@ -35,7 +31,7 @@ export const DrawerNavigationView = ({ onCloseDrawer, filtersActiveds, setFilter
                                 index={index} key={index} label={item.name} />
                         }}
                         numColumns={2}
-                    />
+                    /> */}
                 </Content>
             </Container>
         </>
