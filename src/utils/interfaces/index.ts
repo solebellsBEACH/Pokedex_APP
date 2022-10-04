@@ -81,35 +81,7 @@ export interface IHomeDuckInitialState {
     loading: boolean,
     error: boolean,
     pokemons: IPokemonRequest | null,
-    success: boolean,
-    userLoginLoading: boolean,
-    userLoginError: boolean,
-    userLoginData: {
-        success: boolean,
-        message: string,
-        token: string
-    } | null,
-    createUserLoading: boolean,
-    createUserError: boolean,
-    createUserData: {
-        success: boolean,
-        message: string,
-        token: string
-    } | null,
-    userLoading: boolean,
-    userError: boolean,
-    userData: {
-        success: boolean,
-        message: string,
-        data: IUser
-    } | null,
-    userCartLoading: boolean,
-    userCartError: boolean,
-    userCartData: {
-        success: boolean,
-        message: string,
-        data: { _id: string, name: string, front_default: string, height: number, type: "fire" | "grass" | "electric" | "water" | "ground" | "rock" | "fairy" | "poison" | "bug" | "dragon" | "psychic" | "flying" | "fighting" | "normal" }[]
-    } | null,
+    success: boolean
 }
 export interface IPokemonDuckInitialState {
     loading: boolean,
