@@ -6,10 +6,17 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import { DrawerNavigationView, FiltersContent, PokemonInput, PokemonList } from '../../components'
 import { Container, LogoPokemon, ContentTop, LogoConfig, LogoConfigContainer, ContentBottom, } from './styles'
 import { IHomeDuckInitialState } from '../../utils/interfaces';
+import { asyncGetPokemons } from '../../store/HomeStore/HomeStore.store';
 
-export const Home = (props:any) => {
+export const Home = (props: any) => {
     const drawer = useRef(null)
     const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
+
+
+    useEffect(() => {
+        asyncGetPokemons()
+    }, [props])
+
 
     const handleOnEndReached = () => {
         console.log('handleOnEndReached')

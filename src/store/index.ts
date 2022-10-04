@@ -1,16 +1,17 @@
-import { createStore, applyMiddleware } from 'redux'
-import createSagaMiddleware from 'redux-saga'
+import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
+import homeStoreReducer from './HomeStore/HomeStore.store'
 
-import reducer from './ducks'
-import mySaga from './saga'
+const store = configureStore({
+    reducer: {
+        homeStore: homeStoreReducer,
+    }
+});
 
-// create the saga middleware
-const sagaMiddleware = createSagaMiddleware()
-// mount it on the Store
-export const store = createStore(
-  reducer,
-  applyMiddleware(sagaMiddleware)
-)
+export type RootState = ReturnType<typeof store.getState>;
 
-// then run the saga
-sagaMiddleware.run(mySaga)
+export type AppDispatch = typeof store.dispatch
+export type AppThunk = ThunkAction<void, RootState, null, Action<string>>
+export const useAppDispatch = () => useDispatch<AppDispatch>()
+
+export default store;
