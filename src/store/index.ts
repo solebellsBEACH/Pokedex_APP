@@ -1,17 +1,11 @@
-import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
-import homeStoreReducer from './HomeStore/HomeStore.store'
+import { configureStore } from '@reduxjs/toolkit';
+import homeReducer from '../screens/Home/useHome/homeSlice'
 
-const store = configureStore({
-    reducer: {
-        homeStore: homeStoreReducer,
-    }
+export const store = configureStore({
+  reducer: {
+    home: homeReducer,
+  },
 });
 
+
 export type RootState = ReturnType<typeof store.getState>;
-
-export type AppDispatch = typeof store.dispatch
-export type AppThunk = ThunkAction<void, RootState, null, Action<string>>
-export const useAppDispatch = () => useDispatch<AppDispatch>()
-
-export default store;
