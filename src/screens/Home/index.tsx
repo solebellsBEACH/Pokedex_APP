@@ -37,7 +37,8 @@ export const Home = (props: any) => {
                 drawerPosition='right'
                 renderNavigationView={() => {
                     return <DrawerNavigationView
-                        filtersActiveds={filtersActiveds} setFiltersActiveds={setFiltersActiveds}
+                        filtersActiveds={filtersActiveds}
+                        setFiltersActiveds={setFiltersActiveds}
                         filters={pokemonData?.pokemonTypes?.data !== undefined ? pokemonData?.pokemonTypes?.data : []}
                         onCloseDrawer={() => {
                             // drawer.current.closeDrawer()
@@ -63,7 +64,11 @@ export const Home = (props: any) => {
                         </LogoConfigContainer>
                     </ContentTop>
                     <ContentBottom>
-                        <FiltersContent filters={filtersActiveds} />
+                        <FiltersContent
+                            filtersActiveds={filtersActiveds}
+                            setFiltersActiveds={setFiltersActiveds}
+                            filters={filtersActiveds}
+                        />
                         {homeData.pokemons &&
                             <PokemonList
                                 results={homeData.pokemons.data}

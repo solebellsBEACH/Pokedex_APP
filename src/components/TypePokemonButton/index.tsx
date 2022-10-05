@@ -19,7 +19,7 @@ export const TypePokemonButton = ({ index, label, filtersActiveds, setFiltersAct
     }
 
     const handlePress = () => {
-        const array = filtersActiveds;
+        const array = [...filtersActiveds];
         if (!isActive()) {
             array.push(label)
         }
