@@ -1,15 +1,54 @@
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react'
-import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native'
+import {
+    RouteProp,
+    useNavigation,
+    useRoute
+} from '@react-navigation/native';
+import React,
+{ useEffect } from 'react'
+import {
+    ActivityIndicator,
+    TouchableOpacity,
+    View
+} from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize';
 import { SvgUri } from 'react-native-svg';
-import { useDispatch, useSelector } from 'react-redux';
+import {
+    useDispatch,
+    useSelector
+} from 'react-redux';
 import { Creators as PokemonScreenActions } from '../../store/ducks/pokemonsScreen'
-import { PokemonInformations } from '../../components';
-import { useAddZeroInNumber, useCapitalizeFirstLetter, usePokemonColors } from '../../utils/hooks';
-import { INavigationProps, IPokemon, IReduxState } from '../../utils/interfaces';
+import { PokemonInformations } from './usePokemonScreen/components';
+import {
+    useAddZeroInNumber,
+    useCapitalizeFirstLetter,
+    usePokemonColors
+} from '../../utils/hooks';
+import {
+    INavigationProps,
+    IReduxState
+} from '../../utils/interfaces';
 import { ParamList } from '../../utils/types';
-import { Container, ArrowLeftIcon, ContentTop, ContentLeft, PokemonName, ContentRight, CategoryText, PokemonNumber, CategoriesContainer, CategoryItem, CategoriesFlatList, ContentBottom, PokemonItemContent, PokemonItemContainer, PokemonImage } from './styles'
+import {
+    Container,
+    ArrowLeftIcon,
+    ContentTop,
+    ContentLeft,
+    PokemonName,
+    ContentRight,
+    CategoryText,
+    PokemonNumber,
+    CategoriesContainer,
+    CategoryItem,
+    CategoriesFlatList,
+    ContentBottom,
+    PokemonItemContent,
+    PokemonItemContainer,
+    PokemonImage
+} from './styles'
+import {
+    ICategoriesFlatListProps,
+    ICategoryItem
+} from './usePokemonScreen/interface';
 
 export const PokemonScreen = (props: any) => {
     const route = useRoute<RouteProp<ParamList, 'PokemonScreen'>>();
@@ -23,10 +62,6 @@ export const PokemonScreen = (props: any) => {
         dispatch(PokemonScreenActions.getPokemonsScreenRequest({ id: _id }))
     }, [props])
 
-    interface ICategoryItem {
-        label: string;
-        index: number;
-    }
 
     const renderCategoryItem = ({ index, label }: ICategoryItem) => {
         return <>
@@ -41,13 +76,7 @@ export const PokemonScreen = (props: any) => {
         </>
     }
 
-    interface ICategoriesFlatListProps {
-        item: {
-            value: number;
-            name: string;
-        },
-        index: number
-    }
+
 
     const renderContentTop = () => {
         return <ContentTop>

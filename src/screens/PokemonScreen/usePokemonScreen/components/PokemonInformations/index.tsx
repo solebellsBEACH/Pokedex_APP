@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from 'react'
 
-import { Label, Value, Container, ContentTop, TabSelectorContainer, TabSelectorText, ContentBottom, InformationItemContainer, StatusTabFlatList } from './styles'
-import { IPokemon } from '../../utils/interfaces'
-import { api } from '../../utils/api'
-import { useCapitalizeFirstLetter } from '../../utils/hooks'
-import { StatusItem } from './StatusItem'
+import {
+    Label,
+    Value,
+    Container,
+    ContentTop,
+    TabSelectorContainer,
+    TabSelectorText,
+    ContentBottom,
+    InformationItemContainer,
+    StatusTabFlatList
+} from './styles'
+import { StatusItem } from '../StatusItem'
 import { ActivityIndicator } from 'react-native'
+import { IPokemon } from '../../../../../utils/interfaces'
+import { IPokemonInformationsProps } from '../../interface'
+import { api } from '../../../../../utils/api'
+import { useCapitalizeFirstLetter } from '../../../../../utils/hooks'
 
-interface IPokemonInformationsProps {
-    id: number
-}
+
 
 export const PokemonInformations = ({ id }: IPokemonInformationsProps) => {
     const [pokemon, setPokemon] = useState<IPokemon>()
