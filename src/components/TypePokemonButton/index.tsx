@@ -8,7 +8,6 @@ interface ITypePokemonButton {
 
 export const TypePokemonButton = ({ index, label, filtersActiveds, setFiltersActiveds }: ITypePokemonButton) => {
 
-
     const isActive = () => {
         if (filtersActiveds.find(e => e == label) == undefined) {
             return false

@@ -14,7 +14,7 @@ interface IPokemonRenderItem {
 }
 
 export const PokemonList = ({ results, handleOnEndReached }: IPokemonListProps) => {
-    const renderItem = ({ item }:IPokemonRenderItem) => <PokemonItem pokemon={item}  />
+    const renderItem = ({ item }: IPokemonRenderItem) => <PokemonItem pokemon={item} />
 
     return (
         <PokemonItensContent<any>
@@ -24,7 +24,7 @@ export const PokemonList = ({ results, handleOnEndReached }: IPokemonListProps) 
             renderItem={renderItem}
             numColumns={2}
             onEndReached={handleOnEndReached}
-            keyExtractor={(item:any, index:number) => 'itemPokemon'+index}
+            keyExtractor={(item: any, index: number) => 'itemPokemon' + index}
         />
     )
 }

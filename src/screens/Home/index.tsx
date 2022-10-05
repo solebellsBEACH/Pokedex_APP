@@ -7,7 +7,9 @@ import { DrawerNavigationView } from '../../components'
 import { FiltersContent, PokemonInput, PokemonList } from './useHome/components'
 import { Container, LogoPokemon, ContentTop, LogoConfig, LogoConfigContainer, ContentBottom, } from './styles'
 import { Creators as HomeActions } from '../../store/ducks/home'
+import { Creators as PokemonActions } from '../../store/ducks/pokemons'
 import { IReduxState } from '../../utils/interfaces';
+import { ActivityIndicator } from 'react-native-paper';
 
 export const Home = (props: any) => {
     const drawer = useRef(null)
@@ -15,17 +17,18 @@ export const Home = (props: any) => {
     const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
 
     const homeData = useSelector((state: IReduxState) => state.home)
+    const pokemonData = useSelector((state: IReduxState) => state.pokemon)
     useEffect(() => {
         dispatch(HomeActions.HomePokemonsRequest({
             offset: 0,
             limit: 20
         }))
+        dispatch(PokemonActions.getPokemonTypesRequest())
     }, [])
 
     const handleOnEndReached = (): void => {
 
     }
-
     return (
         <>
             <DrawerLayoutAndroid
@@ -35,6 +38,7 @@ export const Home = (props: any) => {
                 renderNavigationView={() => {
                     return <DrawerNavigationView
                         filtersActiveds={filtersActiveds} setFiltersActiveds={setFiltersActiveds}
+                        filters={pokemonData?.pokemonTypes?.data !== undefined ? pokemonData?.pokemonTypes?.data : []}
                         onCloseDrawer={() => {
                             // drawer.current.closeDrawer()
                         }} />
@@ -44,12 +48,18 @@ export const Home = (props: any) => {
                     <LogoPokemon height={RFValue(40)} />
                     <ContentTop>
                         <PokemonInput />
+
                         <LogoConfigContainer
                             onPress={() => {
-                                // drawer.current.openDrawer()
+                                if (pokemonData?.pokemonTypes?.data) {
+                                    drawer.current.openDrawer()
+                                }
                             }}
                         >
-                            <LogoConfig height={RFValue(40)} />
+                            {!pokemonData?.pokemonTypes?.data ? <ActivityIndicator
+                                style={{ marginTop: '40%' }}
+                                size={20} color='blue'
+                            /> : <LogoConfig height={RFValue(40)} />}
                         </LogoConfigContainer>
                     </ContentTop>
                     <ContentBottom>
