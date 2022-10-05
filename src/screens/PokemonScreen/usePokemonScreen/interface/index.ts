@@ -1,6 +1,9 @@
+import { IPokemon } from "../../../../utils/interfaces";
+
 export interface ICategoryItem {
     label: string;
     index: number;
+    pokemon: IPokemon
 }
 
 export interface ICategoriesFlatListProps {
