@@ -5,9 +5,6 @@ export interface INavigationProps<T = never> {
     goBack: () => void;
     screen: string;
 }
-
-
-
 export interface IPokemonType {
     name: string;
 }
@@ -131,8 +128,12 @@ export interface IPokemonScreenDuckInitialState {
     success: boolean,
 }
 
-export interface IReduxState{
-    home:IHomeDuckInitialState,
-    pokemon:IPokemonDuckInitialState,
-    pokemonScreen:IPokemonScreenDuckInitialState
+export interface IReduxState {
+    home: IHomeDuckInitialState,
+    pokemon: IPokemonDuckInitialState,
+    pokemonScreen: IPokemonScreenDuckInitialState
+}
+
+export interface IPokemonScreenParams {
+    _id: string
 }

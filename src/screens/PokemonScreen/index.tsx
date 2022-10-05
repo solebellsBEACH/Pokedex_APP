@@ -1,4 +1,4 @@
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize';
@@ -6,12 +6,12 @@ import { SvgUri } from 'react-native-svg';
 import { PokemonInformations } from '../../components';
 import { useAddZeroInNumber, useCapitalizeFirstLetter, usePokemonColors } from '../../utils/hooks';
 import { INavigationProps, IPokemon } from '../../utils/interfaces';
+import { ParamList } from '../../utils/types';
 import { Container, ArrowLeftIcon, ContentTop, ContentLeft, PokemonName, ContentRight, CategoryText, PokemonNumber, CategoriesContainer, CategoryItem, CategoriesFlatList, ContentBottom, PokemonItemContent, PokemonItemContainer, PokemonImage } from './styles'
 
 export const PokemonScreen = () => {
-    const navigation = useNavigation<INavigationProps>();
-    const { params } = useRoute();
-    console.log(params)
+    const route = useRoute<RouteProp<ParamList, 'PokemonScreen'>>();
+    console.log(route.params._id)
 
     // const getPokemon = async () => {
     //     try {
