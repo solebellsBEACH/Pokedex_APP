@@ -3,93 +3,97 @@ import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize';
 import { SvgUri } from 'react-native-svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { Creators as PokemonScreenActions } from '../../store/ducks/pokemonsScreen'
 import { PokemonInformations } from '../../components';
 import { useAddZeroInNumber, useCapitalizeFirstLetter, usePokemonColors } from '../../utils/hooks';
-import { INavigationProps, IPokemon } from '../../utils/interfaces';
+import { INavigationProps, IPokemon, IReduxState } from '../../utils/interfaces';
 import { ParamList } from '../../utils/types';
 import { Container, ArrowLeftIcon, ContentTop, ContentLeft, PokemonName, ContentRight, CategoryText, PokemonNumber, CategoriesContainer, CategoryItem, CategoriesFlatList, ContentBottom, PokemonItemContent, PokemonItemContainer, PokemonImage } from './styles'
 
-export const PokemonScreen = () => {
+export const PokemonScreen = (props: any) => {
     const route = useRoute<RouteProp<ParamList, 'PokemonScreen'>>();
-    console.log(route.params._id)
+    const { _id } = route.params
+    const navigation = useNavigation<INavigationProps>()
+    const dispatch = useDispatch()
+    const { pokemonData } = useSelector((state: IReduxState) => state.pokemonScreen)
+    const pokemon = pokemonData?.data[0]
 
-    // const getPokemon = async () => {
-    //     try {
-    //         const { data } = await api.get(`pokemon/${id}`)
-    //         setPokemon(data)
-    //     } catch (error) {
+    useEffect(() => {
+        dispatch(PokemonScreenActions.getPokemonsScreenRequest({ id: _id }))
+    }, [props])
 
-    //     }
-    // }
+    interface ICategoryItem {
+        label: string;
+        index: number;
+    }
 
-    // useEffect(() => {
-    //     getPokemon()
-    // }, [id])
+    const renderCategoryItem = ({ index, label }: ICategoryItem) => {
+        return <>
+            <CategoriesContainer
+                key={index}
+            >
+                <CategoryItem
+                    color={pokemon != null ? usePokemonColors({ pokemonType: pokemon.type }).primary : 'blue'}>
+                    <CategoryText>{label}</CategoryText>
+                </CategoryItem>
+            </CategoriesContainer>
+        </>
+    }
 
-    // interface ICategoryItem {
-    //     label: string;
-    //     index: number;
-    // }
+    interface ICategoriesFlatListProps {
+        item: {
+            value: number;
+            name: string;
+        },
+        index: number
+    }
 
-    // const renderCategoryItem = ({ index, label }: ICategoryItem) => {
-    //     return <>
-    //         <CategoriesContainer
-    //             key={index}
-    //         >
-    //             <CategoryItem
-    //                 color={pokemon != null ? usePokemonColors({ pokemonType: pokemon.types[0].type.name }).primary : 'blue'}>
-    //                 <CategoryText>{label}</CategoryText>
-    //             </CategoryItem>
-    //         </CategoriesContainer>
-    //     </>
-    // }
-
-    // const renderContentTop = () => {
-    //     return <ContentTop>
-    //         <ContentLeft>
-    //             {pokemon != null ? <PokemonName>{useCapitalizeFirstLetter(pokemon.forms[0].name)}</PokemonName> : <PokemonName><ActivityIndicator size={40} color='black' /></PokemonName>}
-    //             <CategoriesFlatList
-    //                 keyExtractor={(item, index) => `key-${index}`}
-    //                 data={pokemon != null ? pokemon.types : []}
-    //                 renderItem={({ item, index }) => {
-    //                     return renderCategoryItem({ label: useCapitalizeFirstLetter(item.type.name), index });
-    //                 }}
-    //                 numColumns={3}
-    //             />
-    //         </ContentLeft>
-    //         <ContentRight>
-    //             {/* <PokemonNumber>#{useAddZeroInNumber(id)}</PokemonNumber> */}
-    //         </ContentRight>
-    //     </ContentTop>
-
+    const renderContentTop = () => {
+        return <ContentTop>
+            <ContentLeft>
+                {pokemon ? <PokemonName>{useCapitalizeFirstLetter(pokemon.name)}</PokemonName> : <PokemonName><ActivityIndicator size={40} color='black' /></PokemonName>}
+                <CategoriesFlatList<any>
+                    keyExtractor={({ item, index }: ICategoriesFlatListProps) => `key-${index}`}
+                    data={pokemon != null ? pokemon.abilities : []}
+                    renderItem={({ item, index }: ICategoriesFlatListProps) => {
+                        return renderCategoryItem({ label: useCapitalizeFirstLetter(item.name), index });
+                    }}
+                    numColumns={3}
+                />
+            </ContentLeft>
+            <ContentRight>
+                <PokemonNumber>#{useAddZeroInNumber(10)}</PokemonNumber>
+            </ContentRight>
+        </ContentTop>
 
 
-    // }
 
-    // const renderPokemonItem = () => {
-    //     return <PokemonItemContainer
-    //     >
-    //         <PokemonItemContent
-    //             colors={pokemon != null ? [usePokemonColors({ pokemonType: pokemon.types[0].type.name }).primary, usePokemonColors({ pokemonType: pokemon.types[0].type.name }).secondary] : ['gray', 'white']}
-    //         >
-    //             {pokemon != null ? <SvgUri
-    //                 height={RFValue(170) + ''}
-    //                 uri={pokemon.sprites.other.dream_world.front_default}
-    //             /> : <ActivityIndicator size={80} color='black' />}
-    //         </PokemonItemContent>
-    //     </PokemonItemContainer>
-    // }
+    }
+
+    const renderPokemonItem = () => {
+        return <PokemonItemContainer
+        >
+            <PokemonItemContent
+                colors={pokemon != null ? [usePokemonColors({ pokemonType: pokemon.type }).primary, usePokemonColors({ pokemonType: pokemon.type }).secondary] : ['gray', 'white']}
+            >
+                {pokemon != null ? <SvgUri
+                    height={RFValue(170) + ''}
+                    uri={pokemon.front_default}
+                /> : <ActivityIndicator size={80} color='black' />}
+            </PokemonItemContent>
+        </PokemonItemContainer>
+    }
     return (
         <>
             <Container>
-                <Text>Pokemon Screen</Text>
-                {/* <TouchableOpacity
+                <TouchableOpacity
                     onPress={() => navigation.goBack()}
                 ><ArrowLeftIcon width={18} height={18} /></TouchableOpacity>
                 {renderContentTop()}
                 <ContentBottom>
                     {renderPokemonItem()}
-                </ContentBottom> */}
+                </ContentBottom>
             </Container>
             {/* <PokemonInformations id={id} /> */}
         </>
