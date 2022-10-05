@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { TouchableOpacity } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { ExitCircleIcon } from '../../assets';
-import { useCapitalizeFirstLetter } from '../../utils/hooks';
+import { ExitCircleIcon } from '../../../../../assets';
+import { useCapitalizeFirstLetter } from '../../../../../utils/hooks';
+
 import { Container, ItemContainer, ItemContent, ItemText } from './styles'
 
 interface IFiltersContent {

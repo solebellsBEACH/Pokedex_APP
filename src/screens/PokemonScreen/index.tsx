@@ -3,10 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, TouchableOpacity, View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize';
 import { SvgUri } from 'react-native-svg';
-import { useSelector } from 'react-redux';
 import { PokemonInformations } from '../../components';
-import { RootState } from '../../store';
-import { api } from '../../utils/api';
 import { useAddZeroInNumber, useCapitalizeFirstLetter, usePokemonColors } from '../../utils/hooks';
 import { INavigationProps, IPokemon } from '../../utils/interfaces';
 import { Container, ArrowLeftIcon, ContentTop, ContentLeft, PokemonName, ContentRight, CategoryText, PokemonNumber, CategoriesContainer, CategoryItem, CategoriesFlatList, ContentBottom, PokemonItemContent, PokemonItemContainer, PokemonImage } from './styles'
@@ -14,7 +11,6 @@ import { Container, ArrowLeftIcon, ContentTop, ContentLeft, PokemonName, Content
 export const PokemonScreen = () => {
     const navigation = useNavigation<INavigationProps>();
     const { params } = useRoute();
-    const id = params.id;
     const [pokemon, setPokemon] = useState<IPokemon | null>(null)
 
     const getPokemon = async () => {
@@ -62,7 +58,7 @@ export const PokemonScreen = () => {
                 />
             </ContentLeft>
             <ContentRight>
-                <PokemonNumber>#{useAddZeroInNumber(id)}</PokemonNumber>
+                {/* <PokemonNumber>#{useAddZeroInNumber(id)}</PokemonNumber> */}
             </ContentRight>
         </ContentTop>
 
@@ -94,7 +90,7 @@ export const PokemonScreen = () => {
                     {renderPokemonItem()}
                 </ContentBottom>
             </Container>
-            <PokemonInformations id={id} />
+            {/* <PokemonInformations id={id} /> */}
         </>
     )
 }

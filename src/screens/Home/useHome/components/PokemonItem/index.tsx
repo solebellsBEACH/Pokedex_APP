@@ -1,10 +1,8 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useEffect, useState, memo } from 'react'
+import React from 'react'
 import { ActivityIndicator } from 'react-native-paper';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { api } from '../../utils/api';
-import { returnId, useCapitalizeFirstLetter, usePokemonColors } from '../../utils/hooks';
-import { INavigationProps, IPokemon } from '../../utils/interfaces';
+import { useCapitalizeFirstLetter, usePokemonColors } from '../../../../../utils/hooks';
+import { IPokemon } from '../../../../../utils/interfaces';
 import { Container, PokemonName, PokemonImage, Content } from './styles'
 
 interface IPokemonItem {
@@ -16,8 +14,6 @@ interface IPokemonData {
 }
 
 export const PokemonItem = ({ pokemon }: IPokemonItem) => {
-    // const navigation = useNavigation<INavigationProps<{ id: number }>>();
-
     return (
         <Container
             key={pokemon._id}

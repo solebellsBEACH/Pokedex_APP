@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { ActivityIndicator, DrawerLayoutAndroid, View } from 'react-native'
+import { DrawerLayoutAndroid } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RFValue } from 'react-native-responsive-fontsize'
-import { DrawerNavigationView, FiltersContent, PokemonInput, PokemonList } from '../../components'
+import { DrawerNavigationView } from '../../components'
+import { FiltersContent, PokemonInput, PokemonList } from './useHome/components'
 import { Container, LogoPokemon, ContentTop, LogoConfig, LogoConfigContainer, ContentBottom, } from './styles'
 import { Creators as HomeActions } from '../../store/ducks/home'
 import { IReduxState } from '../../utils/interfaces';
@@ -52,7 +53,7 @@ export const Home = (props: any) => {
                         </LogoConfigContainer>
                     </ContentTop>
                     <ContentBottom>
-                        {/* <FiltersContent filters={filtersActiveds} /> */}
+                        <FiltersContent filters={filtersActiveds} />
                         {homeData.pokemons &&
                             <PokemonList
                                 results={homeData.pokemons.data}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { IPokemon } from '../../utils/interfaces';
+import { IPokemon } from '../../../../../utils/interfaces';
 import { PokemonItem } from '../PokemonItem';
 import { PokemonItensContent } from './styles'
 
