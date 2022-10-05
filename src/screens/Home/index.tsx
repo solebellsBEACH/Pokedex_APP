@@ -7,19 +7,25 @@ import { DrawerNavigationView, FiltersContent, PokemonInput, PokemonList } from 
 import { Container, LogoPokemon, ContentTop, LogoConfig, LogoConfigContainer, ContentBottom, } from './styles'
 import { IHomeDuckInitialState } from '../../utils/interfaces';
 import { RootState } from '../../store';
+import { api } from '../../utils/api';
 
 export const Home = (props: any) => {
     const drawer = useRef(null)
     const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
-
     const homeData = useSelector((state: RootState) => state.home)
 
-    useEffect(() => {
-    }, [props])
-
-    const handleOnEndReached = () => {
-        console.log('handleOnEndReached')
+    const getPokemons = async () => {
+        try {
+            const response = await api.get('pokemon')
+            console.log(response)
+        } catch (error) {
+            console.log(error)
+        }
     }
+
+    useEffect(() => {
+        getPokemons()
+    }, [props])
 
     return (
         <>
