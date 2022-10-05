@@ -77,13 +77,13 @@ export const PokemonInformations = ({ pokemon }: IPokemonInformationsProps) => {
             showsVerticalScrollIndicator={false}
             columnWrapperStyle={{ justifyContent: 'space-between' }}
             numColumns={2}
-            keyExtractor={({ item, index }: IStatusTabRenderItemsProps) => `key-${index}StatusItem`}
+            keyExtractor={({ index }: IStatusTabRenderItemsProps) => `key-${index}StatusItem`}
             data={pokemon != undefined ? pokemon.stat_value : []}
-            renderItem={({ item, index }: IStatusTabRenderItemsProps) => <StatusItem
+            renderItem={({ item }: IStatusTabRenderItemsProps) => <StatusItem
                 name={item.name}
                 score={item.stats_value}
                 type={{ pokemonType: pokemon?.type }}
-               />}
+            />}
         />
     }
 
