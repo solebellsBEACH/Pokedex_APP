@@ -1,30 +1,33 @@
 import React from 'react'
-import { ActivityIndicator, View } from 'react-native';
-import { IPokemonRequest } from '../../utils/interfaces';
-import { PokemonItem } from '../PokemonItem';
+import { ListRenderItem, View } from 'react-native';
+import { ActivityIndicator } from 'react-native-paper';
+import { IPokemon, IPokemonRequest } from '../../utils/interfaces';
+import { PokemonItem } from '../index';
 import { PokemonItensContent } from './styles'
 
 interface IPokemonListProps {
-    results: IPokemonRequest|null;
+    results: IPokemon[] | null;
     handleOnEndReached: () => void
 }
 
+
+interface IPokemonRenderItem {
+    item: IPokemon, index: number
+}
+
 export const PokemonList = ({ results, handleOnEndReached }: IPokemonListProps) => {
+    const renderItem = ({ item }:IPokemonRenderItem) => <PokemonItem pokemon={item}  />
+
     return (
-        <PokemonItensContent
+        <PokemonItensContent<any>
             columnWrapperStyle={{ justifyContent: 'space-between' }}
             showsVerticalScrollIndicator={false}
-            keyExtractor={(item, index) => `key-${index}`}
-            data={results?.data}
-            renderItem={({ item, index }) => {
-                console.log(item)
-                return <></>
-                // return <PokemonItem index={index} label={item.name}  />
-            }
-            }
+            data={results}
+            renderItem={renderItem}
             numColumns={2}
-            // ListFooterComponent={() => <View><ActivityIndicator size={50} color='black' /></View>}
             onEndReached={handleOnEndReached}
+            keyExtractor={(item:any, index:number) => 'itemPokemon'+index}
         />
     )
 }
+

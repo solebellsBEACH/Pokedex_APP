@@ -130,3 +130,9 @@ export interface IPokemonScreenDuckInitialState {
     pokemonData: { success: boolean, status: number, data: IPokemon[] } | null,
     success: boolean,
 }
+
+export interface IReduxState{
+    home:IHomeDuckInitialState,
+    pokemon:IPokemonDuckInitialState,
+    pokemonScreen:IPokemonScreenDuckInitialState
+}

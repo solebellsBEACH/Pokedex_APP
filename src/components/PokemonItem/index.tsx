@@ -8,69 +8,32 @@ import { INavigationProps, IPokemon } from '../../utils/interfaces';
 import { Container, PokemonName, PokemonImage, Content } from './styles'
 
 interface IPokemonItem {
-    index: number; label: string; url: string
+    pokemon: IPokemon
 }
 interface IPokemonData {
     isLoaded: boolean;
     pokemonData: IPokemon | null;
 }
 
-const PokemonItemComponent = ({ index, label, url }: IPokemonItem) => {
-    const navigation = useNavigation<INavigationProps<{ id: number }>>();
-
-    const [pokemonPreRequest, setPreRequestPokemon] = useState<IPokemonData | null>(null)
-
-    const [pokemon, setPokemon] = useState<IPokemon | null>(null)
-
-    const getPokemon = async () => {
-        try {
-            const { data } = await api.get(`pokemon/${id}`)
-            setPokemon(data)
-        } catch (error) {
-
-        }
-    }
-    const getPreRequestPokemon = async () => {
-        try {
-            const req = await api.get(`pokemon/${label}`)
-            setPreRequestPokemon({ isLoaded: true, pokemonData: req.data })
-
-        } catch (error) {
-            setPreRequestPokemon({ isLoaded: false, pokemonData: null })
-        }
-    }
-
-
-    const id = returnId(url)
-
-    useEffect(() => {
-        getPreRequestPokemon()
-    }, [label])
-
-    useEffect(() => {
-        getPokemon()
-    }, [pokemonPreRequest?.isLoaded])
+export const PokemonItem = ({ pokemon }: IPokemonItem) => {
+    // const navigation = useNavigation<INavigationProps<{ id: number }>>();
 
     return (
         <Container
-            key={index}
+            key={pokemon._id}
             onPress={() => {
-                navigation.navigate('PokemonScreen', { id })
+                // navigation.navigate('PokemonScreen', { id })
             }}
         >
             <Content
-                color={pokemon != null ? usePokemonColors({ pokemonType: pokemon.types[0].type.name }).primary : 'blue'}
+                color={pokemon != null ? usePokemonColors({ pokemonType: pokemon.type }).primary : 'blue'}
             >
-                <PokemonName>{useCapitalizeFirstLetter(label)}</PokemonName>
+                <PokemonName>{useCapitalizeFirstLetter(pokemon.name)}</PokemonName>
             </Content>
             {pokemon != null ? <PokemonImage
                 height={RFValue(82) + ''}
-                uri={pokemon.sprites.other.dream_world.front_default}
+                uri={pokemon.front_default}
             /> : <ActivityIndicator style={{ marginTop: '20%' }} size={40} color='black' />}
         </Container>
     )
 }
-
-export const PokemonItem = memo(PokemonItemComponent, (prev, next) => {
-    return Object.is(prev, next)
-})

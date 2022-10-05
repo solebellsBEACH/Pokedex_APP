@@ -6,18 +6,24 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import { DrawerNavigationView, FiltersContent, PokemonInput, PokemonList } from '../../components'
 import { Container, LogoPokemon, ContentTop, LogoConfig, LogoConfigContainer, ContentBottom, } from './styles'
 import { Creators as HomeActions } from '../../store/ducks/home'
+import { IReduxState } from '../../utils/interfaces';
 
 export const Home = (props: any) => {
     const drawer = useRef(null)
     const dispatch = useDispatch()
     const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
 
+    const homeData = useSelector((state: IReduxState) => state.home)
     useEffect(() => {
         dispatch(HomeActions.HomePokemonsRequest({
             offset: 0,
             limit: 20
-          }))
-    },[])
+        }))
+    }, [])
+
+    const handleOnEndReached = (): void => {
+
+    }
 
     return (
         <>
@@ -47,9 +53,12 @@ export const Home = (props: any) => {
                     </ContentTop>
                     <ContentBottom>
                         {/* <FiltersContent filters={filtersActiveds} /> */}
-                        {/* <PokemonList
-                            results={homeData.pokemons}
-                            handleOnEndReached={handleOnEndReached} /> */}
+                        {homeData.pokemons &&
+                            <PokemonList
+                                results={homeData.pokemons.data}
+                                handleOnEndReached={handleOnEndReached} />
+                        }
+
                     </ContentBottom>
                 </Container>
             </DrawerLayoutAndroid>

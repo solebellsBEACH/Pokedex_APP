@@ -7,7 +7,6 @@ function* getHomePokemons(params: { type: string, payload: { offset: number, lim
 
   try {
     const response = yield call(api.get, `pokemon?limit=20&page=1`);
-    console.log(response);
     if (response.status === 200) {
       yield put(HomeActions.HomePokemonsSuccess(response.data));
     } else {
@@ -85,7 +84,6 @@ function* getUser(): any {
 function* getUserCart(): any {
   try {
     const response = yield call(api.get, `user/cart`);
-    console.log(response)
     if (response.status === 200) {
       yield put(HomeActions.getUserCartSuccess(
         response.data
