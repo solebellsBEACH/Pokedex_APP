@@ -5,27 +5,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RFValue } from 'react-native-responsive-fontsize'
 import { DrawerNavigationView, FiltersContent, PokemonInput, PokemonList } from '../../components'
 import { Container, LogoPokemon, ContentTop, LogoConfig, LogoConfigContainer, ContentBottom, } from './styles'
-import { IHomeDuckInitialState } from '../../utils/interfaces';
-import { RootState } from '../../store';
-import { api } from '../../utils/api';
+import { Creators as HomeActions } from '../../store/ducks/home'
 
 export const Home = (props: any) => {
     const drawer = useRef(null)
+    const dispatch = useDispatch()
     const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
-    const homeData = useSelector((state: RootState) => state.home)
-
-    const getPokemons = async () => {
-        try {
-            const response = await api.get('pokemon')
-            console.log(response)
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
     useEffect(() => {
-        getPokemons()
-    }, [props])
+        dispatch(HomeActions.HomePokemonsRequest({
+            offset: 0,
+            limit: 20
+          }))
+    },[])
 
     return (
         <>
