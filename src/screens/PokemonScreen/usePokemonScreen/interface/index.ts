@@ -15,5 +15,5 @@ export interface ICategoriesFlatListProps {
 }
 
 export interface IPokemonInformationsProps {
-    id: number
+    pokemon: IPokemon
 }

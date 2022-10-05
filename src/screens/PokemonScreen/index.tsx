@@ -90,7 +90,7 @@ export const PokemonScreen = (props: any) => {
                     {pokemon && <PokemonItem pokemon={pokemon} />}
                 </ContentBottom>
             </Container>
-            {/* <PokemonInformations id={id} /> */}
+            {pokemon && <PokemonInformations pokemon={pokemon} />}
         </>
     )
 }
