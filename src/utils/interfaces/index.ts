@@ -5,12 +5,8 @@ export interface INavigationProps<T = never> {
     goBack: () => void;
     screen: string;
 }
-
-
-
 export interface IPokemonType {
     name: string;
-    url: string;
 }
 export interface IPokemonTypeRequest {
     count: number,
@@ -18,45 +14,31 @@ export interface IPokemonTypeRequest {
 }
 
 export interface IPokemon {
-    stats: {
-        base_stat: number,
-        stat: {
-            name: string,
-        }
-    }[],
-    forms: [
-        {
-            name: string,
-
-        }
-    ],
-    sprites: {
-        other: {
-            dream_world: {
-                front_default: string
-            }
-        }
-    }
-    types: [
-        {
-            type: {
-                name: string
-            }
-        }
-    ],
-    species: { name: string },
+    _id: string;
+    name: string,
+    front_default: string,
     height: number,
-    abilities: { ability: { name: string } }[],
-}
-export interface IPokemonPreRequest {
-    name: string;
-    url: string;
+    stat_value: { stats_value: number, name: string }[],
+    abilities: { value: number, name: string }[],
+    type: 'fire' |
+    'grass' |
+    'electric' |
+    'water' |
+    'ground' |
+    'rock' |
+    'fairy' |
+    'poison' |
+    'bug' |
+    'dragon' |
+    'psychic' |
+    'flying' |
+    'fighting' |
+    'normal'
 }
 export interface IPokemonRequest {
-    count: number,
-    next: string | null,
-    previous: string | null,
-    results: IPokemonPreRequest[];
+    success: boolean,
+    status: number
+    data: IPokemon[];
 }
 
 //  - - - - - - -  - - - - - - -  - - - - - - -  - - - - - - -  - - - - - - - //
@@ -68,7 +50,7 @@ export interface IRequestContextProviderProps {
     isPost?: number;
 }
 
-export interface IPossiblePokemonKeys {
+export type IPossiblePokemonKeys = {
     pokemonType: 'fire' |
     'grass' |
     'electric' |
@@ -83,4 +65,75 @@ export interface IPossiblePokemonKeys {
     'flying' |
     'fighting' |
     'normal'
+}
+
+export interface IUser {
+    _id: string;
+    name: string;
+    email: string;
+    cart: { _id: string, name: string, front_default: string }[]
+}
+export interface IHomeDuckInitialState {
+    loading: boolean,
+    error: boolean,
+    pokemons: IPokemonRequest | null,
+    success: boolean,
+    userLoginLoading: boolean,
+    userLoginError: boolean,
+    userLoginData: {
+        success: boolean,
+        message: string,
+        token: string
+    } | null,
+    createUserLoading: boolean,
+    createUserError: boolean,
+    createUserData: {
+        success: boolean,
+        message: string,
+        token: string
+    } | null,
+    userLoading: boolean,
+    userError: boolean,
+    userData: {
+        success: boolean,
+        message: string,
+        data: IUser
+    } | null,
+    userCartLoading: boolean,
+    userCartError: boolean,
+    userCartData: {
+        success: boolean,
+        message: string,
+        data: { _id: string, name: string, front_default: string, height: number, type: "fire" | "grass" | "electric" | "water" | "ground" | "rock" | "fairy" | "poison" | "bug" | "dragon" | "psychic" | "flying" | "fighting" | "normal" }[]
+    } | null,
+}
+export interface IPokemonDuckInitialState {
+    loading: boolean,
+    error: boolean,
+    pokemonData: IPokemon | null,
+    success: boolean,
+    loadingPokemonTypes: boolean,
+    errorPokemonTypes: boolean,
+    pokemonTypes: { success: boolean, status: number, data: IPokemonType[] } | null,
+    successPokemonTypes: boolean,
+    addPokemonInCartLoading: boolean,
+    addPokemonInCartError: boolean,
+
+}
+
+export interface IPokemonScreenDuckInitialState {
+    loading: boolean,
+    error: boolean,
+    pokemonData: { success: boolean, status: number, data: IPokemon[] } | null,
+    success: boolean,
+}
+
+export interface IReduxState {
+    home: IHomeDuckInitialState,
+    pokemon: IPokemonDuckInitialState,
+    pokemonScreen: IPokemonScreenDuckInitialState
+}
+
+export interface IPokemonScreenParams {
+    _id: string
 }

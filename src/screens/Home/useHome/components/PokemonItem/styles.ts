@@ -1,7 +1,7 @@
 import { RFValue } from 'react-native-responsive-fontsize'
 import { SvgUri } from 'react-native-svg'
 import styled from 'styled-components/native'
-import { PokemonImage as PokemonImageSVG } from '../../assets'
+import { PokemonImage as PokemonImageSVG } from '../../../../../assets'
 
 export const Container = styled.TouchableOpacity`
 align-items:center;

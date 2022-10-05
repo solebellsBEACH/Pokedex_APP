@@ -1,28 +1,41 @@
 import React, { useEffect } from 'react'
 import { TouchableOpacity } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { ExitCircleIcon } from '../../assets';
-import { useCapitalizeFirstLetter } from '../../utils/hooks';
+import { ExitCircleIcon } from '../../../../../assets';
+import { useCapitalizeFirstLetter } from '../../../../../utils/hooks';
+
 import { Container, ItemContainer, ItemContent, ItemText } from './styles'
 
 interface IFiltersContent {
     filters: string[]
+    filtersActiveds: string[];
+    setFiltersActiveds: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-export const FiltersContent = ({ filters }: IFiltersContent) => {
+export const FiltersContent = ({ filters, setFiltersActiveds, filtersActiveds }: IFiltersContent) => {
 
     interface IItemProps {
         label: string;
     }
 
+    const handlePress = (label: string) => {
+        const array = [...filtersActiveds];
+        array.splice(array.indexOf(label))
+        setFiltersActiveds(array)
+    }
+
     const Item = ({ label }: IItemProps) => {
         return <>
-            <ItemContainer>
+            <ItemContainer
+                onPress={() => { handlePress(label) }}
+            >
                 <ItemContent>
                     <ItemText>
                         {useCapitalizeFirstLetter(label)}
                     </ItemText>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => { handlePress(label) }}
+                    >
                         <ExitCircleIcon style={{ marginTop: RFValue(2), }} />
                     </TouchableOpacity>
                 </ItemContent>
@@ -30,15 +43,15 @@ export const FiltersContent = ({ filters }: IFiltersContent) => {
         </>
     }
 
-    useEffect(() => { console.log('TROCOU') }, [filters])
+    useEffect(() => { console.log(filters) }, [filters])
 
     return (
         <>
             {filters.length == 0 ? <Item label={'Todos'} key={'Todos'} /> :
-                <Container
+                <Container<any>
                     data={filters}
-                    keyExtractor={(item, index) => `key-${index}`}
-                    renderItem={({ item, index }) => {
+                    keyExtractor={(index: { index: number, item: string }) => `key-pokemonType-${index}`}
+                    renderItem={({ item, index }: { index: number, item: string }) => {
                         return <Item label={item} key={index} />
                     }}
                     numColumns={3}

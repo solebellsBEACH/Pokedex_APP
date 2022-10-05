@@ -3,13 +3,12 @@ import styled from 'styled-components/native'
 
 export const Container = styled.FlatList`
 width:100% ;
-min-height: ${RFValue(50)}px;
-margin-bottom:${RFValue(20)}px;
+margin-bottom:${RFValue(-50)}px; ;
 `
 
 // ITEM STYLES
 
-export const ItemContainer = styled.View`
+export const ItemContainer = styled.TouchableOpacity`
 margin:${RFValue(3)}px ${RFValue(2)}px;
 flex-direction: row;
 `

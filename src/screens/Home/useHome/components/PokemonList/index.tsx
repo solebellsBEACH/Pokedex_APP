@@ -1,28 +1,31 @@
 import React from 'react'
-import { ActivityIndicator, View } from 'react-native';
-import { IPokemonPreRequest } from '../../utils/interfaces';
+import { IPokemon } from '../../../../../utils/interfaces';
 import { PokemonItem } from '../PokemonItem';
 import { PokemonItensContent } from './styles'
 
 interface IPokemonListProps {
-    results: IPokemonPreRequest[];
+    results: IPokemon[] | null;
     handleOnEndReached: () => void
 }
 
+
+interface IPokemonRenderItem {
+    item: IPokemon, index: number
+}
+
 export const PokemonList = ({ results, handleOnEndReached }: IPokemonListProps) => {
+    const renderItem = ({ item }: IPokemonRenderItem) => <PokemonItem pokemon={item} />
+
     return (
-        <PokemonItensContent
+        <PokemonItensContent<any>
             columnWrapperStyle={{ justifyContent: 'space-between' }}
             showsVerticalScrollIndicator={false}
-            keyExtractor={(item, index) => `key-${index}`}
             data={results}
-            renderItem={({ item, index }) => {
-                return <PokemonItem index={index} label={item.name} url={item.url} />
-            }
-            }
+            renderItem={renderItem}
             numColumns={2}
-            ListFooterComponent={() => <View><ActivityIndicator size={50} color='black' /></View>}
             onEndReached={handleOnEndReached}
+            keyExtractor={(item: any, index: number) => 'itemPokemon' + index}
         />
     )
 }
+

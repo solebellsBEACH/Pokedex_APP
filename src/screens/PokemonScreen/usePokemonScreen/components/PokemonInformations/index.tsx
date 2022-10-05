@@ -1,49 +1,40 @@
 import React, { useEffect, useState } from 'react'
 
-import { Label, Value, Container, ContentTop, TabSelectorContainer, TabSelectorText, ContentBottom, InformationItemContainer, StatusTabFlatList } from './styles'
-import { IPokemon } from '../../utils/interfaces'
-import { api } from '../../utils/api'
-import { useCapitalizeFirstLetter } from '../../utils/hooks'
-import { StatusItem } from './StatusItem'
+import {
+    Label,
+    Value,
+    Container,
+    ContentTop,
+    TabSelectorContainer,
+    TabSelectorText,
+    ContentBottom,
+    InformationItemContainer,
+    StatusTabFlatList
+} from './styles'
+import { StatusItem } from '../StatusItem'
 import { ActivityIndicator } from 'react-native'
-
-interface IPokemonInformationsProps {
-    id: number
-}
-
-export const PokemonInformations = ({ id }: IPokemonInformationsProps) => {
-    const [pokemon, setPokemon] = useState<IPokemon>()
-    const [gender, setGender] = useState<'female' | 'male' | 'genderless'>()
-
-    const getPokemon = async () => {
-        try {
-            const { data } = await api.get(`pokemon/${id}`)
-            setPokemon(data)
-
-        } catch (error) {
-
-        }
-    }
-    const getPokemonGender = async () => {
-        try {
-            const { data } = await api.get(`gender/${id}`)
-            setGender(data.name)
-
-        } catch (error) {
+import { IPokemon } from '../../../../../utils/interfaces'
+import { IPokemonInformationsProps } from '../../interface'
+import { api } from '../../../../../utils/api'
+import { useCapitalizeFirstLetter } from '../../../../../utils/hooks'
 
 
-        }
-    }
-    useEffect(() => {
-        getPokemonGender()
-        getPokemon()
-    }, [id])
+
+export const PokemonInformations = ({ pokemon }: IPokemonInformationsProps) => {
 
     const [activeTab, setActiveTab] = useState<'About' | 'Status' | 'Evolution'>('About')
     interface ITabSelectorProps {
         label: 'About' | 'Status' | 'Evolution';
     }
 
+    interface IStatusTabRenderItemsProps {
+
+        item: {
+            stats_value: number;
+            name: string;
+        }, index: number
+
+    }
 
     const TabSelector = ({ label }: ITabSelectorProps) => {
         return <TabSelectorContainer
@@ -63,36 +54,36 @@ export const PokemonInformations = ({ id }: IPokemonInformationsProps) => {
     const InformationItem = ({ label, value }: IInformationItem) => {
         return <InformationItemContainer><Label>{label}</Label><Value>{value}</Value></InformationItemContainer>
     }
-    const listAbilities = (abilities: { ability: { name: string } }[]): string => {
+    const listAbilities = (abilities: { name: string }[]): string => {
         let array: string[] = []
-        abilities.map(e => { array.push(" " + useCapitalizeFirstLetter(e.ability.name)) })
+        abilities.map(e => { array.push(" " + useCapitalizeFirstLetter(e.name)) })
         return array.toString()
     }
 
     const renderContentBottomAboutTab = () => {
         return (
             <>
-                <InformationItem label='Species' value={pokemon != undefined ? useCapitalizeFirstLetter(pokemon.species.name) : ''} />
+                <InformationItem label='Type' value={pokemon != undefined ? useCapitalizeFirstLetter(pokemon.type) : ''} />
                 <InformationItem label='Height' value={pokemon != undefined ? pokemon.height + ' cm' : '0cm'} />
                 <InformationItem label='Abilities' value={pokemon != undefined ? listAbilities(pokemon.abilities) : '0cm'} />
-                <InformationItem label='Gender' value={gender != undefined ? useCapitalizeFirstLetter(gender) : 'genderless'} />
+                {/* <InformationItem label='Gender' value={gender != undefined ? useCapitalizeFirstLetter(gender) : 'genderless'} /> */}
             </>
         )
     }
 
 
     const renderContentBottomStatusTab = () => {
-        return <StatusTabFlatList
+        return <StatusTabFlatList<any>
             showsVerticalScrollIndicator={false}
             columnWrapperStyle={{ justifyContent: 'space-between' }}
             numColumns={2}
-            keyExtractor={(item, index) => `key-${index}`}
-            data={pokemon != undefined ? pokemon.stats : []}
-            renderItem={({ item, index }) => <StatusItem
-                name={item.stat.name}
-                score={item.base_stat}
-                type={{ pokemonType: pokemon?.types[0].type.name }}
-                key={index} />}
+            keyExtractor={({ index }: IStatusTabRenderItemsProps) => `key-${index}StatusItem`}
+            data={pokemon != undefined ? pokemon.stat_value : []}
+            renderItem={({ item }: IStatusTabRenderItemsProps) => <StatusItem
+                name={item.name}
+                score={item.stats_value}
+                type={{ pokemonType: pokemon?.type }}
+            />}
         />
     }
 

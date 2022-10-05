@@ -15,7 +15,8 @@ export default function Routes() {
             >
                 <Stack.Screen name="LogIn" component={LogIn} />
                 <Stack.Screen name="Home" component={Home} />
-                <Stack.Screen name="PokemonScreen" component={PokemonScreen} />
+                <Stack.Screen name="PokemonScreen"
+                component={PokemonScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     </>)

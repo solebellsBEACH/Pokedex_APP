@@ -1,27 +1,17 @@
 import { useNavigation } from '@react-navigation/native'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { ActivityIndicator } from 'react-native-paper';
 import { TextInput } from 'react-native-paper'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { useDispatch, useSelector } from 'react-redux'
 import { BackgroundLogIn } from '../../assets'
 import { StyledButton, StyledTextInput, TextButton } from '../../global/styles'
 import theme from '../../global/theme'
-import { RootState } from '../../store'
-import { asyncGetPokemons, asyncGetTypes } from '../../store/ScreensStore/ScreensStore.store'
 import { INavigationProps } from '../../utils/interfaces'
 
 import { Container, LogoPokemon, BackgroundImage, Title, Description } from './styles'
 
 export const LogIn = () => {
-
-    const screensStoreState = useSelector((state: RootState) => state.screensStore);
-    const dispatch = useDispatch();
     const navigation = useNavigation<INavigationProps>();
-    dispatch(asyncGetTypes())
-    useEffect(() => {
-        dispatch(asyncGetPokemons(screensStoreState.offset))
-    }, [screensStoreState.offset])
 
     const renderForm = () => {
         const [isVisible, setIsVisible] = useState(true)
@@ -58,9 +48,10 @@ export const LogIn = () => {
     }
 
     const handleLogin = async () => {
-        if (screensStoreState.typesRequestLoaded) {
-            navigation.navigate('Home')
-        }
+        navigation.navigate('Home')
+        // if (screensStoreState.typesRequestLoaded) {
+        //     navigation.navigate('Home')
+        // }
     }
 
 
@@ -75,7 +66,7 @@ export const LogIn = () => {
                 <Description>Insira os seus dados para acessar</Description>
                 {renderForm()}
                 {
-                    screensStoreState.typesRequestLoaded ?
+                    true ?
                         <StyledButton
                             style={{ marginTop: RFValue(30) }}
                             mode="contained" onPress={handleLogin}>

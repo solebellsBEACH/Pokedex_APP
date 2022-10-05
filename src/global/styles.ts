@@ -7,13 +7,10 @@ export const DefaultText = styled.Text`
 font-family: ${({ theme }) => theme.fonts.Regular};
 `
 
-
 export const StyledTextInput = styled(TextInput)`
 height:${RFValue(55)}px;
 margin:${RFValue(15)}px 0;
-
 background:${({ theme }) => theme.colors.gray1};
-
 `
 
 export const StyledButton = styled(Button)`

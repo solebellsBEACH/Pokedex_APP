@@ -1,17 +1,16 @@
-import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
-import screenStoreReducer from './ScreensStore/ScreensStore.store'
+import { createStore, applyMiddleware } from 'redux'
+import createSagaMiddleware from 'redux-saga'
 
-const store = configureStore({
-    reducer: {
-        screensStore: screenStoreReducer,
-    }
-});
+import reducer from './ducks'
+import mySaga from './saga'
 
-export type RootState = ReturnType<typeof store.getState>;
+// create the saga middleware
+const sagaMiddleware = createSagaMiddleware()
+// mount it on the Store
+export const store = createStore(
+  reducer,
+  applyMiddleware(sagaMiddleware)
+)
 
-export type AppDispatch = typeof store.dispatch
-export type AppThunk = ThunkAction<void, RootState, null, Action<string>>
-export const useAppDispatch = () => useDispatch<AppDispatch>()
-
-export default store;
+// then run the saga
+sagaMiddleware.run(mySaga)
