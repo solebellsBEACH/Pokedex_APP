@@ -1,8 +1,6 @@
 import React from 'react'
-import { ListRenderItem, View } from 'react-native';
-import { ActivityIndicator } from 'react-native-paper';
-import { IPokemon, IPokemonRequest } from '../../utils/interfaces';
-import { PokemonItem } from '../index';
+import { IPokemon } from '../../utils/interfaces';
+import { PokemonItem } from '../PokemonItem';
 import { PokemonItensContent } from './styles'
 
 interface IPokemonListProps {
