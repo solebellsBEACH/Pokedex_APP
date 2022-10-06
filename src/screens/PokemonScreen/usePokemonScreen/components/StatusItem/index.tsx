@@ -14,7 +14,7 @@ interface IStatusItemProps {
 
 export const StatusItem = ({ name, score, type }: IStatusItemProps) => {
     return (
-        <Container key={name}>
+        <Container>
             <Name>{useCapitalizeFirstLetter(name)}</Name>
             <Content>
                 <Value>{score}</Value>

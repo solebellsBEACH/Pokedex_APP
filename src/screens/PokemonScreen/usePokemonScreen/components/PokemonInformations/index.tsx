@@ -54,11 +54,6 @@ export const PokemonInformations = ({ pokemon }: IPokemonInformationsProps) => {
     const InformationItem = ({ label, value }: IInformationItem) => {
         return <InformationItemContainer><Label>{label}</Label><Value>{value}</Value></InformationItemContainer>
     }
-    const listAbilities = (abilities: { name: string }[]): string => {
-        let array: string[] = []
-        abilities.map(e => { array.push(" " + useCapitalizeFirstLetter(e.name)) })
-        return array.toString()
-    }
 
     const renderContentBottomAboutTab = () => {
         return (
@@ -76,7 +71,8 @@ export const PokemonInformations = ({ pokemon }: IPokemonInformationsProps) => {
             showsVerticalScrollIndicator={false}
             columnWrapperStyle={{ justifyContent: 'space-between' }}
             numColumns={2}
-            keyExtractor={({ index }: IStatusTabRenderItemsProps) => `key-${index}StatusItem`}
+            keyExtractor={(props: { name: string }, index: number) => `key-${index}StatusItem${props.name}`
+            }
             data={pokemon != undefined ? pokemon.stat_value : []}
             renderItem={({ item }: IStatusTabRenderItemsProps) => <StatusItem
                 name={item.name}
@@ -86,7 +82,7 @@ export const PokemonInformations = ({ pokemon }: IPokemonInformationsProps) => {
         />
     }
     const renderContentBottomAbilities = () => {
-        if(pokemon)return <AbilitiesList pokemon={pokemon} />
+        if (pokemon) return <AbilitiesList pokemon={pokemon} />
         return <></>
     }
 

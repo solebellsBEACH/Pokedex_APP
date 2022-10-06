@@ -7,6 +7,8 @@ import React,
 { useEffect } from 'react'
 import {
     ActivityIndicator,
+    Linking,
+    Text,
     TouchableOpacity,
     View
 } from 'react-native'
@@ -15,7 +17,7 @@ import {
     useSelector
 } from 'react-redux';
 import { Creators as PokemonScreenActions } from '../../store/ducks/pokemonsScreen'
-import { CategoryItem, PokemonInformations, PokemonItem } from './usePokemonScreen/components';
+import { CategoryItem, PokedexLinkButton, PokemonInformations, PokemonItem } from './usePokemonScreen/components';
 import {
     useAddZeroInNumber,
     useCapitalizeFirstLetter,
@@ -88,8 +90,10 @@ export const PokemonScreen = (props: any) => {
                 {renderContentTop()}
                 <ContentBottom>
                     {pokemon && <PokemonItem pokemon={pokemon} />}
+                    {pokemon &&<PokedexLinkButton _id={pokemon._id} pokemon={pokemon}/>}
                 </ContentBottom>
             </Container>
+            
             {pokemon && <PokemonInformations pokemon={pokemon} />}
         </>
     )
