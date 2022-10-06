@@ -17,14 +17,15 @@ import { IPokemon } from '../../../../../utils/interfaces'
 import { IPokemonInformationsProps } from '../../interface'
 import { api } from '../../../../../utils/api'
 import { useCapitalizeFirstLetter } from '../../../../../utils/hooks'
-
+import { ProgressBar } from 'react-native-paper';
+import { AbilitiesList } from '../AbilitiesList'
 
 
 export const PokemonInformations = ({ pokemon }: IPokemonInformationsProps) => {
 
-    const [activeTab, setActiveTab] = useState<'About' | 'Status' | 'Evolution'>('About')
+    const [activeTab, setActiveTab] = useState<'About' | 'Status' | 'Abilities'>('About')
     interface ITabSelectorProps {
-        label: 'About' | 'Status' | 'Evolution';
+        label: 'About' | 'Status' | 'Abilities';
     }
 
     interface IStatusTabRenderItemsProps {
@@ -39,7 +40,6 @@ export const PokemonInformations = ({ pokemon }: IPokemonInformationsProps) => {
     const TabSelector = ({ label }: ITabSelectorProps) => {
         return <TabSelectorContainer
             onPress={() => {
-                console.log('Clickou no ' + label)
                 setActiveTab(label)
             }}
             isActive={activeTab == label}>
@@ -65,7 +65,6 @@ export const PokemonInformations = ({ pokemon }: IPokemonInformationsProps) => {
             <>
                 <InformationItem label='Type' value={pokemon != undefined ? useCapitalizeFirstLetter(pokemon.type) : ''} />
                 <InformationItem label='Height' value={pokemon != undefined ? pokemon.height + ' cm' : '0cm'} />
-                <InformationItem label='Abilities' value={pokemon != undefined ? listAbilities(pokemon.abilities) : '0cm'} />
                 {/* <InformationItem label='Gender' value={gender != undefined ? useCapitalizeFirstLetter(gender) : 'genderless'} /> */}
             </>
         )
@@ -86,6 +85,10 @@ export const PokemonInformations = ({ pokemon }: IPokemonInformationsProps) => {
             />}
         />
     }
+    const renderContentBottomAbilities = () => {
+        if(pokemon)return <AbilitiesList pokemon={pokemon} />
+        return <></>
+    }
 
 
     const renderContentBottom = () => {
@@ -94,6 +97,8 @@ export const PokemonInformations = ({ pokemon }: IPokemonInformationsProps) => {
                 return renderContentBottomAboutTab()
             case 'Status':
                 return renderContentBottomStatusTab()
+            case 'Abilities':
+                return renderContentBottomAbilities()
 
             default:
                 break;
@@ -105,7 +110,7 @@ export const PokemonInformations = ({ pokemon }: IPokemonInformationsProps) => {
             <ContentTop>
                 <TabSelector label='About' />
                 <TabSelector label='Status' />
-                <TabSelector label='Evolution' />
+                <TabSelector label='Abilities' />
             </ContentTop>
             <ContentBottom>
                 {pokemon != undefined ? renderContentBottom() : <ActivityIndicator size={100} color='black' />}
