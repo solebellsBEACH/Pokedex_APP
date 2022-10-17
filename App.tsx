@@ -7,7 +7,7 @@ import { useFonts } from 'expo-font';
 import { Provider } from "react-redux";
 import reactotron from './src/config/reactotron';
 import { store } from './src/store';
-// import { store } from './src/store';
+import Toast from 'react-native-toast-message';
 
 if (__DEV__) reactotron.connect()
 
@@ -34,6 +34,7 @@ export default function App() {
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <Routes />
+          <Toast />
         </ThemeProvider>
       </Provider>
     </>

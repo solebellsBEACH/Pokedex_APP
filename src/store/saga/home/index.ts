@@ -36,6 +36,7 @@ function* getHomePokemonsForType(params: { type: string, payload: { page: number
 
 function* login(params: { type: string, payload: { email: string, password: string } }): any {
   const { email, password } = params.payload
+
   try {
     const response = yield call(api.post, `user/authenticate`, { email, password });
     if (response.status === 200) {

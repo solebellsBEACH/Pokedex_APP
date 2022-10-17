@@ -28,18 +28,18 @@ const INITIAL_STATE: IHomeDuckInitialState = {
     error: false,
     pokemons: null,
     success: false,
-    // userLoginLoading: false,
-    // userLoginError: false,
-    // userLoginData: null,
-    // createUserLoading: false,
-    // createUserError: false,
-    // createUserData: null,
-    // userLoading: false,
-    // userError: false,
-    // userData: null,
-    // userCartLoading: false,
-    // userCartError: false,
-    // userCartData: null
+    userLoginLoading: false,
+    userLoginError: false,
+    userLoginData: null,
+    createUserLoading: false,
+    createUserError: false,
+    createUserData: null,
+    userLoading: false,
+    userError: false,
+    userData: null,
+    userCartLoading: false,
+    userCartError: false,
+    userCartData: null
 };
 
 export default function Home(state = INITIAL_STATE, action: any) {
