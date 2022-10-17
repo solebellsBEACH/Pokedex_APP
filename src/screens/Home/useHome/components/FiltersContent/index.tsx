@@ -7,21 +7,18 @@ import { useCapitalizeFirstLetter } from '../../../../../utils/hooks';
 import { Container, ItemContainer, ItemContent, ItemText } from './styles'
 
 interface IFiltersContent {
-    filters: string[]
-    filtersActiveds: string[];
-    setFiltersActiveds: React.Dispatch<React.SetStateAction<string[]>>;
+    filterActived: string;
+    setFilterActived: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const FiltersContent = ({ filters, setFiltersActiveds, filtersActiveds }: IFiltersContent) => {
+export const FiltersContent = ({ setFilterActived, filterActived }: IFiltersContent) => {
 
     interface IItemProps {
         label: string;
     }
 
     const handlePress = (label: string) => {
-        const array = [...filtersActiveds];
-        array.splice(array.indexOf(label))
-        setFiltersActiveds(array)
+        setFilterActived('')
     }
 
     const Item = ({ label }: IItemProps) => {
@@ -43,20 +40,11 @@ export const FiltersContent = ({ filters, setFiltersActiveds, filtersActiveds }:
         </>
     }
 
-    useEffect(() => { console.log(filters) }, [filters])
+    useEffect(() => { console.log(filterActived) }, [filterActived])
 
     return (
         <>
-            {filters.length == 0 ? <Item label={'Todos'} key={'Todos'} /> :
-                <Container<any>
-                    data={filters}
-                    keyExtractor={(index: { index: number, item: string }) => `key-pokemonType-${index}`}
-                    renderItem={({ item, index }: { index: number, item: string }) => {
-                        return <Item label={item} key={index} />
-                    }}
-                    numColumns={3}
-
-                />
+            {filterActived == '' ? <Item label={'Todos'} key={'Todos'} /> : <Item label={filterActived} key={filterActived} />
             }
         </>
     )

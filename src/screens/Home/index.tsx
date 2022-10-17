@@ -14,21 +14,28 @@ import { ActivityIndicator } from 'react-native-paper';
 export const Home = (props: any) => {
     const drawer = useRef(null)
     const dispatch = useDispatch()
-    const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
+    const [filterActived, setFilterActived] = useState<string>('')
 
     const homeData = useSelector((state: IReduxState) => state.home)
     const pokemonData = useSelector((state: IReduxState) => state.pokemon)
     useEffect(() => {
-        dispatch(HomeActions.HomePokemonsRequest({
+        dispatch(PokemonActions.getPokemonTypesRequest())
+    }, [props])
+
+    useEffect(() => {
+        if (filterActived.length < 1) dispatch(HomeActions.HomePokemonsRequest({
             offset: 0,
             limit: 20
         }))
-        dispatch(PokemonActions.getPokemonTypesRequest())
-    }, [])
+        else dispatch(HomeActions.HomePokemonsForTypeRequest({
+            limit: 20,
+            page: 1,
+            pokemonType: filterActived
+        }))
+    }, [filterActived])
 
-    const handleOnEndReached = (): void => {
+    const handleOnEndReached = (): void => { }
 
-    }
     return (
         <>
             <DrawerLayoutAndroid
@@ -37,11 +44,11 @@ export const Home = (props: any) => {
                 drawerPosition='right'
                 renderNavigationView={() => {
                     return <DrawerNavigationView
-                        filtersActiveds={filtersActiveds}
-                        setFiltersActiveds={setFiltersActiveds}
+                        filterActived={filterActived}
+                        setFilterActived={setFilterActived}
                         filters={pokemonData?.pokemonTypes?.data !== undefined ? pokemonData?.pokemonTypes?.data : []}
                         onCloseDrawer={() => {
-                            // drawer.current.closeDrawer()
+                            drawer.current.closeDrawer()
                         }} />
                 }}
             >
@@ -49,7 +56,6 @@ export const Home = (props: any) => {
                     <LogoPokemon height={RFValue(40)} />
                     <ContentTop>
                         <PokemonInput />
-
                         <LogoConfigContainer
                             onPress={() => {
                                 if (pokemonData?.pokemonTypes?.data) {
@@ -65,9 +71,8 @@ export const Home = (props: any) => {
                     </ContentTop>
                     <ContentBottom>
                         <FiltersContent
-                            filtersActiveds={filtersActiveds}
-                            setFiltersActiveds={setFiltersActiveds}
-                            filters={filtersActiveds}
+                            filterActived={filterActived}
+                            setFilterActived={setFilterActived}
                         />
                         {homeData.pokemons &&
                             <PokemonList
