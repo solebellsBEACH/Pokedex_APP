@@ -24,6 +24,7 @@ export function usePokemonColors({ pokemonType }: IPossiblePokemonKeys) {
         grass: { secondary: '#9efba5', primary: '#88ff90' },
         electric: { secondary: '#fff1aa', primary: '#f6df6f' },
         water: { secondary: '#aee5ff', primary: '#62cdff' },
+        ice: { secondary: '#aee5ff', primary: '#62cdff' },
         ground: { secondary: '#fdcb99', primary: '#f2aa62' },
         rock: { secondary: '#d8d8b7', primary: '#d8d84c' },
         fairy: { secondary: '#f5b9ff', primary: '#e655ff' },
@@ -33,7 +34,9 @@ export function usePokemonColors({ pokemonType }: IPossiblePokemonKeys) {
         psychic: { secondary: '#eaeda1', primary: '#8d903c' },
         flying: { secondary: '#f8baba', primary: '#e9c0c0' },
         fighting: { secondary: '#e0d4bc', primary: '#f7a603' },
-        normal: { secondary: '#F5F5F5', primary: '#757575' }
+        normal: { secondary: '#F5F5F5', primary: '#757575' },
+        dark: { secondary: '#F5F5F5', primary: '#757575' },
+        ghost: { secondary: '#F5F5F5', primary: '#757575' }
     }
 
     return data[pokemonType]

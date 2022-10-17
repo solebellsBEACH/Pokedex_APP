@@ -19,16 +19,23 @@ export const Home = (props: any) => {
     const homeData = useSelector((state: IReduxState) => state.home)
     const pokemonData = useSelector((state: IReduxState) => state.pokemon)
     useEffect(() => {
-        dispatch(HomeActions.HomePokemonsRequest({
+        dispatch(PokemonActions.getPokemonTypesRequest())
+    }, [props])
+
+    useEffect(() => {
+        if (filterActived.length < 1) dispatch(HomeActions.HomePokemonsRequest({
             offset: 0,
             limit: 20
         }))
-        dispatch(PokemonActions.getPokemonTypesRequest())
-    }, [])
+        else dispatch(HomeActions.HomePokemonsForTypeRequest({
+            limit: 20,
+            page: 1,
+            pokemonType: filterActived
+        }))
+    }, [filterActived])
 
-    const handleOnEndReached = (): void => {
+    const handleOnEndReached = (): void => { }
 
-    }
     return (
         <>
             <DrawerLayoutAndroid

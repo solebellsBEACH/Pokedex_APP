@@ -64,6 +64,9 @@ export type IPossiblePokemonKeys = {
     'psychic' |
     'flying' |
     'fighting' |
+    'ghost' |
+    'ice' |
+    'dark' |
     'normal'
 }
 
