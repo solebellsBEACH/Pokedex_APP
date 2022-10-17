@@ -49,7 +49,6 @@ export const Home = (props: any) => {
                     <LogoPokemon height={RFValue(40)} />
                     <ContentTop>
                         <PokemonInput />
-
                         <LogoConfigContainer
                             onPress={() => {
                                 if (pokemonData?.pokemonTypes?.data) {
@@ -67,7 +66,6 @@ export const Home = (props: any) => {
                         <FiltersContent
                             filterActived={filterActived}
                             setFilterActived={setFilterActived}
-                            filters={[]}
                         />
                         {homeData.pokemons &&
                             <PokemonList
