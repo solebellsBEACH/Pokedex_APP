@@ -3,33 +3,20 @@ import { Container, TextButton } from './styles'
 
 interface ITypePokemonButton {
     label: string, index: number;
-    filtersActiveds: string[]; setFiltersActiveds: React.Dispatch<React.SetStateAction<string[]>>;
+    filterActived: string; setFilterActived: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const TypePokemonButton = ({ index, label, filtersActiveds, setFiltersActiveds }: ITypePokemonButton) => {
+export const TypePokemonButton = ({ index, label, filterActived, setFilterActived }: ITypePokemonButton) => {
 
     const isActive = () => {
-        if (filtersActiveds.find(e => e == label) == undefined) {
-            return false
-        }
-        else {
-            return true;
-        }
-
+        return filterActived == label
     }
 
     const handlePress = () => {
-        const array = [...filtersActiveds];
-        if (!isActive()) {
-            array.push(label)
-        }
-        else {
-            array.splice(array.indexOf(label))
-        }
-        setFiltersActiveds(array)
+        if(!isActive())setFilterActived(label)
+        else setFilterActived('')
     }
-
-
+    
     return (
         <Container
             key={index}

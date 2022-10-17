@@ -8,20 +8,20 @@ import { Container, ItemContainer, ItemContent, ItemText } from './styles'
 
 interface IFiltersContent {
     filters: string[]
-    filtersActiveds: string[];
-    setFiltersActiveds: React.Dispatch<React.SetStateAction<string[]>>;
+    filterActived: string;
+    setFilterActived: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const FiltersContent = ({ filters, setFiltersActiveds, filtersActiveds }: IFiltersContent) => {
+export const FiltersContent = ({ filters, setFilterActived, filterActived }: IFiltersContent) => {
 
     interface IItemProps {
         label: string;
     }
 
     const handlePress = (label: string) => {
-        const array = [...filtersActiveds];
-        array.splice(array.indexOf(label))
-        setFiltersActiveds(array)
+        // const array = [...filterActived];
+        // array.splice(array.indexOf(label))
+        // setFilterActived(array)
     }
 
     const Item = ({ label }: IItemProps) => {

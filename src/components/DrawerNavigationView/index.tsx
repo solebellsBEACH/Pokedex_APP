@@ -1,24 +1,28 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
-import { IPokemonType} from '../../utils/interfaces';
+import { IPokemonType } from '../../utils/interfaces';
 import { TypePokemonButton } from '../TypePokemonButton';
 import { ContentTypes, ClearFilterText, Container, ContentTop, Title, ExitIcon, ExitIconContainer, Content, ContentTitle } from './styles'
 interface IDrawerNavigationViewProps {
-    filters:IPokemonType[]
+    filters: IPokemonType[]
     onCloseDrawer: () => void;
-    filtersActiveds: string[]; 
-    setFiltersActiveds: React.Dispatch<React.SetStateAction<string[]>>;
+    filterActived: string;
+    setFilterActived: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface IPokemonRenderItem {
     item: IPokemonType, index: number
 }
-export const DrawerNavigationView = ({ onCloseDrawer, filtersActiveds, setFiltersActiveds, filters}: IDrawerNavigationViewProps) => {
+export const DrawerNavigationView = ({ onCloseDrawer, filterActived, setFilterActived, filters }: IDrawerNavigationViewProps) => {
 
     const renderItem = ({ item, index }: IPokemonRenderItem) => {
         return <TypePokemonButton
-        filtersActiveds={filtersActiveds} setFiltersActiveds={setFiltersActiveds}
-        index={index} key={index} label={item.name} />
+            filterActived={filterActived}
+            setFilterActived={setFilterActived}
+            index={index}
+            key={index}
+            label={item.name}
+        />
     }
 
     return (
@@ -27,7 +31,7 @@ export const DrawerNavigationView = ({ onCloseDrawer, filtersActiveds, setFilter
                 <ContentTop>
                     <Title>Filtro</Title>
                     <TouchableOpacity
-                        onPress={() => { setFiltersActiveds([]) }}
+                        onPress={() => { setFilterActived('') }}
                     ><ClearFilterText>Limpar filtros</ClearFilterText></TouchableOpacity>
                     <ExitIconContainer
                         onPress={onCloseDrawer}
