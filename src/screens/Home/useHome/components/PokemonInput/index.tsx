@@ -7,6 +7,7 @@ import { SafeAreaView } from 'react-native'
 export const PokemonInput = (props: any) => {
     const [state, setState] = useState<string>('')
     const dispatch = useDispatch()
+    
     const onSubmit = (): void => {
         dispatch(HomeActions.HomePokemonsRequest({
             offset: 0,
@@ -16,7 +17,6 @@ export const PokemonInput = (props: any) => {
     }
 
     return (
-
         <Container
             onSubmitEditing={onSubmit}
             value={state}

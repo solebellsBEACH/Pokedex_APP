@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { TouchableOpacity } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { useDispatch } from 'react-redux';
 import { ExitCircleIcon } from '../../../../../assets';
 import { useCapitalizeFirstLetter } from '../../../../../utils/hooks';
-
+import { Creators as HomeActions } from '../../../../../store/ducks/home'
 import { Container, ItemContainer, ItemContent, ItemText } from './styles'
 
 interface IFiltersContent {
@@ -12,19 +13,29 @@ interface IFiltersContent {
 }
 
 export const FiltersContent = ({ setFilterActived, filterActived }: IFiltersContent) => {
-
+    const dispatch = useDispatch()
     interface IItemProps {
         label: string;
+        onPress?: () => void;
     }
 
     const handlePress = (label: string) => {
         setFilterActived('')
     }
+    const handlePressDefaultFilterButton = (): void => {
+        dispatch(HomeActions.HomePokemonsRequest({
+            offset: 0,
+            limit: 20
+        }))
+    }
 
-    const Item = ({ label }: IItemProps) => {
+    const Item = ({ label, onPress }: IItemProps) => {
         return <>
             <ItemContainer
-                onPress={() => { handlePress(label) }}
+                onPress={() => {
+                    if (onPress) onPress()
+                    else handlePress(label)
+                }}
             >
                 <ItemContent>
                     <ItemText>
@@ -44,7 +55,9 @@ export const FiltersContent = ({ setFilterActived, filterActived }: IFiltersCont
 
     return (
         <>
-            {filterActived == '' ? <Item label={'Todos'} key={'Todos'} /> : <Item label={filterActived} key={filterActived} />
+            {filterActived == '' ? <Item
+                onPress={handlePressDefaultFilterButton}
+                label={'Todos'} key={'Todos'} /> : <Item label={filterActived} key={filterActived} />
             }
         </>
     )
