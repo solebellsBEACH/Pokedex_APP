@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import reactotron from './src/config/reactotron';
 import { store } from './src/store';
 import Toast from 'react-native-toast-message';
+import { LoadingScreen } from './src/screens';
 
 if (__DEV__) reactotron.connect()
 
@@ -26,7 +27,7 @@ export default function App() {
   });
 
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return <LoadingScreen/>
   }
 
   return (
