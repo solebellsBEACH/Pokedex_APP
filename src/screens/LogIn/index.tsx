@@ -93,14 +93,7 @@ export const LogIn = () => {
     }
 
     const handleLogin = async () => {
-
-        console.log(form)
         dispatch(HomeActions.loginRequest(form))
-
-        // navigation.navigate('Home')
-        // if (screensStoreState.typesRequestLoaded) {
-        //     navigation.navigate('Home')
-        // }
     }
 
 

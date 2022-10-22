@@ -60,7 +60,7 @@ export const PokemonInformations = ({ pokemon }: IPokemonInformationsProps) => {
             <>
                 <InformationItem label='Type' value={pokemon != undefined ? useCapitalizeFirstLetter(pokemon.type) : ''} />
                 <InformationItem label='Height' value={pokemon != undefined ? pokemon.height + ' cm' : '0cm'} />
-                {/* <InformationItem label='Gender' value={gender != undefined ? useCapitalizeFirstLetter(gender) : 'genderless'} /> */}
+                <InformationItem label='Gender' value={'Genderless'} />
             </>
         )
     }
