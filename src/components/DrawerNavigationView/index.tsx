@@ -1,8 +1,9 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import { Button } from 'react-native-paper';
 import theme from '../../global/theme';
-import { IPokemonType } from '../../utils/interfaces';
+import { INavigationProps, IPokemonType } from '../../utils/interfaces';
 import { DefaultButton } from '../Buttons/DefaultButton';
 import { TypePokemonButton } from '../TypePokemonButton';
 import { ContentTypes, ClearFilterText, Container, ContentTop, Title, ExitIcon, ExitIconContainer, Content, ContentTitle } from './styles'
@@ -17,7 +18,7 @@ interface IPokemonRenderItem {
     item: IPokemonType, index: number
 }
 export const DrawerNavigationView = ({ onCloseDrawer, filterActived, setFilterActived, filters }: IDrawerNavigationViewProps) => {
-
+    const navigation = useNavigation<INavigationProps>()
     const renderItem = ({ item, index }: IPokemonRenderItem) => {
         return <TypePokemonButton
             filterActived={filterActived}
@@ -49,7 +50,9 @@ export const DrawerNavigationView = ({ onCloseDrawer, filterActived, setFilterAc
                     />
                     <DefaultButton
                         label='Ir para PokemonBattle'
-                        handlePress={() => {}}
+                        handlePress={() => {
+                            navigation.navigate('PokemonBattle')
+                        }}
                     />
                 </Content>
             </Container>
