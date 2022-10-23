@@ -34,7 +34,6 @@ right:0;
 `
 
 export const Content = styled.View`
-margin-top:${RFValue(50)}px;
 width:100% ;
 min-height:${RFValue(200)}px;
 `

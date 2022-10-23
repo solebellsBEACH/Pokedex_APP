@@ -1,6 +1,9 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
+import { Button } from 'react-native-paper';
+import theme from '../../global/theme';
 import { IPokemonType } from '../../utils/interfaces';
+import { DefaultButton } from '../Buttons/DefaultButton';
 import { TypePokemonButton } from '../TypePokemonButton';
 import { ContentTypes, ClearFilterText, Container, ContentTop, Title, ExitIcon, ExitIconContainer, Content, ContentTitle } from './styles'
 interface IDrawerNavigationViewProps {
@@ -29,7 +32,7 @@ export const DrawerNavigationView = ({ onCloseDrawer, filterActived, setFilterAc
         <>
             <Container>
                 <ContentTop>
-                    <Title>Filtro</Title>
+                    <Title>Filtros</Title>
                     <TouchableOpacity
                         onPress={() => { setFilterActived('') }}
                     ><ClearFilterText>Limpar filtros</ClearFilterText></TouchableOpacity>
@@ -38,12 +41,15 @@ export const DrawerNavigationView = ({ onCloseDrawer, filterActived, setFilterAc
                     ><ExitIcon /></ExitIconContainer>
                 </ContentTop>
                 <Content>
-                    <ContentTitle>Tipo</ContentTitle>
                     <ContentTypes<any>
                         data={filters}
                         keyExtractor={(item: any, index: number) => 'TypePokemon' + index}
                         renderItem={renderItem}
                         numColumns={2}
+                    />
+                    <DefaultButton
+                        label='Ir para PokemonBattle'
+                        handlePress={() => {}}
                     />
                 </Content>
             </Container>
