@@ -2,11 +2,13 @@ import { RFValue } from "react-native-responsive-fontsize";
 import { SvgUri } from "react-native-svg";
 import styled from "styled-components/native";
 
-interface IContainerProps {
+export const Container = styled.View``
+
+interface IContentProps {
     readonly color: string
 }
 
-export const Container = styled.View<IContainerProps>`
+export const Content = styled.View<IContentProps>`
 width:100% ;
 height:${RFValue(100)}px;
 background:${props => props.color};
@@ -25,4 +27,17 @@ export const Title = styled.Text`
 font-family: ${({ theme }) => theme.fonts.SemiBold};
 font-size:${RFValue(17)}px;
 color:${(props) => props.theme.colors.gray6} ;
+`
+export const YouLogo = styled.Image`
+resize-mode:contain;
+width: ${RFValue(60)}px;
+height: ${RFValue(59)}px;
+margin-top:${RFValue(15)}px;
+`
+
+export const ComputerLogo = styled.Image`
+resize-mode:contain;
+width: ${RFValue(140)}px;
+height: ${RFValue(59)}px;
+margin-top:${RFValue(15)}px;
 `

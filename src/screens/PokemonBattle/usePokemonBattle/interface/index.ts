@@ -29,5 +29,8 @@ export interface ICloseChooseProps {
             'fighting' |
             'normal';
     } | null
+    chooseType: 'you' | 'computer'
+    pokemonBattleState: IPokemonBattleState
+    setPokemonBattleState: React.Dispatch<React.SetStateAction<IPokemonBattleState>>
     
 }

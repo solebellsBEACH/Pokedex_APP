@@ -36,7 +36,11 @@ export const PokemonChoose = ({ pokemonBattleState, setPokemonBattleState, choos
                     keyExtractor={(e: any, i: number) => `itemPokemonChoose${i}`}
                     renderItem={renderItem}
                 />}</> : <CloseChoose
-                pokemon={getState({ chooseType, pokemonBattleState })} />}
+                pokemon={getState({ chooseType, pokemonBattleState })}
+                pokemonBattleState={pokemonBattleState}
+                setPokemonBattleState={setPokemonBattleState}
+                chooseType={chooseType}
+            />}
 
         </Container>
     )
