@@ -4,7 +4,6 @@ import { Creators as HomeActions, Types as HomeTypes } from '../../ducks/home';
 
 function* getHomePokemons(params: { type: string, payload: { offset: number, limit: number, name?: string } }): any {
   const { limit, offset } = params.payload
-
   try {
     const response = yield call(api.get, `pokemon`, {params:params.payload});
     if (response.status === 200) {
