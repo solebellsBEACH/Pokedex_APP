@@ -25,6 +25,11 @@ export const PokemonBattle = (props: any) => {
         }))
     }, [props])
 
+    const handlePress = async () => {
+        
+        //  navigation.navigate('BattleScreen')
+    }
+
     return (
         <Container>
             <HeadLogo
@@ -48,9 +53,7 @@ export const PokemonBattle = (props: any) => {
                     }) &&
                     <DefaultButton
                         label="Go to PokemonBattle"
-                        handlePress={() => {
-                            //  navigation.navigate('BattleScreen')
-                            }}
+                        handlePress={handlePress}
                         height='80px'
                         color={theme.colors.black}
                     />}
