@@ -15,4 +15,5 @@ export interface IPokemonItem {
     'fighting' |
     'normal';
     height: number;
+    frontDefault:string;
 }

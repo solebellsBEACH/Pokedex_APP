@@ -25,8 +25,8 @@ justify-content:flex-end;
 `
 
 export const PokemonImage = styled(SvgUri)`
-top:-10px;
-left:-60px;
+top:-5px;
+left:5px;
 position: absolute;
 `
 

@@ -7,7 +7,7 @@ import { useCapitalizeFirstLetter, usePokemonColors } from '../../../../../utils
 import { IPokemonItem } from '../../interface'
 import { Container, Content, PokemonImage, ContentRight, Title, InformationName, InformationContainer, InformationValue } from './styles'
 
-export const PokemonItem = ({ name, type, height }: IPokemonItem) => {
+export const PokemonItem = ({ name, type, height, frontDefault }: IPokemonItem) => {
 
     const Information = ({ name, value }: { name: string, value: string }) => {
         return <InformationContainer>
@@ -23,12 +23,12 @@ export const PokemonItem = ({ name, type, height }: IPokemonItem) => {
             >
                 <ContentRight>
 
-                    <Title>Pokemon</Title>
+                    <Title>{useCapitalizeFirstLetter(name)}</Title>
                     <View
                         style={{ flexDirection: 'row' }}
                     >
                         <Information
-                            value={type}
+                            value={useCapitalizeFirstLetter(type.toString())}
                             name={'Type'}
                         />
                         <Information
@@ -40,7 +40,8 @@ export const PokemonItem = ({ name, type, height }: IPokemonItem) => {
                 </ContentRight>
                 <PokemonImage
                     height={RFValue(110) + ''}
-                    uri={'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg'}
+                    width={RFValue(110) + ''}
+                    uri={frontDefault}
                 />
             </Content>
         </Container>

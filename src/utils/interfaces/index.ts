@@ -79,7 +79,7 @@ export interface IUser {
 export interface IHomeDuckInitialState {
     loading: boolean,
     error: boolean,
-    pokemons: IPokemon[] | null,
+    pokemons: IPokemonRequest | null,
     success: boolean,
     userLoginLoading: boolean,
     userLoginError: boolean,
