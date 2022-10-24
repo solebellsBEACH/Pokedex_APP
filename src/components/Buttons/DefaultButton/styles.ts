@@ -2,8 +2,8 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import styled from 'styled-components/native'
 
 interface IContainerProps {
-    width?: number
-    height?: number
+    width?:string
+    height?:string
 }
 
 export const Container = styled.TouchableOpacity<IContainerProps>`

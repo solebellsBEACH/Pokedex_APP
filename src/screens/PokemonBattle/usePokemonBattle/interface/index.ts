@@ -44,5 +44,5 @@ export interface ICloseChooseProps {
     'psychic' |
     'flying' |
     'fighting' |
-    'normal'; }|null
+    'normal'; }
 }

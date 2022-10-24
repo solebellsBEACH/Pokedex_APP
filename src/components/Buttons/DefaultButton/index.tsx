@@ -3,7 +3,7 @@ import { Container, TextButton } from './styles'
 
 interface IDefaultButton {
     label: string,
-    handlePress: () => void
+    handlePress: (props:any) => void
     width?: string
     height?: string
 }
@@ -12,8 +12,10 @@ export const DefaultButton = ({ label, handlePress, width, height }: IDefaultBut
 
     return (
         <Container
-            width={width} height={height}
-            onPress={handlePress}>
+            width={width} 
+            height={height}
+            onPress={handlePress}
+            >
             <TextButton>{label}</TextButton>
         </Container>
     )
