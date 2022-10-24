@@ -2,12 +2,18 @@ import React from 'react'
 import { View } from 'react-native'
 import { useSelector } from 'react-redux'
 import { IPokemon, IReduxState } from '../../../../../utils/interfaces'
+import { IPokemonBattleState } from '../../interface'
 import { PokemonItem } from '../PokemonItem'
-import { Container } from './style'
+import { Content, Container, Title } from './style'
 
-export const PokemonChoose = () => {
+interface IPokemonChooseProps {
+    pokemonBattleState: IPokemonBattleState
+    setPokemonBattleState: React.Dispatch<React.SetStateAction<IPokemonBattleState>>
+}
+
+export const PokemonChoose = ({ pokemonBattleState, setPokemonBattleState }: IPokemonChooseProps) => {
     const homeData = useSelector((state: IReduxState) => state.home)
-    const renderItem = ({item}: {item:IPokemon}) => {
+    const renderItem = ({ item }: { item: IPokemon }) => {
         return <PokemonItem
             height={item.height}
             name={item.name}
@@ -18,10 +24,13 @@ export const PokemonChoose = () => {
 
 
     return (
-        <Container<any>
-            data={homeData?.pokemons.data}
-            keyExtractor={(e: any, i: number) => `itemPokemonChoose${i}`}
-            renderItem={renderItem}
-        />
+        <Container>
+            <Title>Escolha seu Pokemon: </Title>
+            <Content<any>
+                data={homeData?.pokemons.data}
+                keyExtractor={(e: any, i: number) => `itemPokemonChoose${i}`}
+                renderItem={renderItem}
+            />
+        </Container>
     )
 }

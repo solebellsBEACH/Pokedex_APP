@@ -1,3 +1,5 @@
+import { IPokemon } from "../../../../utils/interfaces";
+
 export interface IPokemonItem {
     name: string;
     type: 'fire' |
@@ -16,4 +18,9 @@ export interface IPokemonItem {
     'normal';
     height: number;
     frontDefault:string;
+}
+
+export interface IPokemonBattleState {
+    yourPokemon: IPokemon | null
+    computerPokemon: IPokemon | null
 }
