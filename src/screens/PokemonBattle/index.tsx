@@ -49,7 +49,7 @@ export const PokemonBattle = (props: any) => {
                     <DefaultButton
                         label="Go to PokemonBattle"
                         handlePress={() => {
-                             navigation.navigate('')
+                            //  navigation.navigate('BattleScreen')
                             }}
                         height='80px'
                         color={theme.colors.black}
