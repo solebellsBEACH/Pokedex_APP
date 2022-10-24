@@ -6,8 +6,7 @@ import { ICloseChooseProps } from '../../interface'
 import { Container, PokemonImage, ContentRight, Title } from './style'
 
 export const CloseChoose = ({ pokemon }: ICloseChooseProps) => {
-
-
+    
     const handleChangePokemon = () => {
 
     }

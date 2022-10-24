@@ -7,7 +7,13 @@ import { useCapitalizeFirstLetter, usePokemonColors } from '../../../../../utils
 import { IPokemonItem } from '../../interface'
 import { Container, Content, PokemonImage, ContentRight, Title, InformationName, InformationContainer, InformationValue } from './styles'
 
-export const PokemonItem = ({ name, type, height, frontDefault, handlePress}: IPokemonItem) => {
+export const PokemonItem = ({
+    pokemon,
+    pokemonBattleState,
+    setPokemonBattleState,
+    chooseType
+}: IPokemonItem) => {
+
 
     const Information = ({ name, value }: { name: string, value: string }) => {
         return <InformationContainer>
@@ -16,10 +22,15 @@ export const PokemonItem = ({ name, type, height, frontDefault, handlePress}: IP
         </InformationContainer>
     }
 
+    const { name, type, height, front_default } = pokemon
+    const handlePress = () => {
+        if (chooseType == 'you') setPokemonBattleState({ ...pokemonBattleState, yourPokemon: pokemon })
+        else setPokemonBattleState({ ...pokemonBattleState, computerPokemon: pokemon })
+    }
     return (
         <Container>
             <Content
-                 color={type != null ? usePokemonColors({ pokemonType: type }).primary : 'blue'} 
+                color={type != null ? usePokemonColors({ pokemonType: type }).primary : 'blue'}
             >
                 <ContentRight>
 
@@ -41,7 +52,7 @@ export const PokemonItem = ({ name, type, height, frontDefault, handlePress}: IP
                 <PokemonImage
                     height={RFValue(110) + ''}
                     width={RFValue(110) + ''}
-                    uri={frontDefault}
+                    uri={front_default}
                 />
             </Content>
         </Container>
