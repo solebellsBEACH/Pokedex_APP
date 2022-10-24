@@ -18,6 +18,11 @@ export interface IPokemonItem {
     'normal';
     height: number;
     frontDefault:string;
+    handlePress: ({ item, pokemonBattleState, setPokemonBattleState, }: {
+        item: IPokemon;
+        pokemonBattleState: IPokemonBattleState;
+        setPokemonBattleState: React.Dispatch<React.SetStateAction<IPokemonBattleState>>;
+    }) => void
 }
 
 export interface IPokemonBattleState {

@@ -29,6 +29,7 @@ export const PokemonBattle = (props: any) => {
                 source={require('../../assets/pokemon_battle.png')} />
             <Content>
                 <PokemonChoose
+                    chooseType='you'
                     pokemonBattleState={pokemonBattleState}
                     setPokemonBattleState={setPokemonBattleState}
                 />

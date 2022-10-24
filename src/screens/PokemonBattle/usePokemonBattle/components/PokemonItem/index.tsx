@@ -7,7 +7,7 @@ import { useCapitalizeFirstLetter, usePokemonColors } from '../../../../../utils
 import { IPokemonItem } from '../../interface'
 import { Container, Content, PokemonImage, ContentRight, Title, InformationName, InformationContainer, InformationValue } from './styles'
 
-export const PokemonItem = ({ name, type, height, frontDefault }: IPokemonItem) => {
+export const PokemonItem = ({ name, type, height, frontDefault, handlePress}: IPokemonItem) => {
 
     const Information = ({ name, value }: { name: string, value: string }) => {
         return <InformationContainer>
@@ -36,7 +36,7 @@ export const PokemonItem = ({ name, type, height, frontDefault }: IPokemonItem) 
                             name={'Height'}
                         />
                     </View>
-                    <DefaultButton label='Escolher' handlePress={() => { }} />
+                    <DefaultButton label='Escolher' handlePress={handlePress} />
                 </ContentRight>
                 <PokemonImage
                     height={RFValue(110) + ''}
