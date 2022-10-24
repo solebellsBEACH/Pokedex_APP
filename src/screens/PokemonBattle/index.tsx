@@ -3,10 +3,12 @@ import { useDispatch } from 'react-redux'
 import { Container, HeadLogo, Content } from './styles'
 import { PokemonChoose } from './usePokemonBattle/components'
 import { Creators as HomeActions } from '../../store/ducks/home'
-import { IPokemon } from '../../utils/interfaces'
+import { INavigationProps, IPokemon } from '../../utils/interfaces'
 import { IPokemonBattleState } from './usePokemonBattle/interface'
-
-
+import { DefaultButton } from '../../components'
+import theme from '../../global/theme';
+import { readyForFight } from './handle'
+import { useNavigation } from '@react-navigation/native'
 
 export const PokemonBattle = (props: any) => {
     const dispatch = useDispatch()
@@ -14,6 +16,7 @@ export const PokemonBattle = (props: any) => {
         yourPokemon: null,
         computerPokemon: null,
     })
+    const navigation = useNavigation<INavigationProps>()
 
     useEffect(() => {
         dispatch(HomeActions.HomePokemonsRequest({
@@ -25,7 +28,7 @@ export const PokemonBattle = (props: any) => {
     return (
         <Container>
             <HeadLogo
-                height={100}
+                height={120}
                 source={require('../../assets/pokemon_battle.png')} />
             <Content>
                 <PokemonChoose
@@ -38,6 +41,20 @@ export const PokemonBattle = (props: any) => {
                     pokemonBattleState={pokemonBattleState}
                     setPokemonBattleState={setPokemonBattleState}
                 />}
+                {readyForFight(
+                    {
+                        you: pokemonBattleState.yourPokemon,
+                        computer: pokemonBattleState.computerPokemon
+                    }) &&
+                    <DefaultButton
+                        label="Go to PokemonBattle"
+                        handlePress={() => {
+                             navigation.navigate('')
+                            }}
+                        height='80px'
+                        color={theme.colors.black}
+                    />}
+
             </Content>
         </Container>
     )

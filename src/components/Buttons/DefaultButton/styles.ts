@@ -2,8 +2,9 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import styled from 'styled-components/native'
 
 interface IContainerProps {
-    width?:string
-    height?:string
+    width?: string
+    height?: string
+    color?: string
 }
 
 export const Container = styled.TouchableOpacity<IContainerProps>`
@@ -13,7 +14,7 @@ margin:${RFValue(6)}px;
 border-radius:${RFValue(4)}px;
 align-items:center;
 justify-content:center;
-background:${(props) => props.theme.colors.blue1} ;
+background:${(props) => props.color ? props.color : props.theme.colors.blue1} ;
 `
 export const TextButton = styled.Text`
 font-family: ${({ theme }) => theme.fonts.SemiBold};
