@@ -3,7 +3,9 @@ import { View } from 'react-native'
 import { useSelector } from 'react-redux'
 import { IPokemon, IReduxState } from '../../../../../utils/interfaces'
 import { IPokemonBattleState } from '../../interface'
+import { CloseChoose } from '../CloseChoose'
 import { PokemonItem } from '../PokemonItem'
+import { getState, isOpen } from './handle'
 import { Content, Container, Title } from './style'
 
 interface IPokemonChooseProps {
@@ -30,16 +32,16 @@ export const PokemonChoose = ({ pokemonBattleState, setPokemonBattleState, choos
         />
     }
 
-
     return (
         <Container>
-            <Title>Escolha {chooseType == 'you' ? 'seu Pokemon' : 'adversário'}:</Title>
-            {homeData?.pokemons && <Content<any>
-                data={homeData.pokemons.data}
-                keyExtractor={(e: any, i: number) => `itemPokemonChoose${i}`}
-                renderItem={renderItem}
-            />}
+            {isOpen({ chooseType, pokemonBattleState }) ? <><Title>Escolha {chooseType == 'you' ? 'seu Pokemon' : 'adversário'}:</Title>
+                {homeData?.pokemons && <Content<any>
+                    data={homeData.pokemons.data}
+                    keyExtractor={(e: any, i: number) => `itemPokemonChoose${i}`}
+                    renderItem={renderItem}
+                />}</> : <CloseChoose pokemon={getState({ chooseType, pokemonBattleState })}/>}
+
         </Container>
     )
-    
+
 }

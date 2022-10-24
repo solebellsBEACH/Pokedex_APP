@@ -29,3 +29,20 @@ export interface IPokemonBattleState {
     yourPokemon: IPokemon | null
     computerPokemon: IPokemon | null
 }
+
+export interface ICloseChooseProps {
+    pokemon: { _id: string, name: string, front_default: string,  type: 'fire' |
+    'grass' |
+    'electric' |
+    'water' |
+    'ground' |
+    'rock' |
+    'fairy' |
+    'poison' |
+    'bug' |
+    'dragon' |
+    'psychic' |
+    'flying' |
+    'fighting' |
+    'normal'; }|null
+}
