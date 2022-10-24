@@ -6,6 +6,7 @@ import { DefaultButton } from '../../../../../components'
 import { useCapitalizeFirstLetter, usePokemonColors } from '../../../../../utils/hooks'
 import { IPokemonItem } from '../../interface'
 import { Container, Content, PokemonImage, ContentRight, Title, InformationName, InformationContainer, InformationValue } from './styles'
+import Toast from 'react-native-toast-message';
 
 export const PokemonItem = ({
     pokemon,
@@ -25,7 +26,15 @@ export const PokemonItem = ({
     const { name, type, height, front_default } = pokemon
     const handlePress = () => {
         if (chooseType == 'you') setPokemonBattleState({ ...pokemonBattleState, yourPokemon: pokemon })
-        else setPokemonBattleState({ ...pokemonBattleState, computerPokemon: pokemon })
+        else {
+            if (pokemon.name == pokemonBattleState?.yourPokemon?.name) {
+                Toast.show({
+                    type: 'error',
+                    text1: 'Ops',
+                    text2: 'Esse pokemon já foi escolhido 🚨'
+                });
+            } else setPokemonBattleState({ ...pokemonBattleState, computerPokemon: pokemon })
+        }
     }
     return (
         <Container>

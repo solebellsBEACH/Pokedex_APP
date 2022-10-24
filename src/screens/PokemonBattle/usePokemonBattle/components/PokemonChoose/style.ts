@@ -4,6 +4,8 @@ export const Content  = styled.FlatList`
 width:100% ;
 `
 export const Container = styled.View`
+/* height:90% ; */
+margin-bottom:10%;
 `
 
 export const Title = styled.Text`

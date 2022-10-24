@@ -17,8 +17,6 @@ interface IPokemonChooseProps {
 export const PokemonChoose = ({ pokemonBattleState, setPokemonBattleState, chooseType }: IPokemonChooseProps) => {
     const homeData = useSelector((state: IReduxState) => state.home)
 
-
-
     const renderItem = ({ item }: { item: IPokemon }) => {
         return <PokemonItem
             pokemon={item}

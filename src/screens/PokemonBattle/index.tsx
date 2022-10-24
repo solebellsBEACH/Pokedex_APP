@@ -33,6 +33,11 @@ export const PokemonBattle = (props: any) => {
                     pokemonBattleState={pokemonBattleState}
                     setPokemonBattleState={setPokemonBattleState}
                 />
+                {pokemonBattleState.yourPokemon !== null && <PokemonChoose
+                    chooseType='computer'
+                    pokemonBattleState={pokemonBattleState}
+                    setPokemonBattleState={setPokemonBattleState}
+                />}
             </Content>
         </Container>
     )
