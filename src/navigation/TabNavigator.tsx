@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { LogIn, Home, PokemonScreen, PokemonBattle, BattleScreen } from '../screens';
 import theme from '../global/theme';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { LoginTab } from './components';
 
 const Tab = createBottomTabNavigator();
 
@@ -16,7 +17,7 @@ export function TabNavigator() {
             initialRouteName='PokemonBattle'
             screenOptions={{
                 headerShown: false,
-                tabBarShowLabel: false, 
+                tabBarShowLabel: false,
                 tabBarStyle: {
                     positon: 'absolute',
                     height: RFValue(60),
@@ -30,6 +31,11 @@ export function TabNavigator() {
             }}
         >
             <Tab.Screen name="LogIn"
+                options={{
+                    tabBarIcon: ({ focused }: { focused: boolean }) => {
+                        return <LoginTab focused={focused} />
+                    }
+                }}
                 component={LogIn} />
             <Tab.Screen name="Home"
                 component={Home} />
