@@ -90,10 +90,9 @@ export const PokemonScreen = (props: any) => {
                 {renderContentTop()}
                 <ContentBottom>
                     {pokemon && <PokemonItem pokemon={pokemon} />}
-                    {pokemon &&<PokedexLinkButton _id={pokemon._id} pokemon={pokemon}/>}
+                    {pokemon && <PokedexLinkButton _id={pokemon._id} pokemon={pokemon}/>}
                 </ContentBottom>
             </Container>
-            
             {pokemon && <PokemonInformations pokemon={pokemon} />}
         </>
     )
