@@ -1,5 +1,5 @@
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { DefaultButton, LoadingComponent } from '../../components'
@@ -9,14 +9,20 @@ import { Container, HeadLogo, Content, LoseLogo, WinLogo, GoallessLogo } from '.
 import { BattleResult } from './useBattleScreen/components'
 import { returnBattleResult, returnFinishResult } from './useBattleScreen/hooks'
 
-export const BattleScreen = () => {
-    const [loading, setLoading] = useState(false)
+export const BattleScreen = (props: any) => {
+    const [loading, setLoading] = useState(true)
     const route = useRoute<RouteProp<ParamList, 'BattleScreen'>>();
     const { computer, you } = route.params
     const navigation = useNavigation<INavigationProps>()
-
     const { lose, win } = returnBattleResult({ computer, you })
     const finishResult = returnFinishResult({ lose, win })
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 2800);
+    }, [props])
+
 
     const chooseLogo = () => {
         switch (finishResult) {
@@ -55,11 +61,12 @@ export const BattleScreen = () => {
                 </>
             }
             </Content>
-            <DefaultButton
+            {!loading && <DefaultButton
                 height={RFValue(50) + 'px'}
                 label='Voltar para Home'
                 handlePress={() => { navigation.navigate('Home') }}
-            />
+            />}
+
         </Container>
     )
 }
