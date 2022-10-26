@@ -14,6 +14,7 @@ const returnBattleResult = ({ computer, you }: { computer: IPokemon; you: IPokem
             result[e.name] = 'lose'
         }
     })
+
     return {
         lose,
         win,
@@ -21,6 +22,19 @@ const returnBattleResult = ({ computer, you }: { computer: IPokemon; you: IPokem
     }
 }
 
+const returnFinishResult = ({
+    lose,
+    win
+}: {
+    lose: number;
+    win: number
+}) => {
+    if (lose === win) return 'goalless'
+    if (lose > win) return 'lose'
+    else return 'win'
+}
+
 export {
-    returnBattleResult
+    returnBattleResult,
+    returnFinishResult
 }

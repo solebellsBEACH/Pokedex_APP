@@ -1,4 +1,4 @@
-import { returnBattleResult } from "../../screens/BattleScreen/useBattleScreen/hooks"
+import { returnBattleResult, returnFinishResult } from "../../screens/BattleScreen/useBattleScreen/hooks"
 import { IPokemon } from "../../utils/interfaces"
 
 test('Testando hook que verifica o resultado da batalha dos Pokemons', () => {
@@ -89,5 +89,32 @@ test('Testando hook que verifica o resultado da batalha dos Pokemons', () => {
         ],
     }
 
-    expect(returnBattleResult({ you, computer }))
+    expect(returnBattleResult({ you, computer })).toEqual({
+        lose: 6,
+        win: 0,
+        result: {
+            hp: 'lose',
+            attack: 'lose',
+            defense: 'lose',
+            'special-attack': 'lose',
+            'special-defense': 'lose',
+            speed: 'lose'
+        }
+    })
+})
+
+test('Testando hook que retorna o resultado final da batalha dos Pokemons!!', () => {
+    expect(returnFinishResult({
+        lose: 6,
+        win: 0,
+    })).toBe('lose')
+    expect(returnFinishResult({
+        lose: 2,
+        win: 4,
+    })).toBe('win')
+
+    expect(returnFinishResult({
+        lose: 3,
+        win: 3,
+    })).toBe('goalless')
 })
