@@ -25,7 +25,7 @@ export const BattleScreen = () => {
                     <LoadingComponent size={250} />
                 </View> :
                 <>
-                    <BattleResult />
+                    <BattleResult computer={computer} you={you}/>
                 </>
             }
             </Content>
