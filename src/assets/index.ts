@@ -6,7 +6,10 @@ import ExitCircleIcon from './exit-circle-icon.svg'
 import PokemonImage from './pokemon-image.svg'
 import ArrowLeftIcon from './arrow-left-icon.svg'
 import BigPokemon from './big-pokemon.svg'
+import PokemonBattleLogo from './pokemon_battle.png'
+
 export {
+    PokemonBattleLogo,
     BigPokemon,
     ArrowLeftIcon,
     BackgroundLogIn,

@@ -18,7 +18,7 @@ export interface IPokemon {
     name: string,
     front_default: string,
     height: number,
-    stat_value: { stats_value: number, name: string }[],
+    stat_value: [hp: IStatValue, attack: IStatValue, defense: IStatValue, specialAttack: IStatValue, specialDefense: IStatValue, speed: IStatValue,],
     abilities: { value: number, name: string }[],
     type: 'fire' |
     'grass' |
@@ -34,6 +34,10 @@ export interface IPokemon {
     'flying' |
     'fighting' |
     'normal'
+}
+
+export interface IStatValue {
+    stats_value: number, name: string
 }
 export interface IPokemonRequest {
     success: boolean,
@@ -139,4 +143,17 @@ export interface IReduxState {
 
 export interface IPokemonScreenParams {
     _id: string
+}
+export interface IBattleScreenParams {
+    you: IPokemon,
+    computer: IPokemon
+}
+
+export interface IBattleResult {
+    hp: 'win' | 'lose' | 'goalless',
+    attack: 'win' | 'lose' | 'goalless',
+    defense: 'win' | 'lose' | 'goalless',
+    ['special-attack']: 'win' | 'lose' | 'goalless',
+    ['special-defense']: 'win' | 'lose' | 'goalless',
+    speed: 'win' | 'lose' | 'goalless'
 }
