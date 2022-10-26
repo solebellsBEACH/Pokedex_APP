@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Container, HeadLogo, Content } from './styles'
 import { PokemonChoose, SwordComponent } from './usePokemonBattle/components'
 import { Creators as HomeActions } from '../../store/ducks/home'
-import { INavigationProps, IPokemon } from '../../utils/interfaces'
+import { IBattleScreenParams, INavigationProps, IPokemon } from '../../utils/interfaces'
 import { IPokemonBattleState } from './usePokemonBattle/interface'
 import { DefaultButton } from '../../components'
 import theme from '../../global/theme';
@@ -17,7 +17,10 @@ export const PokemonBattle = (props: any) => {
         yourPokemon: null,
         computerPokemon: null,
     })
-    const navigation = useNavigation<INavigationProps>()
+    const navigation = useNavigation<INavigationProps<{
+        you: IPokemon,
+        computer: IPokemon,
+    }>>()
 
     useEffect(() => {
         dispatch(HomeActions.HomePokemonsRequest({
@@ -30,7 +33,8 @@ export const PokemonBattle = (props: any) => {
         setSwordIsOpen(true)
         setTimeout(() => {
             setSwordIsOpen(false)
-            navigation.navigate('BattleScreen')
+            if (pokemonBattleState.computerPokemon !== null && pokemonBattleState.yourPokemon !== null)
+                navigation.navigate('BattleScreen', { computer: pokemonBattleState.computerPokemon, you: pokemonBattleState.yourPokemon })
         }, 2800);
 
     }

@@ -140,3 +140,7 @@ export interface IReduxState {
 export interface IPokemonScreenParams {
     _id: string
 }
+export interface IBattleScreenParams {
+    you: IPokemon,
+    computer: IPokemon
+}
