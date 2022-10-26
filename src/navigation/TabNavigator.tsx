@@ -1,9 +1,6 @@
 import React from 'react';
-
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-import { LogIn, Home, PokemonScreen, PokemonBattle, BattleScreen } from '../screens';
+import { LogIn, Home, PokemonBattle } from '../screens';
 import theme from '../global/theme';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { BattleTab, HomeTab, LoginTab } from './components';
@@ -14,7 +11,7 @@ export function TabNavigator() {
     return (<>
 
         <Tab.Navigator
-            initialRouteName='PokemonBattle'
+            initialRouteName='Home'
             screenOptions={{
                 headerShown: false,
                 tabBarShowLabel: false,
