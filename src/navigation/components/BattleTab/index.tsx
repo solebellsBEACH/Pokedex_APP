@@ -1,13 +1,16 @@
 import React from 'react'
-import { Text } from 'react-native'
-import { RFValue } from 'react-native-responsive-fontsize'
-import { Container, Icon, Title } from './style'
+import { Container, Title, Logo } from './style'
 
 export const BattleTab = ({ focused }: { focused: boolean }) => {
     return (
         <Container>
+            <Logo
+             focused={focused}
+                height={20}
+                source={require('../../../assets/icons/battle.png')} />
+
             <Title
-            focused={focused}
+                focused={focused}
             >Battle</Title>
         </Container>
     )

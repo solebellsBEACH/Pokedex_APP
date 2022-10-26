@@ -24,7 +24,7 @@ width:100%;
 height: ${RFValue(50)}px;
 `
 export const ContentBottom = styled.View`
-margin:${RFValue(20)}px 0 0 ${RFValue(0)}px;
+margin:${RFValue(20)}px 0 ${RFValue(22)}px ${RFValue(0)}px;
 width:100%;
 `
 

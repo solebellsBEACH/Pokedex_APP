@@ -12,7 +12,6 @@ display:flex;
 justify-content:center;
 align-items:center;
 `
-export const Icon = styled(UserIconSVG)``
 interface ITitle {
     readonly focused: boolean
 }
@@ -20,4 +19,11 @@ export const Title = styled.Text<ITitle>`
 font-family: ${(props) => props.focused ? props.theme.fonts.ExtraBold : props.theme.fonts.SemiBold};
 font-size:${(props) => props.focused ? RFValue(15) : RFValue(14)}px;
 color:${(props) => props.focused ? props.theme.colors.gray6 : props.theme.colors.white} ;
+`
+export const Logo = styled.Image<ITitle>`
+resize-mode:contain;
+width: ${RFValue(28)}px;
+height: ${RFValue(28)}px;
+tint-color:${(props) => props.focused ? props.theme.colors.gray6 : props.theme.colors.white} ;
+/* position: absolute; */
 `
