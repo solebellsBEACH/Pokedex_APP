@@ -11,7 +11,7 @@ export function TabNavigator() {
     return (<>
 
         <Tab.Navigator
-            initialRouteName='Home'
+            initialRouteName='LogIn'
             screenOptions={{
                 headerShown: false,
                 tabBarShowLabel: false,
