@@ -21,4 +21,28 @@ display: flex;
 width:100% ;
 justify-content:center;
 align-items:center;
+margin-bottom:${RFValue(10)}px;
+`
+
+export const LoseLogo = styled.Image`
+resize-mode:contain;
+width: ${RFValue(150)}px;
+margin-top:${RFValue(-25)}px;
+margin-bottom:${RFValue(-20)}px;
+margin-left:${RFValue(-150)}px;
+`
+
+export const WinLogo = styled.Image`
+resize-mode:contain;
+width: ${RFValue(150)}px;
+margin-top:${RFValue(-25)}px;
+margin-bottom:${RFValue(-20)}px;
+margin-left:${RFValue(-150)}px;
+`
+export const GoallessLogo = styled.Image`
+resize-mode:contain;
+width: ${RFValue(250)}px;
+margin-top:${RFValue(-25)}px;
+margin-bottom:${RFValue(-20)}px;
+margin-left:${RFValue(-80)}px;
 `

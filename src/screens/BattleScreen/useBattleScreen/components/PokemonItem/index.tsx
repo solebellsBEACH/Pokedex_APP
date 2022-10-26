@@ -13,7 +13,7 @@ export const PokemonItem = ({ pokemon }: IPokemonItem) => {
     return (
         <Container>
             <PokemonImage
-                height={RFValue(220) + ''}
+                height={RFValue(200) + ''}
                 uri={pokemon.front_default}
             />
             <Title>{useCapitalizeFirstLetter(pokemon.name)}</Title>
