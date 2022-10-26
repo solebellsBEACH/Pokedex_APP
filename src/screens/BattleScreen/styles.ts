@@ -1,6 +1,6 @@
 import { RFValue } from 'react-native-responsive-fontsize'
 import styled from 'styled-components/native'
- 
+
 export const Container = styled.View`
 flex:1;
 display: flex;
@@ -16,4 +16,9 @@ width: ${RFValue(250)}px;
 margin-top:${RFValue(20)}px;
 `
 
-export const Content = styled.View``
+export const Content = styled.View`
+display: flex;
+width:100% ;
+justify-content:center;
+align-items:center;
+`

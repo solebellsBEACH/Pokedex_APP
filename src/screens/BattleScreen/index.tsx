@@ -12,8 +12,6 @@ export const BattleScreen = () => {
     const route = useRoute<RouteProp<ParamList, 'BattleScreen'>>();
     const { computer, you } = route.params
 
-    
-
     return (
         <Container>
             <HeadLogo
